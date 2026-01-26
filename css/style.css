@@ -179,6 +179,22 @@ body {
         border-radius: var(--card-radius);
         box-shadow: var(--card-shadow-hover);
         border: 1px solid var(--border-color);
+        text-align: center;
+    }
+
+    .custom-navbar .nav-link {
+        width: fit-content;
+        margin: 5px auto;
+        display: block;
+    }
+
+    .custom-navbar .nav-link::after {
+        left: 0;
+    }
+
+    .custom-navbar .nav-link:hover::after,
+    .custom-navbar .nav-link.active::after {
+        width: 100%;
     }
 }
 
@@ -191,7 +207,6 @@ body {
     align-items: center;
     position: relative;
     overflow: hidden;
-    /* Keeps the glow blobs inside the section */
     z-index: 1;
 }
 
@@ -205,7 +220,6 @@ body {
     filter: blur(100px);
     z-index: -1;
     opacity: 0.15;
-    /* Subtle glow */
     pointer-events: none;
 }
 
@@ -221,14 +235,12 @@ body {
     bottom: 10%;
     right: -5%;
     background: #6366f1;
-    /* An accent indigo/purple */
 }
 
 /* Adapt for Dark Mode */
 [data-theme="dark"] .hero-section::before,
 [data-theme="dark"] .hero-section::after {
     opacity: 0.25;
-    /* Make it pop more in dark mode */
 }
 
 .hero-badge {
@@ -265,18 +277,63 @@ body {
 }
 
 .hero-tagline {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     line-height: 1.8;
     color: var(--secondary-text);
     margin-bottom: 40px;
-    max-width: 580px;
+    max-width: 600px;
+    font-weight: 400;
+    /* border-left: 2px solid var(--primary-color); */
+    padding-left: 20px;
+    letter-spacing: 0.3px;
 }
 
 .hero-focus {
+    position: relative;
     font-size: 0.95rem;
     color: var(--secondary-text);
     padding-left: 1.5rem;
-    border-left: 3px solid var(--primary-color);
+    /* border-left: 3px solid var(--primary-color); */
+}
+
+/* The Dot */
+.hero-focus::before {
+    content: '';
+    position: absolute;
+    left: -5.5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 9px;
+    height: 9px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* The Pulse Ripple */
+.hero-focus::after {
+    content: '';
+    position: absolute;
+    left: -5.5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 9px;
+    height: 9px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    animation: pulse-ripple 2s infinite;
+    z-index: 1;
+}
+
+@keyframes pulse-ripple {
+    0% {
+        transform: translateY(-50%) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-50%) scale(3.5);
+        opacity: 0;
+    }
 }
 
 /* --- BUTTONS (Standardized) --- */
@@ -292,6 +349,8 @@ body {
 }
 
 .btn-primary-custom:hover {
+    color: var(--primary-color) !important;
+    border: 2px solid var(--primary-color);
     transform: translateY(-4px);
     box-shadow: 0 15px 30px var(--primary-soft);
 }
@@ -323,13 +382,9 @@ body {
     box-shadow: var(--card-shadow-hover);
     animation: float 6s ease-in-out infinite;
     max-width: 100%;
-    /* ... your existing border and animation ... */
     filter: brightness(1.05) contrast(1.1);
-    /* Subtle pop */
     object-fit: cover;
-    /* Ensures the face stays centered */
     aspect-ratio: 1 / 1;
-    /* Keeps it a perfect square/circle */
 }
 
 /* --- HERO RESPONSIVE LOGIC --- */
@@ -355,16 +410,13 @@ body {
         display: flex;
         justify-content: center;
         padding: 0;
-        /* Tighten padding for mobile */
     }
 
     .hero-image-container img {
         max-width: 280px;
-        /* Optimal size for mobile viewport */
         height: auto;
         margin: 0 auto;
         border-width: 10px;
-        /* Slightly thinner border for small screens */
     }
 
     /* 4. Adjust Typewriter Text size for mobile if needed */
@@ -380,7 +432,6 @@ body {
 
     .hero-section::after {
         display: none;
-        /* Hide the second one to keep it clean on small screens */
     }
 }
 
@@ -422,12 +473,30 @@ body {
 
 .about-description {
     font-size: 1.1rem;
+    /* font-size: clamp(1.1rem, 2vw, 1.3rem); */
     line-height: 1.8;
     color: var(--secondary-text);
     margin-bottom: 25px;
+    position: relative;
+    padding-left: 20px;
+    border-left: 4px solid var(--primary-color);
 }
 
-/* Perfected About Cards */
+/* Optional: Make the bold text pop with your theme color */
+.about-description strong {
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+/* Mobile Tweak */
+@media (max-width: 768px) {
+    .about-description {
+        padding-left: 20px;
+        font-size: 1.1rem;
+    }
+}
+
+/* About Section Cards */
 .about-card {
     background: var(--card-bg);
     padding: 35px 30px;
@@ -446,7 +515,7 @@ body {
     border-color: var(--primary-color);
 }
 
-/* Consistent Icon Backgrounds */
+/* Icon Backgrounds */
 .icon-circle {
     width: 55px;
     height: 55px;
@@ -496,7 +565,7 @@ body {
     color: var(--primary-color);
 }
 
-/* --- CLEANED MEDIA QUERIES --- */
+/* --- MEDIA QUERIES --- */
 @media (max-width: 991.98px) {
     .about-text {
         text-align: center;
@@ -556,7 +625,6 @@ body {
 /* Shared Portfolio Card Styling */
 .timeline-content.portfolio-card {
     padding: 30px;
-    /* Uses the .portfolio-card class from our global styles for hover/shadow */
 }
 
 .timeline-content h5 {
