@@ -35,7 +35,7 @@
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mastery">Mastery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -48,14 +48,12 @@
             <div class="row align-items-center gy-5">
                 <div class="col-lg-7 text-start reveal">
                     <!-- <h6 class="text-uppercase fw-bold hero-badge mb-3">Available for Hire</h6> -->
-                    <!-- <h1 class="hero-name">Hi, I'm <span class="text-gradient">Rizwan Mulla</span></h1> -->
                     <h1 class="hero-name">
                         Hi, I'm <span class="text-gradient">Rizwan Mulla</span>
                     </h1>
                     <p class="hero-title mb-4">
                         I am a <span id="typing-text" class="text-primary fw-600"></span><span class="cursor">|</span>
                     </p>
-                    <!-- <div class="hero-title">Flutter & Full-Stack Developer</div> -->
 
                     <p class="hero-tagline">
                         Where high-performance architecture meets intuitive design. I build digital products that don't
@@ -212,108 +210,119 @@
     <!-- PROJECTS SECTION -->
     <section id="projects" class="projects-section reveal">
         <div class="container">
-            <h2 class="section-title text-center mb-4">Featured Projects</h2>
+            <h2 class="section-title text-center mb-3">Featured Projects</h2>
+            <p class="text-center text-secondary mb-5">From production-grade mobile apps to full-stack web ecosystems.
+            </p>
 
             <div class="row justify-content-center mb-5 reveal">
-                <div class="col-md-5 col-lg-4">
-                    <div class="filter-wrapper">
-                        <i class="fa-solid fa-filter filter-icon"></i>
-                        <select id="projectCategory" class="form-select project-filter-custom"
-                            onchange="filterProjects()">
-                            <option value="all">All Categories</option>
-                            <option value="flutter">Flutter Apps</option>
-                            <option value="frontend">Frontend Web</option>
-                            <option value="fullstack">Full Stack (MERN)</option>
-                        </select>
-                    </div>
+                <div class="col-12 d-flex justify-content-center flex-wrap gap-2">
+                    <button class="filter-btn active" onclick="filterProjects('all', this)">All Work</button>
+                    <button class="filter-btn" onclick="filterProjects('experience', this)">Professional (3y+)</button>
+                    <button class="filter-btn" onclick="filterProjects('internship', this)">Internship</button>
+                    <button class="filter-btn" onclick="filterProjects('practice', this)">The Lab</button>
                 </div>
             </div>
 
             <div class="row g-4" id="projectGrid">
 
-                <div class="col-md-6 col-lg-4 project-item reveal" data-category="flutter">
+                <div class="col-md-6 col-lg-4 project-item reveal" data-category="experience">
                     <div class="portfolio-card project-card-custom" data-bs-toggle="modal" data-bs-target="#mpdModal">
                         <div class="project-content">
                             <div class="project-top">
-                                <span class="badge-cat">Flutter</span>
+                                <span class="badge-cat">Production</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </div>
                             <h5>MPD - CA Service App</h5>
                             <p>Service management app for Chartered Accountants.</p>
                             <div class="project-tags-container">
-                                <span>Firebase</span><span>Provider</span><span>Dart</span>
+                                <span>Flutter</span><span>Dart</span><span>Firebase</span><span>Riverpod</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4 project-item reveal" data-category="flutter">
+                <div class="col-md-6 col-lg-4 project-item reveal" data-category="experience">
                     <div class="portfolio-card project-card-custom" data-bs-toggle="modal"
                         data-bs-target="#tickitModal">
                         <div class="project-content">
                             <div class="project-top">
-                                <span class="badge-cat">Flutter</span>
+                                <span class="badge-cat">Production</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </div>
                             <h5>TickIt - Task Manager</h5>
                             <p>Productivity app with reminders and category tracking.</p>
                             <div class="project-tags-container">
-                                <span>Flutter</span><span>Firebase</span><span>Local DB</span>
+                                <span>Flutter</span><span>Firebase</span><span>Riverpod</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4 project-item reveal" data-category="flutter">
+                <div class="col-md-6 col-lg-4 project-item reveal" data-category="experience">
                     <div class="portfolio-card project-card-custom" data-bs-toggle="modal"
                         data-bs-target="#wizappModal">
                         <div class="project-content">
                             <div class="project-top">
-                                <span class="badge-cat">Flutter</span>
+                                <span class="badge-cat">Enterprise</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </div>
                             <h5>WizApp - Inventory System</h5>
                             <p>Real-time inventory tracking and analytics system.</p>
                             <div class="project-tags-container">
-                                <span>Node.js</span><span>Express.js</span><span>MySQL</span><span>REST API</span>
+                                <span>Flutter</span><span>Node.js</span><span>Express.js</span><span>MySQL</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4 project-item reveal" data-category="frontend">
+                <div class="col-md-6 col-lg-4 project-item reveal" data-category="internship">
                     <div class="portfolio-card project-card-custom" data-bs-toggle="modal" data-bs-target="#ecomModal">
                         <div class="project-content">
                             <div class="project-top">
-                                <span class="badge-cat">Frontend</span>
+                                <span class="badge-cat">Internship</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </div>
                             <h5>E-Commerce Website</h5>
                             <p>Responsive web store with cart and product listings.</p>
                             <div class="project-tags-container">
-                                <span>HTML</span><span>Bootstrap</span><span>JavaScript</span>
+                                <span>React</span><span>Bootstrap</span><span>JavaScript</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-4 project-item reveal" data-category="fullstack">
+                <div class="col-md-6 col-lg-4 project-item reveal" data-category="internship">
                     <div class="portfolio-card project-card-custom" data-bs-toggle="modal"
                         data-bs-target="#crimeReportingModal">
                         <div class="project-content">
                             <div class="project-top">
-                                <span class="badge-cat">Full Stack</span>
+                                <span class="badge-cat">MERN Stack</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </div>
                             <h5>Crime Reporting System</h5>
                             <p>MERN system for incident reporting and patrol management.</p>
                             <div class="project-tags-container">
-                                <span>React.js</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>JavaScript</span>
+                                <span>React</span><span>MongoDB</span><span>Node.js</span><span>Express.js</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <div class="col-md-6 col-lg-4 project-item reveal" data-category="practice">
+                    <div class="portfolio-card project-card-custom" data-bs-toggle="modal" data-bs-target="#vaultModal">
+                        <div class="project-content">
+                            <div class="project-top">
+                                <span class="badge-cat">Side Project</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                            <h5>Secure Password Vault</h5>
+                            <p>End-to-end encrypted storage for personal credentials.</p>
+                            <div class="project-tags-container">
+                                <span>Flutter</span><span>SQLite</span><span>AES Encryption</span><span>Riverpod</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -324,7 +333,7 @@
             <div class="modal-content border-0 shadow-lg">
                 <div class="modal-header border-0 pb-0">
                     <h4 class="fw-800 text-primary mb-0" id="tickitModalLabel">TickIt</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
 
                 <div class="modal-body pt-3">
@@ -383,7 +392,7 @@
             <div class="modal-content border-0 shadow-lg">
                 <div class="modal-header border-0 pb-0">
                     <h4 class="fw-800 text-primary mb-0" id="wizappModalLabel">WizApp</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
 
                 <div class="modal-body pt-3">
@@ -443,7 +452,7 @@
             <div class="modal-content border-0 shadow-lg">
                 <div class="modal-header border-0 pb-0">
                     <h4 class="fw-800 text-primary mb-0" id="mpdModalLabel">MPD</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
 
                 <div class="modal-body pt-3">
@@ -503,7 +512,7 @@
             <div class="modal-content border-0 shadow-lg">
                 <div class="modal-header border-0 pb-0">
                     <h4 class="fw-800 text-primary mb-0" id="ecomModalLabel">E-Commerce Website</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
 
                 <div class="modal-body pt-3">
@@ -565,7 +574,7 @@
             <div class="modal-content border-0 shadow-lg">
                 <div class="modal-header border-0 pb-0">
                     <h4 class="fw-800 text-primary mb-0" id="crimeReportingModalLabel">Crime Reporting System</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
 
                 <div class="modal-body pt-3">
@@ -574,8 +583,7 @@
                             <p class="about-description mb-4">
                                 A comprehensive <strong>Full-Stack</strong> solution for role-based crime management.
                                 The platform digitizes the reporting lifecycle, facilitating seamless communication
-                                between
-                                citizens, investigators, and administrators.
+                                between citizens, investigators, and administrators.
                             </p>
 
                             <h6 class="fw-700 mb-3 text-uppercase small letter-spacing-1">
@@ -614,36 +622,110 @@
                 </div>
 
                 <div class="modal-footer border-0">
-                    <button type="button" class="btn btn-outline-custom btn-sm px-4" data-bs-dismiss="modal">Close
-                        Project</button>
+                    <button type="button" class="btn btn-outline-custom btn-sm px-4"
+                        data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- SKILLS SECTION -->
-    <section id="skills" class="skills-section reveal">
+    <!-- Secure Password Vault Modal -->
+    <div class="modal fade" id="vaultModal" tabindex="-1" aria-labelledby="vaultModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h4 class="fw-800 text-primary mb-0" id="vaultModalLabel">Secure Password Vault</h4>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+
+                <div class="modal-body pt-3">
+                    <div class="row gy-4">
+                        <div class="col-lg-7">
+                            <p class="about-description mb-4">
+                                A high-security credential manager designed with a "Privacy-First" philosophy.
+                                This project served as a deep dive into advanced cryptography and secure local
+                                storage patterns within the Flutter ecosystem.
+                            </p>
+
+                            <h6 class="fw-700 mb-3 text-uppercase small letter-spacing-1">
+                                <i class="fa-solid fa-shield-halved text-primary me-2"></i>Security Features
+                            </h6>
+                            <ul class="modal-list mb-0">
+                                <li>AES-256 Bit Encryption for sensitive data</li>
+                                <li>Biometric Authentication (Fingerprint/FaceID)</li>
+                                <li>Zero-Knowledge architecture (Local storage only)</li>
+                                <li>Secure Master Password hashing logic</li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="mb-4">
+                                <h6 class="fw-700 mb-2 text-uppercase small letter-spacing-1">
+                                    <i class="fa-solid fa-code text-primary me-2"></i>Tech Stack
+                                </h6>
+                                <div class="project-tags-container">
+                                    <span>Flutter</span><span>SQLite</span><span>AES Crypto</span><span>Riverpod</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h6 class="fw-700 mb-2 text-uppercase small letter-spacing-1">
+                                    <i class="fa-solid fa-microchip text-primary me-2"></i>Core Challenge
+                                </h6>
+                                <p class="small text-secondary mb-0">
+                                    Implementing end-to-end encryption while maintaining smooth UI performance and
+                                    handling secure key derivation on-device.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-outline-custom btn-sm px-4"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="mastery" class="skills-section reveal">
         <div class="container">
-            <h2 class="section-title text-center mb-5">Skills & Certifications</h2>
+            <h2 class="section-title text-center mb-2">Mastery & Credentials</h2>
+            <p class="text-center text-secondary mb-5">Technical toolkit, industry certifications, and professional
+                growth.</p>
 
             <div class="row g-4">
                 <div class="col-lg-4">
-                    <div class="portfolio-card skills-card-custom h-100">
-                        <div class="icon-circle mb-3">
-                            <i class="fa-solid fa-laptop-code"></i>
+                    <div class="d-flex flex-column gap-4 h-100">
+                        <div class="portfolio-card skills-card-custom">
+                            <div class="icon-circle mb-3">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <h5>Technical Skills</h5>
+                            <div class="skill-category">
+                                <p class="small fw-bold text-primary mb-2">Development</p>
+                                <div class="project-tags-container mb-3">
+                                    <span>Flutter</span><span>Dart</span><span>React.js</span><span>Node.js</span><span>Firebase</span><span>MERN</span>
+                                </div>
+                                <p class="small fw-bold text-primary mb-2">Design & Tools</p>
+                                <div class="project-tags-container">
+                                    <span>Figma</span><span>UI/UX</span><span>Git</span><span>Agile</span><span>Adobe
+                                        XD</span>
+                                </div>
+                            </div>
                         </div>
-                        <h5>Technical Skills</h5>
-                        <div class="skill-category">
-                            <p class="small fw-bold text-primary mb-2">Development</p>
-                            <div class="project-tags-container mb-3">
-                                <span>Flutter</span><span>Dart</span><span>React.js</span><span>Node.js</span><span>Firebase</span><span>MERN</span>
-                            </div>
 
-                            <p class="small fw-bold text-primary mb-2">Design & Tools</p>
-                            <div class="project-tags-container">
-                                <span>Figma</span><span>UI/UX</span><span>Git</span><span>Agile</span><span>Adobe
-                                    XD</span>
+                        <div class="portfolio-card skills-card-custom">
+                            <div class="icon-circle mb-3">
+                                <i class="fa-solid fa-language"></i>
                             </div>
+                            <h5>Languages</h5>
+                            <ul class="modal-list mb-0">
+                                <li><strong>English</strong> - Full Professional</li>
+                                <li><strong>Hindi</strong> - Full Professional</li>
+                                <li><strong>Kannada</strong> - Professional</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -651,14 +733,25 @@
                 <div class="col-lg-4">
                     <div class="portfolio-card skills-card-custom h-100">
                         <div class="icon-circle mb-3">
-                            <i class="fa-solid fa-language"></i>
+                            <i class="fa-solid fa-bolt-lightning"></i>
                         </div>
-                        <h5>Languages</h5>
-                        <ul class="modal-list">
-                            <li><strong>English</strong> - Full Professional</li>
-                            <li><strong>Hindi</strong> - Full Professional</li>
-                            <li><strong>Kannada</strong> - Professional</li>
-                        </ul>
+                        <h5>Professional Growth</h5>
+
+                        <div class="cert-card-mini mb-3">
+                            <span class="cert-tag">Bosch BRIDGE</span>
+                            <h6>Industry Readiness</h6>
+                            <a href="#" target="_blank" class="cert-view-btn">
+                                View Certificate <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                            </a>
+                        </div>
+
+                        <div class="cert-card-mini">
+                            <span class="cert-tag">3-Day Intensive</span>
+                            <h6>AI & Machine Learning</h6>
+                            <a href="#" target="_blank" class="cert-view-btn">
+                                View Certificate <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -691,7 +784,7 @@
     <section id="resume" class="resume-section reveal">
         <div class="container text-center">
             <h2 class="section-title mb-4">My Resumes</h2>
-            <p class="about-description mb-5 mx-auto" style="max-width: 600px;">
+            <p class="resume-description mb-5 mx-auto" style="max-width: 600px;">
                 Choose the resume that best fits the role you are looking for. Both showcase my dedication to building
                 clean, scalable solutions.
             </p>
@@ -746,7 +839,7 @@
         <div class="container">
             <div class="contact-header text-center mb-5">
                 <h2 class="section-title">Let's Connect</h2>
-                <p class="about-description mx-auto">
+                <p class="contact-description mx-auto">
                     Currently open to new opportunities and interesting collaborations. Feel free to reach out!
                 </p>
             </div>
@@ -972,25 +1065,23 @@
             const currentRole = roles[roleIndex];
 
             if (isDeleting) {
-                // Remove characters
                 typingText.textContent = currentRole.substring(0, charIndex - 1);
                 charIndex--;
-                typeSpeed = 50; // Faster when deleting
+                typeSpeed = 50;
             } else {
-                // Add characters
                 typingText.textContent = currentRole.substring(0, charIndex + 1);
                 charIndex++;
-                typeSpeed = 150; // Normal typing speed
+                typeSpeed = 150;
             }
 
             // If word is complete
             if (!isDeleting && charIndex === currentRole.length) {
                 isDeleting = true;
-                typeSpeed = 2000; // Pause at the end of the word
+                typeSpeed = 2000;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
-                roleIndex = (roleIndex + 1) % roles.length; // Move to next word
-                typeSpeed = 500; // Pause before starting next word
+                roleIndex = (roleIndex + 1) % roles.length;
+                typeSpeed = 500;
             }
 
             setTimeout(type, typeSpeed);
@@ -998,6 +1089,33 @@
 
         // Start the effect on page load
         document.addEventListener('DOMContentLoaded', type);
+
+        function filterProjects(category, btn) {
+            // 1. Manage Active Button state
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            // 2. Filter Logic
+            const items = document.querySelectorAll('.project-item');
+
+            items.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+
+                if (category === 'all' || itemCategory === category) {
+                    item.style.display = "block";
+                    setTimeout(() => {
+                        item.style.opacity = "1";
+                        item.style.transform = "scale(1)";
+                    }, 10);
+                } else {
+                    item.style.opacity = "0";
+                    item.style.transform = "scale(0.9)";
+                    setTimeout(() => {
+                        item.style.display = "none";
+                    }, 200);
+                }
+            });
+        }
     </script>
 
 </body>

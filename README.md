@@ -10,7 +10,7 @@ and experience as a Mobile & Web Developer.
 - JavaScript
 
 ## 🌐 Live Website
-https://<your-username>.github.io/Rizwan-Mulla-Portfolio/
+https://r6rizwan.github.io/Rizwan-Mulla-Portfolio/
 
 ## 📬 Contact
 - Email: rizwanmulla6@gmail.com
