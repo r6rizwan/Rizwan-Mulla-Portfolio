@@ -887,6 +887,18 @@ body {
     padding: 100px 0;
 }
 
+.language-tag {
+    background: rgba(var(--primary-rgb), 0.1);
+    color: var(--primary-color);
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    display: inline-block;
+    margin: 4px;
+    border: 1px solid rgba(var(--primary-rgb), 0.2);
+    transition: all 0.3s ease;
+}
+
 .skills-card-custom {
     padding: 30px;
     height: auto;
