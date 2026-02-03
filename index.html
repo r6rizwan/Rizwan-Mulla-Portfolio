@@ -62,7 +62,6 @@
         <div class="container">
             <div class="row align-items-center gy-5">
                 <div class="col-lg-7 text-start reveal">
-                    <div class="hero-badge mb-3">Open to full-time and freelance</div>
                     <h1 class="hero-name">I'm <span class="text-gradient">Rizwan Mulla</span>.</h1>
                     <p class="hero-title mb-4">
                         <span id="typing-text" class="text-primary fw-600"></span><span class="cursor">|</span>
@@ -81,6 +80,7 @@
                     <div class="hero-focus mt-4">
                         Current focus: Flutter architecture, MERN stack, and UX systems.
                     </div>
+
                 </div>
 
                 <div class="col-lg-5 col-md-12 reveal">
@@ -722,21 +722,25 @@
                     <h2 class="section-title">WizApp Inventory System</h2>
                     <p class="about-description">
                         Built a real-time inventory platform that stays fast under heavy updates and keeps teams aligned
-                        on stock accuracy. The goal was a reliable mobile-first flow that mirrored the backend state
-                        without friction.
+                        on stock accuracy. The goal was a reliable mobile-first flow that mirrored backend state without
+                        friction, even with frequent stock changes.
                     </p>
                     <div class="case-study-points">
                         <div class="case-study-point">
-                            <span class="case-title">Problem</span>
-                            <span class="case-detail">Teams lacked real-time inventory visibility across locations.</span>
+                            <span class="case-title">Context</span>
+                            <span class="case-detail">Multi-location inventory needed a single source of truth.</span>
                         </div>
                         <div class="case-study-point">
-                            <span class="case-title">Approach</span>
-                            <span class="case-detail">Flutter UI + Node API with tight sync to MySQL.</span>
+                            <span class="case-title">Constraints</span>
+                            <span class="case-detail">High update frequency and limited network reliability.</span>
                         </div>
                         <div class="case-study-point">
-                            <span class="case-title">Outcome</span>
-                            <span class="case-detail">A responsive workflow with clear status tracking.</span>
+                            <span class="case-title">Decisions</span>
+                            <span class="case-detail">Optimistic UI + backend reconciliation for fast workflows.</span>
+                        </div>
+                        <div class="case-study-point">
+                            <span class="case-title">Results</span>
+                            <span class="case-detail">Faster stock checks and reduced manual reconciliation.</span>
                         </div>
                     </div>
                     <a href="#projects" class="btn btn-primary-custom btn-lg px-4 mt-3">See More Work</a>
@@ -745,9 +749,10 @@
                     <div class="case-study-card portfolio-card">
                         <h5>Highlights</h5>
                         <ul>
-                            <li>Designed UX flows for quick stock checks and updates.</li>
-                            <li>Optimized real-time sync to keep app performance stable.</li>
-                            <li>Implemented secure role-based data access patterns.</li>
+                            <li>Designed quick-check workflows for daily inventory tasks.</li>
+                            <li>Built a resilient sync layer that handles spotty connectivity.</li>
+                            <li>Implemented role-based access for admin and staff workflows.</li>
+                            <li>Defined clean domain models to reduce UI-state complexity.</li>
                         </ul>
                         <div class="project-tags-container mt-3">
                             <span>Flutter</span><span>Node.js</span><span>MySQL</span><span>REST API</span>
@@ -915,55 +920,67 @@
     <!-- CONTACT SECTION -->
     <section id="contact" class="contact-section reveal">
         <div class="container">
-            <div class="contact-header text-center mb-5">
-                <h2 class="section-title">Let's Connect</h2>
-                <p class="contact-description mx-auto">
-                    Open to roles in Flutter and full-stack engineering. Best way to reach me is email.
-                </p>
-            </div>
+            <div class="contact-shell">
+                <div class="contact-intro">
+                    <div class="contact-badge">Let’s work together</div>
+                    <h2 class="section-title">Have a project or role in mind?</h2>
+                    <p class="contact-description">
+                        I’m open to Flutter and full-stack opportunities. Reach out with a short brief and I’ll reply
+                        with next steps.
+                    </p>
+                    <div class="contact-cta">
+                        <a href="mailto:rizwanmulla6@gmail.com" class="btn btn-primary-custom btn-lg px-4">Email Me</a>
+                        <a href="documents/Rizwan_R_Mulla_Certificate.jpg" target="_blank" rel="noopener"
+                            class="btn btn-outline-custom btn-lg px-4">View Credentials</a>
+                    </div>
+                    <div class="contact-note">
+                        Typical response time: within 24 hours.
+                    </div>
+                </div>
 
-            <div class="contact-grid">
-                <a href="mailto:rizwanmulla6@gmail.com" class="contact-card-custom portfolio-card">
-                    <div class="icon-circle">
-                        <i class="fa-regular fa-envelope"></i>
-                    </div>
-                    <div class="contact-info">
-                        <span class="label">Email</span>
-                        <span class="value">rizwanmulla6@gmail.com</span>
-                    </div>
-                </a>
+                <div class="contact-cards">
+                    <a href="mailto:rizwanmulla6@gmail.com" class="contact-card-custom portfolio-card">
+                        <div class="icon-circle">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div class="contact-info">
+                            <span class="label">Email</span>
+                            <span class="value">rizwanmulla6@gmail.com</span>
+                        </div>
+                    </a>
 
-                <a href="tel:+919620057555" class="contact-card-custom portfolio-card">
-                    <div class="icon-circle">
-                        <i class="fa-solid fa-mobile-screen-button"></i>
-                    </div>
-                    <div class="contact-info">
-                        <span class="label">Phone</span>
-                        <span class="value">+91 96200 57555</span>
-                    </div>
-                </a>
+                    <a href="tel:+919620057555" class="contact-card-custom portfolio-card">
+                        <div class="icon-circle">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <div class="contact-info">
+                            <span class="label">Phone</span>
+                            <span class="value">+91 96200 57555</span>
+                        </div>
+                    </a>
 
-                <a href="https://linkedin.com/in/rizwan-r-mulla" target="_blank" rel="noopener"
-                    class="contact-card-custom portfolio-card">
-                    <div class="icon-circle">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </div>
-                    <div class="contact-info">
-                        <span class="label">LinkedIn</span>
-                        <span class="value">rizwan-r-mulla</span>
-                    </div>
-                </a>
+                    <a href="https://linkedin.com/in/rizwan-r-mulla" target="_blank" rel="noopener"
+                        class="contact-card-custom portfolio-card">
+                        <div class="icon-circle">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </div>
+                        <div class="contact-info">
+                            <span class="label">LinkedIn</span>
+                            <span class="value">rizwan-r-mulla</span>
+                        </div>
+                    </a>
 
-                <a href="https://github.com/r6rizwan" target="_blank" rel="noopener"
-                    class="contact-card-custom portfolio-card">
-                    <div class="icon-circle">
-                        <i class="fa-brands fa-github"></i>
-                    </div>
-                    <div class="contact-info">
-                        <span class="label">GitHub</span>
-                        <span class="value">r6rizwan</span>
-                    </div>
-                </a>
+                    <a href="https://github.com/r6rizwan" target="_blank" rel="noopener"
+                        class="contact-card-custom portfolio-card">
+                        <div class="icon-circle">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                        <div class="contact-info">
+                            <span class="label">GitHub</span>
+                            <span class="value">r6rizwan</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -1113,6 +1130,37 @@
             });
         });
 
+        function filterProjects(category, btn) {
+            // 1. Manage Active Button state
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
+
+            // 2. Filter Logic
+            const items = document.querySelectorAll('.project-item');
+
+            items.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+
+                if (category === 'all' || itemCategory === category) {
+                    item.style.display = "block";
+                    setTimeout(() => {
+                        item.style.opacity = "1";
+                        item.style.transform = "scale(1)";
+                    }, 10);
+                } else {
+                    item.style.opacity = "0";
+                    item.style.transform = "scale(0.9)";
+                    setTimeout(() => {
+                        item.style.display = "none";
+                    }, 200);
+                }
+            });
+        }
+
         /**
          * 6. TYPEWRITER EFFECT
         */
@@ -1157,37 +1205,6 @@
 
         // Start the effect on page load
         document.addEventListener('DOMContentLoaded', type);
-
-        function filterProjects(category, btn) {
-            // 1. Manage Active Button state
-            document.querySelectorAll('.filter-btn').forEach(b => {
-                b.classList.remove('active');
-                b.setAttribute('aria-pressed', 'false');
-            });
-            btn.classList.add('active');
-            btn.setAttribute('aria-pressed', 'true');
-
-            // 2. Filter Logic
-            const items = document.querySelectorAll('.project-item');
-
-            items.forEach(item => {
-                const itemCategory = item.getAttribute('data-category');
-
-                if (category === 'all' || itemCategory === category) {
-                    item.style.display = "block";
-                    setTimeout(() => {
-                        item.style.opacity = "1";
-                        item.style.transform = "scale(1)";
-                    }, 10);
-                } else {
-                    item.style.opacity = "0";
-                    item.style.transform = "scale(0.9)";
-                    setTimeout(() => {
-                        item.style.display = "none";
-                    }, 200);
-                }
-            });
-        }
 
         /**
          * 7. ACCESSIBLE PROJECT CARD ACTIONS

@@ -77,20 +77,20 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Typing Cursor Animation */
-.cursor {
-    font-weight: 300;
-    color: var(--primary-color);
-    animation: blink 0.7s infinite;
-    margin-left: 2px;
-}
-
 .text-primary {
     color: var(--primary-color) !important;
 }
 
 .text-secondary {
     color: var(--secondary-text) !important;
+}
+
+/* Typing Cursor Animation */
+.cursor {
+    font-weight: 300;
+    color: var(--primary-color);
+    animation: blink 0.7s infinite;
+    margin-left: 2px;
 }
 
 @keyframes blink {
@@ -319,7 +319,7 @@ h6,
 }
 
 .hero-title {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(1rem, 2vw, 1.2rem);
     font-weight: 600;
     display: inline-block;
     padding: 8px 24px;
@@ -1137,50 +1137,69 @@ h6,
 
 /* --- CONTACT SECTION --- */
 .contact-section {
-    padding: 100px 0;
+    padding: 110px 0;
 }
 
-.contact-header {
-    margin-bottom: 60px;
+.contact-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+    align-items: center;
+}
+
+.contact-intro {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 26px;
+    padding: 36px;
+    box-shadow: var(--card-shadow);
+}
+
+.contact-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--primary-soft);
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+    margin-bottom: 16px;
 }
 
 .contact-description {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--secondary-text);
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 460px;
     line-height: 1.7;
+    margin-bottom: 24px;
 }
 
-.contact-grid {
-    /* display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    max-width: 1100px;
-    margin: 0 auto; */
+.contact-cta {
     display: flex;
     flex-wrap: wrap;
-    /* Allows cards to drop to the next line */
-    justify-content: center;
-    /* Centers items on every row */
-    gap: 24px;
-    max-width: 800px;
-    margin: 0 auto;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.contact-note {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    opacity: 0.8;
+}
+
+.contact-cards {
+    display: grid;
+    gap: 18px;
 }
 
 .contact-card-custom {
-    /* display: flex;
-    align-items: center;
-    padding: 24px;
-    text-decoration: none !important; */
-    /* Uses .portfolio-card for hover/border/shadow */
     display: flex;
     align-items: center;
-    padding: 24px;
+    padding: 22px;
     text-decoration: none !important;
-    /* Fixed width ensures 3 fit perfectly on desktop, 1 on mobile */
-    flex: 0 1 350px;
-    min-width: 280px;
     background: var(--card-bg);
     border-radius: var(--card-radius);
 }
@@ -1224,8 +1243,15 @@ h6,
 
 /* Responsive tweaks */
 @media (max-width: 768px) {
+    .contact-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-intro {
+        padding: 28px;
+    }
+
     .contact-card-custom {
-        flex: 1 1 100%;
         padding: 20px;
     }
 }
