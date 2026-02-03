@@ -4,18 +4,32 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Rizwan Mulla is a Flutter and full-stack developer crafting high-performance apps and thoughtful user experiences across mobile and web." />
+    <meta name="theme-color" content="#0f1b1d" />
+    <meta property="og:title" content="Rizwan Mulla | Portfolio" />
+    <meta property="og:description"
+        content="Flutter + MERN developer building reliable, user-centered products. Explore featured projects, experience, and ways to connect." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/profile.jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="assets/favicon.ico">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
     <title>Rizwan Mulla | Portfolio</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body data-theme="light" data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="120">
+    <a class="skip-link" href="#hero">Skip to content</a>
 
     <!-- Navbar Section -->
     <nav class="navbar navbar-expand-lg fixed-top custom-navbar">
@@ -35,6 +49,7 @@
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#case-study">Case Study</a></li>
                     <li class="nav-item"><a class="nav-link" href="#mastery">Mastery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
@@ -47,33 +62,31 @@
         <div class="container">
             <div class="row align-items-center gy-5">
                 <div class="col-lg-7 text-start reveal">
-                    <!-- <h6 class="text-uppercase fw-bold hero-badge mb-3">Available for Hire</h6> -->
-                    <h1 class="hero-name">
-                        Hi, I'm <span class="text-gradient">Rizwan Mulla</span>
-                    </h1>
+                    <div class="hero-badge mb-3">Open to full-time and freelance</div>
+                    <h1 class="hero-name">I'm <span class="text-gradient">Rizwan Mulla</span>.</h1>
                     <p class="hero-title mb-4">
-                        I am a <span id="typing-text" class="text-primary fw-600"></span><span class="cursor">|</span>
+                        <span id="typing-text" class="text-primary fw-600"></span><span class="cursor">|</span>
                     </p>
 
                     <p class="hero-tagline">
-                        Where high-performance architecture meets intuitive design. I build digital products that don't
-                        just work flawlessly—they feel right.
+                        Flutter + MERN developer focused on speed, clarity, and product outcomes. I turn complex
+                        requirements into clean, scalable experiences for mobile and web.
                     </p>
 
                     <div class="d-flex flex-wrap justify-content-start gap-3">
-                        <a href="#projects" class="btn btn-primary-custom btn-lg px-4">View My Work</a>
-                        <a href="#experience" class="btn btn-outline-custom btn-lg px-4">My Experience</a>
+                        <a href="#projects" class="btn btn-primary-custom btn-lg px-4">View Projects</a>
+                        <a href="#case-study" class="btn btn-outline-custom btn-lg px-4">Case Study</a>
                     </div>
 
-                    <div class="hero-focus mt-5">
-                        Currently deep-diving into <strong>MERN Stack & UI/UX Design</strong>.
+                    <div class="hero-focus mt-4">
+                        Current focus: Flutter architecture, MERN stack, and UX systems.
                     </div>
                 </div>
 
                 <div class="col-lg-5 col-md-12 reveal">
                     <div class="hero-image-container">
                         <img src="assets/profile.jpeg" alt="Rizwan Mulla" class="hero-img-styled"
-                            onerror="this.onerror=null; this.src='assets/alt-profile.jpeg'">
+                            onerror="this.onerror=null; this.src='assets/alt-profile.jpeg'" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -86,19 +99,18 @@
             <div class="row align-items-center gy-5">
 
                 <div class="col-lg-6 about-text reveal">
-                    <h6 class="text-primary fw-bold text-uppercase mb-2">Discovery</h6>
-                    <h2 class="section-title">About Me</h2>
+                    <h6 class="text-primary fw-bold text-uppercase mb-2">The Story</h6>
+                    <h2 class="section-title">Product-Minded Engineering</h2>
                     <div class="about-content reveal">
                         <p class="about-description">
-                            Over the past <strong>3 years</strong>, I've specialized in perfecting the art of mobile
-                            development with <strong>Flutter</strong>.
-                            Now, I'm bridging the gap between mobile and web by mastering the <strong>MERN
-                                stack</strong>—engineering the seamless,
-                            full-stack ecosystems that modern businesses demand.
+                            Over the past <strong>3 years</strong>, I’ve led Flutter builds that emphasize performance,
+                            clean architecture, and delightful user flows. Today I’m extending that mindset into
+                            <strong>full-stack MERN</strong> work, designing cohesive systems that feel effortless to use
+                            and reliable in production.
                         </p>
                     </div>
                     <a href="#experience" class="btn-link-custom">
-                        Learn more about my journey <i class="fa-solid fa-arrow-right ms-2"></i>
+                        Explore the journey <i class="fa-solid fa-arrow-right ms-2"></i>
                     </a>
                 </div>
 
@@ -211,22 +223,26 @@
     <section id="projects" class="projects-section reveal">
         <div class="container">
             <h2 class="section-title text-center mb-3">Featured Projects</h2>
-            <p class="text-center text-secondary mb-5">From production-grade mobile apps to full-stack web ecosystems.
-            </p>
+            <p class="text-center text-secondary mb-5">Mobile and web builds designed for clarity, speed, and adoption.</p>
 
             <div class="row justify-content-center mb-5 reveal">
                 <div class="col-12 d-flex justify-content-center flex-wrap gap-2">
-                    <button class="filter-btn active" onclick="filterProjects('all', this)">All Work</button>
-                    <button class="filter-btn" onclick="filterProjects('experience', this)">Professional (3y+)</button>
-                    <button class="filter-btn" onclick="filterProjects('internship', this)">Internship</button>
-                    <button class="filter-btn" onclick="filterProjects('practice', this)">The Lab</button>
+                    <button type="button" class="filter-btn active" aria-pressed="true" aria-controls="projectGrid"
+                        onclick="filterProjects('all', this)">All Work</button>
+                    <button type="button" class="filter-btn" aria-pressed="false" aria-controls="projectGrid"
+                        onclick="filterProjects('experience', this)">Professional (3y+)</button>
+                    <button type="button" class="filter-btn" aria-pressed="false" aria-controls="projectGrid"
+                        onclick="filterProjects('internship', this)">Internship</button>
+                    <button type="button" class="filter-btn" aria-pressed="false" aria-controls="projectGrid"
+                        onclick="filterProjects('practice', this)">The Lab</button>
                 </div>
             </div>
 
             <div class="row g-4" id="projectGrid">
 
                 <div class="col-md-6 col-lg-4 project-item reveal" data-category="experience">
-                    <div class="portfolio-card project-card-custom" data-bs-toggle="modal" data-bs-target="#mpdModal">
+                    <div class="portfolio-card project-card-custom" role="button" tabindex="0" data-bs-toggle="modal"
+                        data-bs-target="#mpdModal">
                         <div class="project-content">
                             <div class="project-top">
                                 <span class="badge-cat">Production</span>
@@ -234,6 +250,7 @@
                             </div>
                             <h5>MPD - CA Service App</h5>
                             <p>Service management app for Chartered Accountants.</p>
+                            <p class="project-impact">Impact: streamlined daily requests and client record workflows.</p>
                             <div class="project-tags-container">
                                 <span>Flutter</span><span>Dart</span><span>Firebase</span><span>Riverpod</span>
                             </div>
@@ -242,7 +259,7 @@
                 </div>
 
                 <div class="col-md-6 col-lg-4 project-item reveal" data-category="experience">
-                    <div class="portfolio-card project-card-custom" data-bs-toggle="modal"
+                    <div class="portfolio-card project-card-custom" role="button" tabindex="0" data-bs-toggle="modal"
                         data-bs-target="#tickitModal">
                         <div class="project-content">
                             <div class="project-top">
@@ -251,6 +268,7 @@
                             </div>
                             <h5>TickIt - Task Manager</h5>
                             <p>Productivity app with reminders and category tracking.</p>
+                            <p class="project-impact">Impact: simplified daily planning with clean, focused UX.</p>
                             <div class="project-tags-container">
                                 <span>Flutter</span><span>Firebase</span><span>Riverpod</span>
                             </div>
@@ -259,7 +277,7 @@
                 </div>
 
                 <div class="col-md-6 col-lg-4 project-item reveal" data-category="experience">
-                    <div class="portfolio-card project-card-custom" data-bs-toggle="modal"
+                    <div class="portfolio-card project-card-custom" role="button" tabindex="0" data-bs-toggle="modal"
                         data-bs-target="#wizappModal">
                         <div class="project-content">
                             <div class="project-top">
@@ -268,6 +286,7 @@
                             </div>
                             <h5>WizApp - Inventory System</h5>
                             <p>Real-time inventory tracking and analytics system.</p>
+                            <p class="project-impact">Impact: improved visibility of stock movement and trends.</p>
                             <div class="project-tags-container">
                                 <span>Flutter</span><span>Node.js</span><span>Express.js</span><span>MySQL</span>
                             </div>
@@ -276,7 +295,8 @@
                 </div>
 
                 <div class="col-md-6 col-lg-4 project-item reveal" data-category="internship">
-                    <div class="portfolio-card project-card-custom" data-bs-toggle="modal" data-bs-target="#ecomModal">
+                    <div class="portfolio-card project-card-custom" role="button" tabindex="0" data-bs-toggle="modal"
+                        data-bs-target="#ecomModal">
                         <div class="project-content">
                             <div class="project-top">
                                 <span class="badge-cat">Internship</span>
@@ -284,6 +304,7 @@
                             </div>
                             <h5>E-Commerce Website</h5>
                             <p>Responsive web store with cart and product listings.</p>
+                            <p class="project-impact">Impact: responsive layouts optimized for conversion flows.</p>
                             <div class="project-tags-container">
                                 <span>React</span><span>Bootstrap</span><span>JavaScript</span>
                             </div>
@@ -292,7 +313,7 @@
                 </div>
 
                 <div class="col-md-6 col-lg-4 project-item reveal" data-category="internship">
-                    <div class="portfolio-card project-card-custom" data-bs-toggle="modal"
+                    <div class="portfolio-card project-card-custom" role="button" tabindex="0" data-bs-toggle="modal"
                         data-bs-target="#crimeReportingModal">
                         <div class="project-content">
                             <div class="project-top">
@@ -301,6 +322,7 @@
                             </div>
                             <h5>Crime Reporting System</h5>
                             <p>MERN system for incident reporting and patrol management.</p>
+                            <p class="project-impact">Impact: clearer handoff between citizen, investigator, admin.</p>
                             <div class="project-tags-container">
                                 <span>React</span><span>MongoDB</span><span>Node.js</span><span>Express.js</span>
                             </div>
@@ -309,7 +331,8 @@
                 </div>
 
                 <div class="col-md-6 col-lg-4 project-item reveal" data-category="practice">
-                    <div class="portfolio-card project-card-custom" data-bs-toggle="modal" data-bs-target="#vaultModal">
+                    <div class="portfolio-card project-card-custom" role="button" tabindex="0" data-bs-toggle="modal"
+                        data-bs-target="#vaultModal">
                         <div class="project-content">
                             <div class="project-top">
                                 <span class="badge-cat">Side Project</span>
@@ -317,6 +340,7 @@
                             </div>
                             <h5>Secure Password Vault</h5>
                             <p>End-to-end encrypted storage for personal credentials.</p>
+                            <p class="project-impact">Impact: privacy-first storage with smooth on-device UX.</p>
                             <div class="project-tags-container">
                                 <span>Flutter</span><span>SQLite</span><span>AES Encryption</span><span>Riverpod</span>
                             </div>
@@ -521,7 +545,7 @@
                             <p class="about-description mb-4">
                                 A high-performance, responsive e-commerce interface designed to showcase core shopping
                                 functionalities.
-                                The project prioritizes seamless **usability** and a mobile-first approach across all
+                                The project prioritizes seamless <strong>usability</strong> and a mobile-first approach across all
                                 device sizes.
                             </p>
 
@@ -689,6 +713,51 @@
         </div>
     </div>
 
+    <!-- CASE STUDY SECTION -->
+    <section id="case-study" class="case-study-section reveal">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h6 class="text-primary fw-bold text-uppercase mb-2">Case Study</h6>
+                    <h2 class="section-title">WizApp Inventory System</h2>
+                    <p class="about-description">
+                        Built a real-time inventory platform that stays fast under heavy updates and keeps teams aligned
+                        on stock accuracy. The goal was a reliable mobile-first flow that mirrored the backend state
+                        without friction.
+                    </p>
+                    <div class="case-study-points">
+                        <div class="case-study-point">
+                            <span class="case-title">Problem</span>
+                            <span class="case-detail">Teams lacked real-time inventory visibility across locations.</span>
+                        </div>
+                        <div class="case-study-point">
+                            <span class="case-title">Approach</span>
+                            <span class="case-detail">Flutter UI + Node API with tight sync to MySQL.</span>
+                        </div>
+                        <div class="case-study-point">
+                            <span class="case-title">Outcome</span>
+                            <span class="case-detail">A responsive workflow with clear status tracking.</span>
+                        </div>
+                    </div>
+                    <a href="#projects" class="btn btn-primary-custom btn-lg px-4 mt-3">See More Work</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="case-study-card portfolio-card">
+                        <h5>Highlights</h5>
+                        <ul>
+                            <li>Designed UX flows for quick stock checks and updates.</li>
+                            <li>Optimized real-time sync to keep app performance stable.</li>
+                            <li>Implemented secure role-based data access patterns.</li>
+                        </ul>
+                        <div class="project-tags-container mt-3">
+                            <span>Flutter</span><span>Node.js</span><span>MySQL</span><span>REST API</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="mastery" class="skills-section reveal">
         <div class="container">
             <h2 class="section-title text-center mb-2">Mastery & Credentials</h2>
@@ -748,7 +817,7 @@
                         <div class="cert-card-mini mb-3">
                             <span class="cert-tag">Bosch BRIDGE</span>
                             <h6>Industry Readiness</h6>
-                            <a href="#" target="_blank" class="cert-view-btn">
+                            <a href="#" target="_blank" rel="noopener" class="cert-view-btn">
                                 View Certificate <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
                             </a>
                         </div>
@@ -756,7 +825,8 @@
                         <div class="cert-card-mini">
                             <span class="cert-tag">3-Day Intensive</span>
                             <h6>Generative AI Mastermind Workshop</h6>
-                            <a href="documents/Rizwan_R_Mulla_Certificate.jpg" target="_blank" class="cert-view-btn">
+                            <a href="documents/Rizwan_R_Mulla_Certificate.jpg" target="_blank" rel="noopener"
+                                class="cert-view-btn">
                                 View Certificate <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
                             </a>
                         </div>
@@ -812,7 +882,7 @@
                                 <i class="fa-solid fa-download me-2"></i>Download
                             </a>
                             <a href="Rizwan_Mulla_Flutter_Resume.pdf" class="btn btn-outline-custom btn-sm px-4"
-                                target="_blank">
+                                target="_blank" rel="noopener">
                                 View
                             </a>
                         </div>
@@ -832,7 +902,7 @@
                                 <i class="fa-solid fa-download me-2"></i>Download
                             </a>
                             <a href="Rizwan_Mulla_MERN_Resume.pdf" class="btn btn-outline-custom btn-sm px-4"
-                                target="_blank">
+                                target="_blank" rel="noopener">
                                 View
                             </a>
                         </div>
@@ -848,7 +918,7 @@
             <div class="contact-header text-center mb-5">
                 <h2 class="section-title">Let's Connect</h2>
                 <p class="contact-description mx-auto">
-                    Currently open to new opportunities and interesting collaborations. Feel free to reach out!
+                    Open to roles in Flutter and full-stack engineering. Best way to reach me is email.
                 </p>
             </div>
 
@@ -873,7 +943,7 @@
                     </div>
                 </a>
 
-                <a href="https://linkedin.com/in/rizwan-r-mulla" target="_blank"
+                <a href="https://linkedin.com/in/rizwan-r-mulla" target="_blank" rel="noopener"
                     class="contact-card-custom portfolio-card">
                     <div class="icon-circle">
                         <i class="fa-brands fa-linkedin-in"></i>
@@ -884,7 +954,8 @@
                     </div>
                 </a>
 
-                <a href="https://github.com/r6rizwan" target="_blank" class="contact-card-custom portfolio-card">
+                <a href="https://github.com/r6rizwan" target="_blank" rel="noopener"
+                    class="contact-card-custom portfolio-card">
                     <div class="icon-circle">
                         <i class="fa-brands fa-github"></i>
                     </div>
@@ -903,8 +974,9 @@
             <div class="footer-content">
                 <p>© 2026 Rizwan Mulla. Built with Passion & Precision.</p>
                 <div class="footer-social-links mt-3">
-                    <a href="https://github.com/r6rizwan" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://linkedin.com/in/rizwan-r-mulla" target="_blank"><i
+                    <a href="https://github.com/r6rizwan" target="_blank" rel="noopener"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com/in/rizwan-r-mulla" target="_blank" rel="noopener"><i
                             class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             </div>
@@ -983,25 +1055,7 @@
         });
 
         /**
-         * 3. PROJECT FILTERING
-         */
-        function filterProjects() {
-            const category = document.getElementById("projectCategory").value;
-            const projects = document.querySelectorAll(".project-item");
-
-            projects.forEach(project => {
-                const isMatch = category === "all" || project.dataset.category === category;
-
-                // We use display="" to let Bootstrap's grid classes (col-md-6 etc.) take over
-                project.style.display = isMatch ? "" : "none";
-
-                // Re-trigger reveal for filtered items
-                if (isMatch) project.classList.add('active');
-            });
-        }
-
-        /**
-         * 4. INTERSECTION OBSERVER (SCROLL REVEAL)
+         * 3. INTERSECTION OBSERVER (SCROLL REVEAL)
          */
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -1016,7 +1070,7 @@
         document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
         /**
-         * 5. NAVBAR SCROLL SPY
+         * 4. NAVBAR SCROLL SPY
          * Dynamically highlights the current section in the Navbar
         */
         const navLinks = document.querySelectorAll('.custom-navbar .nav-link');
@@ -1043,7 +1097,7 @@
         });
 
         /**
-         * 6. MOBILE NAV AUTO-CLOSE
+         * 5. MOBILE NAV AUTO-CLOSE
          * Closes the mobile hamburger menu automatically after clicking a link
         */
         const navItems = document.querySelectorAll('.custom-navbar .nav-link');
@@ -1060,16 +1114,22 @@
         });
 
         /**
-         * 7. TYPEWRITER EFFECT
+         * 6. TYPEWRITER EFFECT
         */
         const typingText = document.getElementById('typing-text');
-        const roles = ['Flutter Developer', 'MERN Stack Developer', 'UI/UX Designer'];
+        const roles = ['Flutter Developer', 'Full-Stack MERN Developer', 'Product-Focused Engineer'];
         let roleIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
         let typeSpeed = 100;
 
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
         function type() {
+            if (prefersReducedMotion) {
+                typingText.textContent = roles[0];
+                return;
+            }
             const currentRole = roles[roleIndex];
 
             if (isDeleting) {
@@ -1100,8 +1160,12 @@
 
         function filterProjects(category, btn) {
             // 1. Manage Active Button state
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
             btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
 
             // 2. Filter Logic
             const items = document.querySelectorAll('.project-item');
@@ -1124,6 +1188,18 @@
                 }
             });
         }
+
+        /**
+         * 7. ACCESSIBLE PROJECT CARD ACTIONS
+         */
+        document.querySelectorAll('.project-card-custom').forEach(card => {
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    card.click();
+                }
+            });
+        });
     </script>
 
 </body>
