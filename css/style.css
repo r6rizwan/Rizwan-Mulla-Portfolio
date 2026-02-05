@@ -119,6 +119,12 @@ body {
     overflow-x: hidden;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 h1,
 h2,
 h3,
@@ -247,8 +253,8 @@ h6,
 /* --- HERO SECTION --- */
 .hero-section {
     min-height: 100vh;
-    padding-top: 120px;
-    padding-bottom: 80px;
+    padding-top: clamp(100px, 12vw, 140px);
+    padding-bottom: clamp(70px, 10vw, 110px);
     display: flex;
     align-items: center;
     position: relative;
@@ -495,6 +501,26 @@ h6,
     }
 }
 
+@media (max-width: 1200px) {
+    .hero-img-styled {
+        border-width: 12px;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-section {
+        min-height: auto;
+    }
+
+    .hero-tagline {
+        max-width: 100%;
+    }
+
+    .hero-image-container {
+        margin-top: 30px;
+    }
+}
+
 @keyframes float {
 
     0%,
@@ -521,7 +547,7 @@ h6,
 
 /* --- ABOUT SECTION --- */
 .about-section {
-    padding: 100px 0;
+    padding: clamp(70px, 8vw, 110px) 0;
 }
 
 .section-title {
@@ -559,6 +585,103 @@ h6,
 @media (max-width: 768px) {
     body {
         background-attachment: scroll;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: clamp(1.7rem, 6vw, 2.1rem);
+    }
+
+    section[id] {
+        scroll-margin-top: 80px;
+    }
+
+    .hero-name {
+        font-size: clamp(2.1rem, 8vw, 2.8rem);
+        letter-spacing: -1.2px;
+    }
+
+    .hero-title {
+        font-size: 0.95rem;
+        padding: 8px 18px;
+    }
+
+    .hero-tagline {
+        font-size: 1rem;
+        padding-left: 16px;
+        margin-bottom: 22px;
+    }
+
+    .btn-primary-custom,
+    .btn-outline-custom {
+        padding: 12px 22px;
+        font-size: 0.95rem;
+    }
+
+    .timeline {
+        padding-left: 24px;
+    }
+
+    .timeline-dot {
+        left: -24px;
+    }
+
+    .project-card-custom {
+        padding: 26px;
+    }
+
+    .resume-card-custom,
+    .skills-card-custom,
+    .contact-intro {
+        padding: 24px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+    .hero-section .d-flex {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .hero-section .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-image-container img {
+        max-width: 240px;
+        border-width: 8px;
+    }
+
+    .project-tags-container span {
+        font-size: 0.68rem;
+        padding: 4px 10px;
+    }
+
+    .contact-card-custom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-card-custom .icon-circle {
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+
+    .contact-info .value {
+        word-break: break-word;
+    }
+
+    .modal-body {
+        padding: 20px 16px;
+    }
+
+    .modal-dialog {
+        margin: 1rem;
     }
 }
 
@@ -647,7 +770,7 @@ h6,
 
 /* --- EXPERIENCE SECTION --- */
 .experience-section {
-    padding: 100px 0;
+    padding: clamp(70px, 8vw, 110px) 0;
 }
 
 .timeline {
@@ -745,7 +868,7 @@ h6,
 
 /* --- PROJECTS SECTION --- */
 .projects-section {
-    padding: 100px 0;
+    padding: clamp(70px, 8vw, 110px) 0;
 }
 
 /* Custom Card for Projects */
@@ -919,7 +1042,7 @@ h6,
 
 /* --- CASE STUDY SECTION --- */
 .case-study-section {
-    padding: 100px 0;
+    padding: clamp(70px, 8vw, 110px) 0;
 }
 
 .case-study-card {
@@ -973,7 +1096,7 @@ h6,
 
 /* --- CONSOLIDATED MASTERY SECTION --- */
 .skills-section {
-    padding: 100px 0;
+    padding: clamp(70px, 8vw, 110px) 0;
 }
 
 .language-tag {
@@ -1069,7 +1192,7 @@ h6,
 
 /* --- RESUME SECTION --- */
 .resume-section {
-    padding: 100px 0;
+    padding: clamp(70px, 8vw, 110px) 0;
 }
 
 .resume-description {
@@ -1137,7 +1260,7 @@ h6,
 
 /* --- CONTACT SECTION --- */
 .contact-section {
-    padding: 110px 0;
+    padding: clamp(80px, 9vw, 120px) 0;
 }
 
 .contact-shell {
