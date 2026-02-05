@@ -15,7 +15,7 @@ Personal portfolio site showcasing my featured projects, experience, and focus a
 - JavaScript
 
 ## Live Website
-The GitHub Pages link will be enabled once Pages is configured on the repo.
+https://r6rizwan.github.io/Rizwan-Mulla-Portfolio/
 
 ## Run Locally
 1. Clone the repo.
