@@ -69,7 +69,7 @@
 
 /* Apply globally to all sections that have an ID */
 section[id] {
-    scroll-margin-top: 100px;
+    scroll-margin-top: 64px;
 }
 
 /* Ensure smooth scrolling behavior across the whole page */
@@ -594,7 +594,7 @@ h6,
     }
 
     section[id] {
-        scroll-margin-top: 80px;
+        scroll-margin-top: 60px;
     }
 
     .hero-name {
@@ -1168,6 +1168,10 @@ h6,
 .cert-item {
     padding-bottom: 15px;
     border-bottom: 1px solid var(--border-color);
+}
+
+.cert-item p {
+    color: var(--text-color) !important;
 }
 
 .cert-item:last-child {
