@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://r6rizwan.github.io/Rizwan-Mulla-Portfolio/sitemap.xml

@@ -1,4 +1,24 @@
-/* --- Theme colors & tokens --- */
+/* =============================================
+   PORTFOLIO STYLESHEET MAP
+   1. Theme tokens
+   2. Global / shared utilities
+   3. Navbar
+   4. Hero
+   5. About
+   6. Experience
+   7. Projects + Modals
+   8. Case Study
+   9. Legacy shared cards for mastery/resume/contact
+   10. Resume
+   11. Contact
+   12. Footer + Floating controls
+   13. Motion / accessibility
+   14. Mastery bento redesign
+   ============================================= */
+
+/* =============================================
+   1. THEME TOKENS
+   ============================================= */
 :root {
     /* Colors */
     --bg-color: #f7f4ef;
@@ -45,8 +65,11 @@
     --card-shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.55);
 }
 
-/* --- Base Perfect Card Class --- */
-/* This class will be applied to About, Project, and Experience cards */
+/* =============================================
+   2. GLOBAL / SHARED UTILITIES
+   ============================================= */
+
+/* Shared card shell used across multiple sections */
 .portfolio-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -67,12 +90,12 @@
     outline-offset: 3px;
 }
 
-/* Apply globally to all sections that have an ID */
+/* Offset anchor jumps for the fixed navbar */
 section[id] {
     scroll-margin-top: 64px;
 }
 
-/* Ensure smooth scrolling behavior across the whole page */
+/* Global scroll behavior */
 html {
     scroll-behavior: smooth;
 }
@@ -85,7 +108,7 @@ html {
     color: var(--secondary-text) !important;
 }
 
-/* Typing Cursor Animation */
+/* Typewriter cursor */
 .cursor {
     font-weight: 300;
     color: var(--primary-color);
@@ -105,7 +128,7 @@ html {
     }
 }
 
-/* --- Base page styles --- */
+/* Base page styles */
 body {
     min-height: 100vh;
     font-family: var(--font-body);
@@ -155,7 +178,9 @@ h6,
     }
 }
 
-/* --- NAVBAR --- */
+/* =============================================
+   3. NAVBAR
+   ============================================= */
 .custom-navbar {
     background-color: transparent;
     padding: 20px 0;
@@ -189,7 +214,7 @@ h6,
     transition: var(--transition-smooth);
 }
 
-/* Perfect Indicator Underline */
+/* Active link underline */
 .custom-navbar .nav-link::after {
     content: '';
     position: absolute;
@@ -213,7 +238,7 @@ h6,
     /* Accounts for left/right padding */
 }
 
-/* Dark Mode Toggler Visibility */
+/* Navbar icon handling in dark mode */
 [data-theme="dark"] .navbar-toggler {
     border-color: rgba(255, 255, 255, 0.1);
 }
@@ -222,7 +247,7 @@ h6,
     filter: invert(1);
 }
 
-/* Mobile Menu Tweak */
+/* Mobile navbar layout */
 @media (max-width: 991px) {
     .navbar-collapse {
         background: var(--card-bg);
@@ -250,7 +275,9 @@ h6,
     }
 }
 
-/* --- HERO SECTION --- */
+/* =============================================
+   4. HERO
+   ============================================= */
 .hero-section {
     min-height: 100vh;
     padding-top: clamp(100px, 12vw, 140px);
@@ -275,21 +302,21 @@ h6,
     pointer-events: none;
 }
 
-/* Purple/Blue glow behind the text */
+/* Background glow behind text */
 .hero-section::before {
     top: 10%;
     left: -5%;
     background: var(--primary-color);
 }
 
-/* Secondary glow behind the image */
+/* Secondary glow behind image */
 .hero-section::after {
     bottom: 10%;
     right: -5%;
     background: var(--accent-color);
 }
 
-/* Adapt for Dark Mode */
+/* Stronger glow in dark mode */
 [data-theme="dark"] .hero-section::before,
 [data-theme="dark"] .hero-section::after {
     opacity: 0.25;
@@ -357,7 +384,7 @@ h6,
 }
 
 
-/* The Dot */
+/* Focus indicator dot */
 .hero-focus::before {
     content: '';
     position: absolute;
@@ -371,7 +398,7 @@ h6,
     z-index: 2;
 }
 
-/* The Pulse Ripple */
+/* Focus indicator ripple */
 .hero-focus::after {
     content: '';
     position: absolute;
@@ -398,7 +425,7 @@ h6,
     }
 }
 
-/* --- BUTTONS (Standardized) --- */
+/* Shared primary/outline buttons */
 .btn-primary-custom {
     background: var(--primary-color);
     color: white !important;
@@ -432,7 +459,7 @@ h6,
     transform: translateY(-4px);
 }
 
-/* --- HERO IMAGE (Perfected) --- */
+/* Hero image */
 .hero-image-container {
     position: relative;
     padding: 20px;
@@ -449,10 +476,10 @@ h6,
     aspect-ratio: 1 / 1;
 }
 
-/* --- HERO RESPONSIVE LOGIC --- */
+/* Hero responsive behavior */
 @media (max-width: 991px) {
 
-    /* 1. Center the Hero Text Column content */
+    /* Center hero text content */
     .hero-section .col-lg-7 {
         text-align: center !important;
         display: flex;
@@ -460,7 +487,7 @@ h6,
         align-items: center;
     }
 
-    /* 2. Center the buttons manually */
+    /* Center action buttons */
     .hero-section .d-flex {
         justify-content: center !important;
         width: 100%;
@@ -470,7 +497,7 @@ h6,
         justify-content: center;
     }
 
-    /* 3. Hero Image Container handling */
+    /* Hero image placement */
     .hero-image-container {
         margin-top: 40px;
         display: flex;
@@ -485,7 +512,7 @@ h6,
         border-width: 10px;
     }
 
-    /* 4. Adjust Typewriter Text size for mobile if needed */
+    /* Mobile heading size */
     .hero-name {
         font-size: 2.2rem;
     }
@@ -533,19 +560,9 @@ h6,
     }
 }
 
-/* FadeUp for the reveal class */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* --- ABOUT SECTION --- */
+/* =============================================
+   5. ABOUT
+   ============================================= */
 .about-section {
     padding: clamp(70px, 8vw, 110px) 0;
 }
@@ -568,13 +585,13 @@ h6,
     border-left: 4px solid var(--primary-color);
 }
 
-/* Optional: Make the bold text pop with your theme color */
+/* Bold text emphasis inside the about copy */
 .about-description strong {
     color: var(--text-color);
     font-weight: 700;
 }
 
-/* Mobile Tweak */
+/* About text mobile spacing */
 @media (max-width: 768px) {
     .about-description {
         padding-left: 20px;
@@ -582,6 +599,7 @@ h6,
     }
 }
 
+/* General mobile typography and spacing shared by early sections */
 @media (max-width: 768px) {
     body {
         background-attachment: scroll;
@@ -685,7 +703,7 @@ h6,
     }
 }
 
-/* About Section Cards */
+/* About cards */
 .about-card {
     background: var(--card-bg);
     padding: 35px 30px;
@@ -704,7 +722,7 @@ h6,
     border-color: var(--primary-color);
 }
 
-/* Icon Backgrounds */
+/* Shared icon chip */
 .icon-circle {
     width: 55px;
     height: 55px;
@@ -738,7 +756,7 @@ h6,
     line-height: 1.5;
 }
 
-/* Learn More Link */
+/* Inline section link */
 .btn-link-custom {
     color: var(--primary-color);
     font-weight: 700;
@@ -754,7 +772,7 @@ h6,
     color: var(--primary-color);
 }
 
-/* --- MEDIA QUERIES --- */
+/* About layout adjustment */
 @media (max-width: 991.98px) {
     .about-text {
         text-align: center;
@@ -768,7 +786,9 @@ h6,
 }
 
 
-/* --- EXPERIENCE SECTION --- */
+/* =============================================
+   6. EXPERIENCE
+   ============================================= */
 .experience-section {
     padding: clamp(70px, 8vw, 110px) 0;
 }
@@ -780,7 +800,7 @@ h6,
     padding-left: 40px;
 }
 
-/* Vertical Line */
+/* Timeline vertical line */
 .timeline::before {
     content: "";
     position: absolute;
@@ -797,7 +817,7 @@ h6,
     margin-bottom: 50px;
 }
 
-/* Timeline Dot Glow Effect */
+/* Timeline dot */
 .timeline-dot {
     position: absolute;
     left: -40px;
@@ -811,7 +831,7 @@ h6,
     box-shadow: 0 0 10px var(--primary-soft);
 }
 
-/* Shared Portfolio Card Styling */
+/* Timeline card content */
 .timeline-content.portfolio-card {
     padding: 30px;
 }
@@ -852,7 +872,7 @@ h6,
     line-height: 1.6;
 }
 
-/* Responsive Tweak */
+/* Experience mobile layout */
 @media (max-width: 768px) {
     .timeline {
         padding-left: 30px;
@@ -866,12 +886,14 @@ h6,
     }
 }
 
-/* --- PROJECTS SECTION --- */
+/* =============================================
+   7. PROJECTS + MODALS
+   ============================================= */
 .projects-section {
     padding: clamp(70px, 8vw, 110px) 0;
 }
 
-/* Custom Card for Projects */
+/* Project cards */
 .project-card-custom {
     padding: 32px;
     /* Increased for better visual breathing room */
@@ -894,7 +916,7 @@ h6,
     margin-bottom: 22px;
 }
 
-/* Animated "View" Icon */
+/* Hover icon */
 .project-top i {
     font-size: 0.95rem;
     color: var(--primary-color);
@@ -915,6 +937,17 @@ h6,
     letter-spacing: 1.2px;
     color: var(--primary-color);
     background: var(--primary-soft);
+    padding: 6px 14px;
+    border-radius: 50px;
+}
+
+.badge-ai {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.14);
     padding: 6px 14px;
     border-radius: 50px;
 }
@@ -941,7 +974,7 @@ h6,
     font-weight: 600;
 }
 
-/* Project Tag Pills */
+/* Shared project tag pills */
 .project-tags-container {
     display: flex;
     flex-wrap: wrap;
@@ -966,7 +999,7 @@ h6,
     color: var(--primary-color);
 }
 
-/* --- PROJECT FILTER TABS --- */
+/* Project filter tabs */
 .filter-btn {
     padding: 10px 22px;
     border-radius: 12px;
@@ -990,12 +1023,12 @@ h6,
     box-shadow: 0 8px 20px var(--primary-soft);
 }
 
-/* Filtering Animation */
+/* Project show/hide animation */
 .project-item {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
 }
 
-/* --- MODAL PERFECTION --- */
+/* Project modals */
 .modal-content {
     background-color: var(--card-bg);
     color: var(--text-color);
@@ -1033,41 +1066,77 @@ h6,
     line-height: 1.5;
 }
 
-/* Theme-specific modal tweaks */
+/* Dark theme modal override */
 [data-theme="dark"] .modal-content {
     background-color: #1c2128;
     /* Slightly lighter than the main bg for depth */
 }
 
 
-/* --- CASE STUDY SECTION --- */
+/* =============================================
+   8. CASE STUDY
+   ============================================= */
 .case-study-section {
     padding: clamp(70px, 8vw, 110px) 0;
 }
 
-.case-study-card {
-    padding: 32px;
+.case-study-intro p {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.case-study-card h5 {
+.case-study-stack {
+    display: grid;
+    gap: 26px;
+}
+
+.case-study-block {
+    position: relative;
+}
+
+.case-main-card,
+.case-side-card {
+    padding: 26px;
+}
+
+.case-side-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.case-side-card h4 {
+    font-size: 1.1rem;
     font-weight: 700;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
+    color: var(--text-color);
 }
 
-.case-study-card ul {
-    margin: 0;
-    padding-left: 18px;
+.case-project-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-color);
 }
 
-.case-study-card li {
-    margin-bottom: 12px;
+.case-project-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary-color);
+}
+
+.case-summary {
     color: var(--secondary-text);
+    line-height: 1.65;
+    margin-bottom: 18px;
 }
 
 .case-study-points {
     display: grid;
-    gap: 14px;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .case-study-point {
@@ -1094,7 +1163,21 @@ h6,
     font-weight: 600;
 }
 
-/* --- CONSOLIDATED MASTERY SECTION --- */
+@media (max-width: 991px) {
+    .case-main-card,
+    .case-side-card {
+        padding: 22px;
+    }
+
+    .case-study-stack {
+        gap: 18px;
+    }
+}
+
+/* =============================================
+   9. LEGACY SHARED CARDS
+   Used by mastery/resume/contact blocks outside the bento styles
+   ============================================= */
 .skills-section {
     padding: clamp(70px, 8vw, 110px) 0;
 }
@@ -1125,7 +1208,7 @@ h6,
     color: var(--text-color);
 }
 
-/* Mini Cards for Bosch/AI */
+/* Compact credential cards */
 .cert-card-mini {
     background: var(--bg-color);
     border: 1px solid var(--border-color);
@@ -1164,7 +1247,7 @@ h6,
     color: white !important;
 }
 
-/* Skill Tags & Cert Items */
+/* Shared certification item styling */
 .cert-item {
     padding-bottom: 15px;
     border-bottom: 1px solid var(--border-color);
@@ -1194,7 +1277,9 @@ h6,
 }
 
 
-/* --- RESUME SECTION --- */
+/* =============================================
+   10. RESUME
+   ============================================= */
 .resume-section {
     padding: clamp(70px, 8vw, 110px) 0;
 }
@@ -1202,15 +1287,46 @@ h6,
 .resume-description {
     font-size: 1.1rem;
     color: var(--secondary-text);
-    max-width: 700px;
+    max-width: 600px;
     margin: 0 auto 60px auto;
     line-height: 1.7;
     font-weight: 400;
-    position: relative;
-    padding-left: 20px;
 }
 
-/* --- SKIP LINK --- */
+.resume-card-custom {
+    padding: 50px 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.resume-card-custom h5 {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: var(--text-color);
+}
+
+.resume-card-custom p {
+    font-size: 0.95rem;
+    color: var(--secondary-text);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.resume-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.resume-card-custom .icon-circle {
+    width: 65px;
+    height: 65px;
+    font-size: 1.5rem;
+}
+
+/* Accessibility skip link */
 .skip-link {
     position: absolute;
     top: -40px;
@@ -1228,41 +1344,9 @@ h6,
     top: 20px;
 }
 
-.resume-card-custom {
-    padding: 40px 30px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.resume-card-custom h5 {
-    font-weight: 700;
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-    color: var(--text-color);
-}
-
-.resume-card-custom p {
-    font-size: 0.95rem;
-    color: var(--secondary-text);
-    margin-bottom: 30px;
-}
-
-.resume-actions {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-}
-
-/* Ensure icons in resume cards look balanced */
-.resume-card-custom .icon-circle {
-    width: 65px;
-    height: 65px;
-    font-size: 1.5rem;
-}
-
-
-/* --- CONTACT SECTION --- */
+/* =============================================
+   11. CONTACT
+   ============================================= */
 .contact-section {
     padding: clamp(80px, 9vw, 120px) 0;
 }
@@ -1331,7 +1415,7 @@ h6,
     border-radius: var(--card-radius);
 }
 
-/* Reusing our standard icon circle from About/Skills */
+/* Reuse the shared icon chip in horizontal cards */
 .contact-card-custom .icon-circle {
     width: 54px;
     height: 54px;
@@ -1368,7 +1452,7 @@ h6,
     color: var(--primary-color);
 }
 
-/* Responsive tweaks */
+/* Contact mobile layout */
 @media (max-width: 768px) {
     .contact-shell {
         grid-template-columns: 1fr;
@@ -1383,7 +1467,9 @@ h6,
     }
 }
 
-/* --- FOOTER --- */
+/* =============================================
+   12. FOOTER + FLOATING CONTROLS
+   ============================================= */
 .footer {
     padding: 40px 0;
     background-color: var(--bg-color);
@@ -1408,7 +1494,7 @@ h6,
     color: var(--primary-color);
 }
 
-/* --- FLOATING CONTROLS --- */
+/* Floating controls */
 .scroll-top-btn,
 .floating-theme-btn {
     position: fixed;
@@ -1425,7 +1511,7 @@ h6,
     transition: var(--transition-smooth);
 }
 
-/* Scroll Top Specific */
+/* Scroll-to-top button */
 .scroll-top-btn {
     bottom: 28px;
     background-color: var(--primary-color);
@@ -1441,7 +1527,7 @@ h6,
     transform: translateY(0);
 }
 
-/* Theme Toggle Specific */
+/* Theme toggle button */
 .floating-theme-btn {
     top: 100px;
     background-color: var(--card-bg);
@@ -1455,7 +1541,9 @@ h6,
     box-shadow: var(--card-shadow-hover);
 }
 
-/* --- ANIMATIONS & REVEAL --- */
+/* =============================================
+   13. MOTION / ACCESSIBILITY
+   ============================================= */
 .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -1467,7 +1555,7 @@ h6,
     transform: translateY(0);
 }
 
-/* Responsive Positioning */
+/* Floating control positioning on small screens */
 @media (max-width: 576px) {
     .floating-theme-btn {
         top: auto;
@@ -1481,6 +1569,7 @@ h6,
     }
 }
 
+/* Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -1492,4 +1581,258 @@ h6,
     .hero-img-styled {
         animation: none;
     }
+}
+
+/* =============================================
+   MASTERY SECTION — BENTO GRID REDESIGN
+   ============================================= */
+
+.mastery-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.mastery-stat {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--card-radius);
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+}
+
+.mastery-stat-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.mastery-stat-label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--secondary-text);
+  margin-top: 4px;
+}
+
+/* Bento grid */
+.mastery-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.mastery-card {
+  padding: 1.4rem;
+}
+
+.mastery-card--skills {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mastery-card--growth {
+  grid-column: span 2;
+}
+
+/* Card label */
+.mastery-card-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary-text);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mastery-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Skill groups */
+.mastery-skill-group {
+  margin-bottom: 16px;
+}
+
+.mastery-skill-group:last-child {
+  margin-bottom: 0;
+}
+
+.mastery-skill-group-label {
+  font-size: 0.72rem;
+  color: var(--secondary-text);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+/* Highlight primary tags */
+.mastery-tag-primary {
+  color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  background: var(--primary-soft) !important;
+}
+
+/* Cert timeline */
+.mastery-cert-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+
+.mastery-cert-item:last-child {
+  margin-bottom: 0;
+}
+
+.mastery-cert-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.mastery-cert-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.mastery-cert-line {
+  width: 1px;
+  flex: 1;
+  background: var(--border-color);
+  margin-top: 5px;
+  min-height: 28px;
+}
+
+.mastery-cert-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0 0 3px;
+}
+
+.mastery-cert-date {
+  font-size: 0.75rem;
+  color: var(--secondary-text);
+  margin: 0 0 8px;
+}
+
+/* Education */
+.mastery-edu-item {
+  margin-bottom: 6px;
+}
+
+.mastery-edu-degree {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0 0 2px;
+}
+
+.mastery-edu-inst {
+  font-size: 0.82rem;
+  color: var(--secondary-text);
+  margin: 0 0 3px;
+}
+
+.mastery-edu-date {
+  font-size: 0.72rem;
+  color: var(--secondary-text);
+  margin: 0;
+}
+
+.mastery-divider {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 14px 0;
+}
+
+/* Professional growth */
+.mastery-growth-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.mastery-growth-item {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  transition: var(--transition-smooth);
+}
+
+.mastery-growth-item:hover {
+  border-color: var(--primary-color);
+  background: var(--card-bg);
+}
+
+.mastery-growth-type {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--secondary-text);
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.mastery-growth-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .mastery-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mastery-bento {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mastery-card--skills {
+    grid-column: span 2;
+  }
+
+  .mastery-card--growth {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 576px) {
+  .mastery-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mastery-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .mastery-card--skills,
+  .mastery-card--growth {
+    grid-column: span 1;
+  }
+
+  .mastery-growth-grid {
+    grid-template-columns: 1fr;
+  }
 }
