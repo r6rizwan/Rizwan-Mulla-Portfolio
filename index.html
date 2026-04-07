@@ -1326,17 +1326,20 @@
         const navLinks = document.querySelectorAll('.custom-navbar .nav-link');
         const sections = document.querySelectorAll('section[id]');
 
-        window.addEventListener('scroll', () => {
+        function updateActiveNavLink() {
             let currentSection = "";
 
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
                 // Check if current scroll position is within this section (with 150px offset)
                 if (window.scrollY >= (sectionTop - 150)) {
                     currentSection = section.getAttribute('id');
                 }
             });
+
+            if (!currentSection && sections.length) {
+                currentSection = sections[0].getAttribute('id');
+            }
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -1344,7 +1347,10 @@
                     link.classList.add('active');
                 }
             });
-        });
+        }
+
+        window.addEventListener('scroll', updateActiveNavLink);
+        updateActiveNavLink();
 
         /**
          * 5. MOBILE NAV AUTO-CLOSE

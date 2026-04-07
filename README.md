@@ -1,6 +1,6 @@
 # Rizwan Mulla — Portfolio
 
-Personal portfolio site showcasing my featured projects, experience, and focus areas across Flutter and full-stack development.
+Personal portfolio site showcasing my featured projects, experience, and focus areas across Flutter, full-stack MERN development, and AI-integrated product work.
 
 ## Highlights
 - Featured project cards with deep-dive modals
@@ -15,7 +15,7 @@ Personal portfolio site showcasing my featured projects, experience, and focus a
 - JavaScript
 
 ## Live Website
-https://r6rizwan.github.io/Rizwan-Mulla-Portfolio/
+https://rizwan-mulla-portfolio.vercel.app/
 
 ## Run Locally
 1. Clone the repo.
@@ -24,3 +24,4 @@ https://r6rizwan.github.io/Rizwan-Mulla-Portfolio/
 ## Contact
 - Email: rizwanmulla6@gmail.com
 - LinkedIn: https://linkedin.com/in/rizwan-r-mulla
+- GitHub: https://github.com/r6rizwan
