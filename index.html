@@ -191,7 +191,7 @@
                                 local encryption, recovery-aware authentication flows, and privacy-first mobile UX.</li>
                             <li>Strengthened full-stack development skills through hands-on MERN projects including
                                 <strong>ShopSphere</strong> and <strong>CivilEye</strong>, covering role-based flows,
-                                secure auth, and production-style workflows.
+                                secure auth, AI-assisted triage, and production-style workflows.
                             </li>
                             <li>Completed structured learning in <strong>MERN Stack Development</strong>,
                                 <strong>UI/UX Design</strong>, and a <strong>MERN Full-Stack Internship</strong>,
@@ -371,15 +371,17 @@
                         data-bs-target="#crimeReportingModal">
                         <div class="project-content">
                             <div class="project-top">
-                                <span class="badge-cat">Internship</span>
+                                <span class="badge-cat">MERN + AI</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </div>
                             <h5>CivilEye - Crime Reporting Portal</h5>
-                            <p>MERN-based incident reporting and case management system with role-based workflows,
-                                secure auth, and audit-friendly operations.</p>
-                            <p class="project-impact">Impact: clearer handoff between citizen, investigator, admin.</p>
+                            <p>A MERN crime reporting portal with role-based case management and AI-assisted complaint
+                                triage.</p>
+                            <p class="project-impact">Impact: improved complaint intake and case prioritization with
+                                AI-assisted category, priority, and reasoning suggestions.</p>
                             <div class="project-tags-container">
                                 <span>React</span><span>MongoDB</span><span>Node.js</span><span>Express.js</span>
+                                <span>Groq API</span>
                             </div>
                         </div>
                     </div>
@@ -674,32 +676,36 @@
                     <div class="row gy-4">
                         <div class="col-lg-7">
                             <p class="about-description mb-4">
-                                <strong>CivilEye</strong> is a full-stack role-based web application for
-                                digital complaint management. It supports end-to-end workflows for citizens,
-                                investigators, admins, and super admins with secure authentication and audit-friendly
-                                case handling.
+                                <strong>CivilEye</strong> is a full-stack MERN crime reporting portal that allows users
+                                to file complaints, track case progress, and interact with a role-based workflow for
+                                admins and investigators. I added AI-assisted complaint triage using the Groq API to
+                                suggest complaint category, priority, and reasoning from the user's description. The AI
+                                feature remains non-blocking, so complaints can still be submitted even if AI is
+                                unavailable, while admins and investigators can use the AI priority signal to review
+                                urgent cases faster.
                             </p>
 
                             <h6 class="fw-700 mb-3 text-uppercase small letter-spacing-1">
                                 <i class="fa-solid fa-shield-halved text-primary me-2"></i>Core Functionality
                             </h6>
                             <ul class="modal-list mb-0">
-                                <li>Role-based system: User, Investigator, Admin, Super Admin</li>
-                                <li>Complaint lifecycle: file -> assign -> open -> resolve -> close</li>
-                                <li>OTP-based verification and password reset flows</li>
-                                <li>Evidence upload and case-note handling</li>
-                                <li>Investigator management with case-transfer safeguards</li>
+                                <li>OTP-based user registration, password setup, and secure login</li>
+                                <li>Role-based dashboards for User, Admin, Investigator, and Super Admin</li>
+                                <li>Complaint filing, tracking, assignment, investigation, resolution, and closure workflow</li>
+                                <li>AI-assisted complaint triage with category prediction, priority suggestion, and reasoning</li>
+                                <li>Investigator workspace for public progress updates, internal notes, and evidence files</li>
+                                <li>Admin and investigator views with AI-assisted badges, priority chips, and case status visibility</li>
                             </ul>
                         </div>
 
                         <div class="col-lg-5">
                             <div class="mb-4">
                                 <h6 class="fw-700 mb-2 text-uppercase small letter-spacing-1">
-                                    <i class="fa-solid fa-layer-group text-primary me-2"></i>Tech Stack (MERN)
+                                    <i class="fa-solid fa-layer-group text-primary me-2"></i>Tech Stack (MERN + AI)
                                 </h6>
                                 <div class="project-tags-container">
                                     <span>React</span><span>React
-                                        Router</span><span>Axios</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>Mongoose</span><span>JWT</span><span>bcryptjs</span><span>Nodemailer</span><span>Multer</span>
+                                        Router</span><span>Axios</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>Mongoose</span><span>JWT</span><span>bcryptjs</span><span>Nodemailer</span><span>Multer</span><span>Groq API</span><span>llama-3.3-70b-versatile</span><span>AI Prompt Engineering</span><span>Role-Based Access Control</span>
                                 </div>
                             </div>
 
@@ -708,9 +714,12 @@
                                     <i class="fa-solid fa-user-shield text-primary me-2"></i>My Role
                                 </h6>
                                 <p class="small text-secondary mb-0">
-                                    Built the full-stack workflow with secure auth, role-based protected routes, API
-                                    authorization middleware, complaint operations, and reliability hardening such as
-                                    rate limiting and reduced account-enumeration behavior.
+                                    I designed and implemented the full-stack CivilEye system, including role-based
+                                    authentication, complaint filing, case assignment, investigator workflows, admin
+                                    management, and secure OTP/password flows. I also integrated AI-assisted complaint
+                                    triage using the Groq API, adding backend AI service logic, protected triage routes,
+                                    MongoDB fields for AI metadata, and frontend UI for user-facing suggestions and
+                                    admin/investigator review.
                                 </p>
                             </div>
                         </div>
@@ -817,31 +826,40 @@
                         <div class="col-lg-7">
                             <div class="portfolio-card case-main-card h-100">
                                 <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
-                                    <span class="badge-cat">Internship</span>
-                                    <span class="case-project-label">Full-Stack MERN</span>
+                                    <span class="badge-cat">MERN + AI</span>
+                                    <span class="case-project-label">Full-Stack MERN + AI</span>
                                 </div>
                                 <h3 class="case-project-title">CivilEye</h3>
                                 <p class="case-summary">
-                                    Full-stack complaint management platform with role-based workflows for User,
-                                    Investigator, Admin,
-                                    and Super Admin. Built secure authentication, case lifecycle handling, and
-                                    operational dashboards.
+                                    Full-stack MERN complaint management platform with role-based workflows for User,
+                                    Investigator, Admin, and Super Admin. Added AI-assisted complaint triage with Groq
+                                    to suggest complaint category, priority, and reasoning during intake while keeping
+                                    the core case workflow secure and non-blocking.
                                 </p>
                                 <div class="case-study-points">
                                     <div class="case-study-point">
                                         <span class="case-title">Problem</span>
                                         <span class="case-detail">Manual complaint handling was slow, opaque, and
-                                            difficult to audit.</span>
+                                            difficult to audit. The AI enhancement improves intake by helping users pick
+                                            better categories and giving admins/investigators an early priority signal.</span>
                                     </div>
                                     <div class="case-study-point">
                                         <span class="case-title">System Design</span>
-                                        <span class="case-detail">Role-protected routes and APIs for filing, assigning,
-                                            resolving, and closing cases.</span>
+                                        <span class="case-detail">MERN architecture with separate frontend/backend apps,
+                                            role-protected complaint flows, and a protected triage endpoint that calls
+                                            Groq, validates JSON, and stores AI metadata on complaint records.</span>
                                     </div>
                                     <div class="case-study-point">
                                         <span class="case-title">Security</span>
-                                        <span class="case-detail">JWT auth, bcrypt hashing, OTP recovery flow, and
-                                            reduced account-enumeration behavior.</span>
+                                        <span class="case-detail">JWT auth, role-based protected routes, bcryptjs
+                                            hashing, OTP verification, environment-based secrets, Multer upload handling,
+                                            and a backend-only Groq API key that is never exposed to the frontend.</span>
+                                    </div>
+                                    <div class="case-study-point">
+                                        <span class="case-title">AI / Intelligence</span>
+                                        <span class="case-detail">Groq API with llama-3.3-70b-versatile returns structured
+                                            JSON for suggested category, priority, and reasoning; if the AI call fails,
+                                            the complaint workflow continues normally.</span>
                                     </div>
                                 </div>
                             </div>
@@ -850,12 +868,14 @@
                             <div class="portfolio-card case-side-card h-100">
                                 <h4>Highlights</h4>
                                 <ul class="modal-list mb-3">
-                                    <li>Complaint lifecycle: file, assign, open, resolve, close.</li>
-                                    <li>Evidence upload and role-specific protected dashboards.</li>
-                                    <li>OTP verification, password reset, and API hardening patterns.</li>
+                                    <li>Built a full-stack MERN crime reporting and case management system.</li>
+                                    <li>Implemented role-based workflows for users, admins, investigators, and super admin.</li>
+                                    <li>Added AI-assisted complaint triage with Groq for category and priority suggestions.</li>
+                                    <li>Improved case workflow with public investigation progress and internal notes/evidence separation.</li>
+                                    <li>Added secure authentication with JWT, OTP verification, protected routes, and environment-based secrets.</li>
                                 </ul>
                                 <div class="project-tags-container mt-auto">
-                                    <span>React</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>JWT</span>
+                                    <span>React</span><span>React Router</span><span>Axios</span><span>Node.js</span><span>Express.js</span><span>MongoDB</span><span>Mongoose</span><span>JWT</span><span>bcryptjs</span><span>Multer</span><span>Nodemailer</span><span>Groq API</span><span>llama-3.3-70b-versatile</span><span>AI Prompt Engineering</span><span>REST API</span><span>Role-Based Access Control</span>
                                 </div>
                             </div>
                         </div>
@@ -991,6 +1011,7 @@
                         <p class="mastery-skill-group-label">AI & Integrations</p>
                         <div class="project-tags-container">
                             <span>OpenAI API</span>
+                            <span>Groq API</span>
                             <span>Prompt Engineering</span>
                             <span>LLM Integration</span>
                             <span>AI-augmented Development</span>
