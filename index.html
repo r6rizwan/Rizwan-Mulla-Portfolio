@@ -22,6 +22,13 @@
     <meta name="author" content="Rizwan Mulla" />
     <meta name="google-site-verification" content="QiJ3Hv0RSRQozFqdBAcrGMvSE7XbrBFjbAaHaSGWdZM" />
     <link rel="canonical" href="https://rizwan-mulla-portfolio.vercel.app/" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X6GG7737ZS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-X6GG7737ZS');
+    </script>
     <link rel="icon" href="assets/favicon.ico">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
@@ -318,11 +325,13 @@
                                 <span class="badge-cat">Production</span>
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </div>
-                            <h5>TickIt - Task Manager</h5>
-                            <p>Productivity app with reminders and category tracking.</p>
-                            <p class="project-impact">Impact: simplified daily planning with clean, focused UX.</p>
+                            <h5>TickIt - Ticket Management</h5>
+                            <p>Flutter mobile ticket-management app for organizations with role-based panels, live
+                                ticket updates, templates, analytics, and notifications.</p>
+                            <p class="project-impact">Impact: streamlined ticket lifecycle, assignments, scheduled
+                                tasks, and team communication workflows.</p>
                             <div class="project-tags-container">
-                                <span>Flutter</span><span>Firebase</span><span>Riverpod</span>
+                                <span>Flutter</span><span>Riverpod</span><span>REST APIs</span><span>WebSocket</span>
                             </div>
                         </div>
                     </div>
@@ -337,10 +346,12 @@
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </div>
                             <h5>WizApp - Inventory System</h5>
-                            <p>Real-time inventory tracking and analytics for SME retail and logistics operations.</p>
-                            <p class="project-impact">Impact: improved visibility of stock movement and trends.</p>
+                            <p>Flutter mobile app for internal retail operations with article lookup, sales KPIs, and
+                                barcode-driven product workflows.</p>
+                            <p class="project-impact">Impact: improved stock visibility, sales reporting, and
+                                barcode-based product handling for retail teams.</p>
                             <div class="project-tags-container">
-                                <span>Flutter</span><span>Node.js</span><span>Express.js</span><span>MySQL</span>
+                                <span>Flutter</span><span>Riverpod</span><span>REST APIs</span><span>SharedPreferences</span>
                             </div>
                         </div>
                     </div>
@@ -422,19 +433,22 @@
                     <div class="row gy-4">
                         <div class="col-lg-7">
                             <p class="about-description mb-4">
-                                A productivity-focused mobile application designed to help users organize tasks
-                                efficiently.
-                                The app focuses on simplicity, performance, and a clean user experience.
+                                <strong>TickIt</strong> is a Flutter mobile ticket-management app for organizations,
+                                built on a Riverpod-based state architecture. It supports role-based UI for admins,
+                                managers, and users/agents, with REST and WebSocket integration for live tickets,
+                                dashboards, templates, notifications, and organization workflows.
                             </p>
 
                             <h6 class="fw-700 mb-3 text-uppercase small letter-spacing-1">
                                 <i class="fa-solid fa-list-check text-primary me-2"></i>Key Features
                             </h6>
                             <ul class="modal-list mb-0">
-                                <li>Manage tasks with smart due dates</li>
-                                <li>Categories for better organization</li>
-                                <li>Progress tracking & analytics</li>
-                                <li>Cloud data persistence</li>
+                                <li>Ticket lifecycle: raise, assign, resolve, reopen, and track ticket status</li>
+                                <li>Role-based UI with AdminPanel, ManagerPanel, Home, Tickets, Settings, and Notifications</li>
+                                <li>Tasks, scheduled tickets, departments, people/users, and ticket templates</li>
+                                <li>Dashboard analytics, filters, notifications, feedback, and messenger/email templates</li>
+                                <li>REST + WebSocket endpoints for live tickets and bulk user upload workflows</li>
+                                <li>Push notifications, permission handling, file/media support, and token refresh flow</li>
                             </ul>
                         </div>
 
@@ -444,7 +458,7 @@
                                     <i class="fa-solid fa-layer-group text-primary me-2"></i>Tech Stack
                                 </h6>
                                 <div class="project-tags-container">
-                                    <span>Flutter</span><span>Dart</span><span>Firebase</span>
+                                    <span>Flutter</span><span>Dart</span><span>Riverpod</span><span>REST APIs</span><span>WebSocket</span><span>Firebase Messaging</span><span>SharedPreferences</span><span>Token Auth</span>
                                 </div>
                             </div>
 
@@ -453,7 +467,10 @@
                                     <i class="fa-solid fa-user-gear text-primary me-2"></i>My Role
                                 </h6>
                                 <p class="small text-secondary mb-0">
-                                    End-to-end development, state management, and Firebase integration.
+                                    Worked on Flutter feature delivery, Riverpod state providers, ticket/dashboard flows,
+                                    REST and WebSocket integration, authentication/session persistence, Firebase
+                                    Messaging notifications, permissions, and file/media handling across Android and iOS
+                                    targets.
                                 </p>
                             </div>
                         </div>
@@ -484,19 +501,22 @@
                     <div class="row gy-4">
                         <div class="col-lg-7">
                             <p class="about-description mb-4">
-                                <strong>WizApp</strong> is a robust inventory management solution designed for real-time
-                                tracking of stock levels and inventory movements. It optimizes accuracy and performance
-                                for small to medium-sized businesses.
+                                <strong>WizApp</strong> is a Riverpod-based Flutter mobile app for internal retail
+                                operations against WizApp backend APIs. It supports a two-step login flow, dynamic API
+                                endpoints from mirror service lookup, token validation/refresh, article lookup, sales
+                                reporting, barcode scanning, and product image capture/upload workflows.
                             </p>
 
                             <h6 class="fw-700 mb-3 text-uppercase small letter-spacing-1">
                                 <i class="fa-solid fa-boxes-stacked text-primary me-2"></i>Core Features
                             </h6>
                             <ul class="modal-list mb-0">
-                                <li>Real-time stock level monitoring</li>
-                                <li>Quantity and status alerts</li>
-                                <li>Usage trend analytics</li>
-                                <li>Secure backend data handling</li>
+                                <li>Two-step login: admin email mirror lookup, then username/password/location login</li>
+                                <li>Token/session persistence, launch validation, and access-token refresh handling</li>
+                                <li>Article search, barcode scanning, article details, and color/location stock distribution</li>
+                                <li>Sales reports with day/WTD/MTD/YTD KPIs, filters, charts, and drilldown tables</li>
+                                <li>Barcode-based product lookup with image capture, crop, and upload flow</li>
+                                <li>User profile with mirror details and article grouping preferences</li>
                             </ul>
                         </div>
 
@@ -506,7 +526,7 @@
                                     <i class="fa-solid fa-code-branch text-primary me-2"></i>Tech Stack
                                 </h6>
                                 <div class="project-tags-container">
-                                    <span>Flutter</span><span>Node.js</span><span>MySQL</span><span>REST API</span>
+                                    <span>Flutter</span><span>Riverpod</span><span>http</span><span>IOClient</span><span>REST APIs</span><span>SharedPreferences</span><span>FlexColorScheme</span><span>fl_chart</span>
                                 </div>
                             </div>
 
@@ -515,8 +535,9 @@
                                     <i class="fa-solid fa-microchip text-primary me-2"></i>My Role
                                 </h6>
                                 <p class="small text-secondary mb-0">
-                                    Full mobile development and API integration. Implemented real-time data
-                                    synchronization between Flutter and MySQL via Node.js.
+                                    Built and maintained the Flutter mobile workflows, including Riverpod providers,
+                                    authentication/session handling, dynamic API integration, article lookup, sales
+                                    reporting UI, barcode scanning, permissions, and product image upload flow.
                                 </p>
                             </div>
                         </div>
@@ -1150,14 +1171,16 @@
                         <h5>Flutter & Full-Stack MERN Developer</h5>
                         <p>Mobile (Flutter · Dart · Riverpod) · Web (React · Node.js · MongoDB · MySQL)</p>
                         <div class="resume-actions mt-auto">
-                            <a href="documents/resumes/Rizwan_Mulla_Flutter_MERN_Resume.pdf"
-                                class="btn btn-primary-custom btn-sm px-4" download>
-                                <i class="fa-solid fa-download me-2"></i>Download
-                            </a>
-                            <a href="documents/resumes/Rizwan_Mulla_Flutter_MERN_Resume.pdf"
-                                class="btn btn-outline-custom btn-sm px-4" target="_blank" rel="noopener">
-                                View
-                            </a>
+	                            <a href="documents/resumes/Rizwan_Mulla_Flutter_MERN_Resume.pdf"
+	                                class="btn btn-primary-custom btn-sm px-4" download
+	                                onclick="gtag('event', 'resume_downloaded');">
+	                                <i class="fa-solid fa-download me-2"></i>Download
+	                            </a>
+	                            <a href="documents/resumes/Rizwan_Mulla_Flutter_MERN_Resume.pdf"
+	                                class="btn btn-outline-custom btn-sm px-4" target="_blank" rel="noopener"
+	                                onclick="gtag('event', 'resume_viewed');">
+	                                View
+	                            </a>
                         </div>
                     </div>
                 </div>
