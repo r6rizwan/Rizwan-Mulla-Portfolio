@@ -406,13 +406,17 @@
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
                             </div>
                             <h5>Zarf — Expense Suite</h5>
-                            <p>Problem: B2B expense tracking is slow and lacks GCC/UAE compliance (VAT, TRN). Solution: A three-tier ecosystem with a Flutter mobile client (receipt scanning), React dashboard (admin audit & analytics), and Express API (hardened, llama AI receipt OCR).</p>
-                            <p class="project-impact">Impact: Instant AI receipt parsing under 2s, Stateful Shell tab caching (0ms lag), and regional TRN/VAT compliance checks.</p>
+                            <p>Problem: B2B expense tracking is slow and lacks GCC/UAE compliance (VAT, TRN). Solution:
+                                A three-tier ecosystem with a Flutter mobile client (receipt scanning), React dashboard
+                                (admin audit & analytics), and Express API (hardened, llama AI receipt OCR).</p>
+                            <p class="project-impact">Impact: Instant AI receipt parsing under 2s, Stateful Shell tab
+                                caching (0ms lag), and regional TRN/VAT compliance checks.</p>
                             <div class="project-metrics">
                                 <span>AI OCR &lt; 2s</span><span>UAE TRN/VAT Check</span><span>Stateful Tab Cache</span>
                             </div>
                             <div class="project-tags-container">
-                                <span>Flutter</span><span>React</span><span>Node.js</span><span>MongoDB</span><span>Riverpod</span><span>Groq llama</span><span>FCM</span>
+                                <span>Flutter</span><span>React</span><span>Node.js</span><span>MongoDB</span><span>Riverpod</span><span>Groq
+                                    llama</span><span>FCM</span>
                             </div>
                         </div>
                     </div>
@@ -1031,26 +1035,44 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content border-0 shadow-lg">
                 <div class="modal-header border-0 pb-0">
-                    <h4 class="fw-800 text-primary mb-0" id="zarfModalLabel">Zarf — Enterprise B2B SaaS Expense Platform</h4>
+                    <h4 class="fw-800 text-primary mb-0" id="zarfModalLabel">Zarf — Enterprise B2B SaaS Expense Platform
+                    </h4>
                 </div>
 
                 <div class="modal-body pt-3">
                     <div class="row gy-4">
                         <div class="col-lg-7">
                             <p class="about-description mb-4">
-                                <strong>Zarf</strong> (derived from the Arabic word for <em>envelope</em> or <em>vessel</em>) is a premium, enterprise-grade B2B SaaS corporate expense management platform. It is engineered specifically for Small and Medium Enterprises (SMEs) operating in the <strong>GCC and United Arab Emirates (UAE)</strong>, addressing localized compliance, VAT laws, and multi-currency mechanics.
+                                <strong>Zarf</strong> (derived from the Arabic word for <em>envelope</em> or
+                                <em>vessel</em>) is a premium, enterprise-grade B2B SaaS corporate expense management
+                                platform. It is engineered specifically for Small and Medium Enterprises (SMEs)
+                                operating in the <strong>GCC and United Arab Emirates (UAE)</strong>, addressing
+                                localized compliance, VAT laws, and multi-currency mechanics.
                             </p>
 
                             <h6 class="fw-700 mb-3 text-uppercase small letter-spacing-1">
                                 <i class="fa-solid fa-square-check text-primary me-2"></i>Key Features & Innovations
                             </h6>
                             <ul class="modal-list mb-4">
-                                <li><strong>GCC Compliance & VAT Mechanics:</strong> Strict UAE Tax Registration Number (TRN) validation and 5% VAT calculations with automatic tax receipt filing.</li>
-                                <li><strong>Stateful Shell Tab Caching:</strong> Integrated <code>StatefulShellRoute.indexedStack</code> in Flutter routing to cache active screens, keeping transitions lag-free (0ms) and preventing duplicate API network requests.</li>
-                                <li><strong>Dynamic Adaptive UI:</strong> Checks role permissions on login to morph the mobile navigation from 3 tabs (Employees) to 4 tabs (Managers/Admins), adding a dynamic approvals view with a live pending review badge counter.</li>
-                                <li><strong>AI Cost-Sentry & Rate Limiting:</strong> Hardened Node.js API with custom <code>aiRateLimiter</code> (10 requests per 15 minutes per IP), 5MB file upload limits, and production error sanitization to protect paid LLM keys.</li>
-                                <li><strong>Advanced Security Hardening:</strong> Configured Express middleware (HSTS SSL enforcement, SAMEORIGIN clickjacking block, nosniff MIME protection, and strict CSP headers).</li>
-                                <li><strong>CI/CD & DevOps Automation:</strong> Bash pipeline (<code>build_apk.sh</code>) to automatically rename, build, and version release APKs based on `pubspec.yaml` semver regex extraction. Custom Vercel routing rules matching client-side React routes to eliminate 404 errors.</li>
+                                <li><strong>GCC Compliance & VAT Mechanics:</strong> Strict UAE Tax Registration Number
+                                    (TRN) validation and 5% VAT calculations with automatic tax receipt filing.</li>
+                                <li><strong>Stateful Shell Tab Caching:</strong> Integrated
+                                    <code>StatefulShellRoute.indexedStack</code> in Flutter routing to cache active
+                                    screens, keeping transitions lag-free (0ms) and preventing duplicate API network
+                                    requests.</li>
+                                <li><strong>Dynamic Adaptive UI:</strong> Checks role permissions on login to morph the
+                                    mobile navigation from 3 tabs (Employees) to 4 tabs (Managers/Admins), adding a
+                                    dynamic approvals view with a live pending review badge counter.</li>
+                                <li><strong>AI Cost-Sentry & Rate Limiting:</strong> Hardened Node.js API with custom
+                                    <code>aiRateLimiter</code> (10 requests per 15 minutes per IP), 5MB file upload
+                                    limits, and production error sanitization to protect paid LLM keys.</li>
+                                <li><strong>Advanced Security Hardening:</strong> Configured Express middleware (HSTS
+                                    SSL enforcement, SAMEORIGIN clickjacking block, nosniff MIME protection, and strict
+                                    CSP headers).</li>
+                                <li><strong>CI/CD & DevOps Automation:</strong> Bash pipeline
+                                    (<code>build_apk.sh</code>) to automatically rename, build, and version release APKs
+                                    based on `pubspec.yaml` semver regex extraction. Custom Vercel routing rules
+                                    matching client-side React routes to eliminate 404 errors.</li>
                             </ul>
 
                             <h6 class="fw-700 mb-2 text-uppercase small letter-spacing-1">
@@ -1095,8 +1117,15 @@
                                 <h6 class="fw-700 mb-2 text-uppercase small letter-spacing-1">
                                     <i class="fa-solid fa-layer-group text-primary me-2"></i>Tech Stack
                                 </h6>
+                                <a href="https://zarf-cyan.vercel.app/" target="_blank" rel="noopener"
+                                    class="btn btn-primary-custom btn-sm px-4 ms-2">
+                                    Live Demo
+                                </a>
                                 <div class="project-tags-container">
-                                    <span>Flutter</span><span>React (JSX)</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Mongoose</span><span>Riverpod</span><span>GoRouter</span><span>Dio</span><span>Groq SDK</span><span>llama Vision</span><span>FCM</span><span>Cloudinary CDN</span><span>JWT</span><span>HSTS Security</span>
+                                    <span>Flutter</span><span>React
+                                        (JSX)</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Mongoose</span><span>Riverpod</span><span>GoRouter</span><span>Dio</span><span>Groq
+                                        SDK</span><span>llama Vision</span><span>FCM</span><span>Cloudinary
+                                        CDN</span><span>JWT</span><span>HSTS Security</span>
                                 </div>
                             </div>
 
@@ -1105,7 +1134,11 @@
                                     <i class="fa-solid fa-user-gear text-primary me-2"></i>My Role
                                 </h6>
                                 <p class="small text-secondary mb-0">
-                                    I engineered the full-stack architecture and B2B workflows of Zarf. On the mobile front, I designed the nested cached routes, adaptive bottom nav, and API networking layer. On the backend and web front, I implemented custom security middleware, the Groq llama Vision AI service for OCR, dynamic rate-limiting guards, and the Vercel SPA routing system.
+                                    I engineered the full-stack architecture and B2B workflows of Zarf. On the mobile
+                                    front, I designed the nested cached routes, adaptive bottom nav, and API networking
+                                    layer. On the backend and web front, I implemented custom security middleware, the
+                                    Groq llama Vision AI service for OCR, dynamic rate-limiting guards, and the Vercel
+                                    SPA routing system.
                                 </p>
                             </div>
                         </div>
@@ -1113,8 +1146,8 @@
                 </div>
 
                 <div class="modal-footer border-0">
-                    <a href="https://github.com/r6rizwan/Zarf" target="_blank"
-                        rel="noopener" class="btn btn-primary-custom btn-sm px-4">
+                    <a href="https://github.com/r6rizwan/Zarf" target="_blank" rel="noopener"
+                        class="btn btn-primary-custom btn-sm px-4">
                         View on GitHub
                     </a>
                     <button type="button" class="btn btn-outline-custom btn-sm px-4"
@@ -1130,7 +1163,8 @@
             <div class="case-study-intro text-center mb-5">
                 <h6 class="text-primary fw-bold text-uppercase mb-2">Case Studies</h6>
                 <h2 class="section-title">Implementation-First Project Walkthroughs</h2>
-                <p class="text-secondary mb-0">Three enterprise-grade projects that show architecture, security, and end-to-end feature
+                <p class="text-secondary mb-0">Three enterprise-grade projects that show architecture, security, and
+                    end-to-end feature
                     ownership.</p>
             </div>
 
@@ -1145,28 +1179,46 @@
                                 </div>
                                 <h3 class="case-project-title">Zarf</h3>
                                 <p class="case-summary">
-                                    Premium B2B SaaS corporate expense management suite custom-built for SMEs in the GCC/UAE. A complete ecosystem consisting of a Flutter mobile client (receipt scanning), a React web portal (admin auditing & dashboards), and a hardened RESTful Express backend API featuring instant AI OCR receipt parsing under 2 seconds.
+                                    Premium B2B SaaS corporate expense management suite custom-built for SMEs in the
+                                    GCC/UAE. A complete ecosystem consisting of a Flutter mobile client (receipt
+                                    scanning), a React web portal (admin auditing & dashboards), and a hardened RESTful
+                                    Express backend API featuring instant AI OCR receipt parsing under 2 seconds.
                                 </p>
                                 <div class="case-study-points">
                                     <div class="case-study-point">
                                         <span class="case-title">Regional compliance</span>
-                                        <span class="case-detail">Engineered to support the GCC tax landscape, integrating strict UAE Tax Registration Number (TRN) validation, standard UAE 5% VAT rate calculations, and dynamic currency conversions back to AED base currency.</span>
+                                        <span class="case-detail">Engineered to support the GCC tax landscape,
+                                            integrating strict UAE Tax Registration Number (TRN) validation, standard
+                                            UAE 5% VAT rate calculations, and dynamic currency conversions back to AED
+                                            base currency.</span>
                                     </div>
                                     <div class="case-study-point">
                                         <span class="case-title">Mobile Caching</span>
-                                        <span class="case-detail">Implemented <code>StatefulShellRoute.indexedStack</code> inside Flutter's GoRouter architecture, caching tab sub-navigators to ensure instantaneous transitions (0ms lag) and eliminate duplicate network requests.</span>
+                                        <span class="case-detail">Implemented
+                                            <code>StatefulShellRoute.indexedStack</code> inside Flutter's GoRouter
+                                            architecture, caching tab sub-navigators to ensure instantaneous transitions
+                                            (0ms lag) and eliminate duplicate network requests.</span>
                                     </div>
                                     <div class="case-study-point">
                                         <span class="case-title">Adaptive Layouts</span>
-                                        <span class="case-detail">Built a role-adaptive mobile scaffolding system that morphs the navigation (3-tab for employees, 4-tab for managers/admins) on the fly, loading live review counts and badge updates from the backend.</span>
+                                        <span class="case-detail">Built a role-adaptive mobile scaffolding system that
+                                            morphs the navigation (3-tab for employees, 4-tab for managers/admins) on
+                                            the fly, loading live review counts and badge updates from the
+                                            backend.</span>
                                     </div>
                                     <div class="case-study-point">
                                         <span class="case-title">AI Cost-Sentry</span>
-                                        <span class="case-detail">Mitigated LLM billing risks by mounting a strict, dedicated <code>aiRateLimiter</code> (10 requests per 15 minutes per IP) on AI routes, capping file uploads to 5MB, and sanitizing error stack traces.</span>
+                                        <span class="case-detail">Mitigated LLM billing risks by mounting a strict,
+                                            dedicated <code>aiRateLimiter</code> (10 requests per 15 minutes per IP) on
+                                            AI routes, capping file uploads to 5MB, and sanitizing error stack
+                                            traces.</span>
                                     </div>
                                     <div class="case-study-point">
                                         <span class="case-title">DevOps & Hardening</span>
-                                        <span class="case-detail">Programmed Express security middleware (HSTS, SAMEORIGIN, CSP) to prevent clickjacking/XSS, resolved static SPA routing 404s via Vercel regex rewrites, and designed a bash pipeline (<code>build_apk.sh</code>) to auto-compile and version APK releases.</span>
+                                        <span class="case-detail">Programmed Express security middleware (HSTS,
+                                            SAMEORIGIN, CSP) to prevent clickjacking/XSS, resolved static SPA routing
+                                            404s via Vercel regex rewrites, and designed a bash pipeline
+                                            (<code>build_apk.sh</code>) to auto-compile and version APK releases.</span>
                                     </div>
                                 </div>
                             </div>
@@ -1175,16 +1227,22 @@
                             <div class="portfolio-card case-side-card h-100 d-flex flex-column">
                                 <h4>Highlights</h4>
                                 <ul class="modal-list mb-3">
-                                    <li>Complete three-tiered ecosystem: Flutter client, React dashboard, Node.js API.</li>
-                                    <li>Regional TRN & standard 5% VAT tax calculations built directly into the engine.</li>
-                                    <li>Zero lag (0ms) routing with Flutter's <code>StatefulShellRoute.indexedStack</code>.</li>
+                                    <li>Complete three-tiered ecosystem: Flutter client, React dashboard, Node.js API.
+                                    </li>
+                                    <li>Regional TRN & standard 5% VAT tax calculations built directly into the engine.
+                                    </li>
+                                    <li>Zero lag (0ms) routing with Flutter's
+                                        <code>StatefulShellRoute.indexedStack</code>.</li>
                                     <li>Dynamic, role-adaptive scaffold presenting dynamic screens and live badges.</li>
-                                    <li>Groq SDK integration using llama vision model for structured JSON receipt scans in &lt; 2s.</li>
+                                    <li>Groq SDK integration using llama vision model for structured JSON receipt scans
+                                        in &lt; 2s.</li>
                                     <li>Production-hardened Express API with HSTS, CSP, and rate-limiting.</li>
                                     <li>Automated Gradle versioned APK compiler bash pipeline.</li>
                                 </ul>
                                 <div class="project-tags-container mt-auto">
-                                    <span>Flutter</span><span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Mongoose</span><span>Riverpod</span><span>GoRouter</span><span>Groq llama</span><span>HSTS</span><span>FCM</span><span>Cloudinary</span><span>Vercel Rewrites</span>
+                                    <span>Flutter</span><span>React</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Mongoose</span><span>Riverpod</span><span>GoRouter</span><span>Groq
+                                        llama</span><span>HSTS</span><span>FCM</span><span>Cloudinary</span><span>Vercel
+                                        Rewrites</span>
                                 </div>
                             </div>
                         </div>
