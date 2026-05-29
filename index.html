@@ -1059,13 +1059,15 @@
                                 <li><strong>Stateful Shell Tab Caching:</strong> Integrated
                                     <code>StatefulShellRoute.indexedStack</code> in Flutter routing to cache active
                                     screens, keeping transitions lag-free (0ms) and preventing duplicate API network
-                                    requests.</li>
+                                    requests.
+                                </li>
                                 <li><strong>Dynamic Adaptive UI:</strong> Checks role permissions on login to morph the
                                     mobile navigation from 3 tabs (Employees) to 4 tabs (Managers/Admins), adding a
                                     dynamic approvals view with a live pending review badge counter.</li>
                                 <li><strong>AI Cost-Sentry & Rate Limiting:</strong> Hardened Node.js API with custom
                                     <code>aiRateLimiter</code> (10 requests per 15 minutes per IP), 5MB file upload
-                                    limits, and production error sanitization to protect paid LLM keys.</li>
+                                    limits, and production error sanitization to protect paid LLM keys.
+                                </li>
                                 <li><strong>Advanced Security Hardening:</strong> Configured Express middleware (HSTS
                                     SSL enforcement, SAMEORIGIN clickjacking block, nosniff MIME protection, and strict
                                     CSP headers).</li>
@@ -1117,10 +1119,6 @@
                                 <h6 class="fw-700 mb-2 text-uppercase small letter-spacing-1">
                                     <i class="fa-solid fa-layer-group text-primary me-2"></i>Tech Stack
                                 </h6>
-                                <a href="https://zarf-cyan.vercel.app/" target="_blank" rel="noopener"
-                                    class="btn btn-primary-custom btn-sm px-4 ms-2">
-                                    Live Demo
-                                </a>
                                 <div class="project-tags-container">
                                     <span>Flutter</span><span>React
                                         (JSX)</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Mongoose</span><span>Riverpod</span><span>GoRouter</span><span>Dio</span><span>Groq
@@ -1146,6 +1144,10 @@
                 </div>
 
                 <div class="modal-footer border-0">
+                    <a href="https://zarf-cyan.vercel.app/" target="_blank" rel="noopener"
+                        class="btn btn-primary-custom btn-sm px-4 ms-2">
+                        Live Demo
+                    </a>
                     <a href="https://github.com/r6rizwan/Zarf" target="_blank" rel="noopener"
                         class="btn btn-primary-custom btn-sm px-4">
                         View on GitHub
@@ -1232,7 +1234,8 @@
                                     <li>Regional TRN & standard 5% VAT tax calculations built directly into the engine.
                                     </li>
                                     <li>Zero lag (0ms) routing with Flutter's
-                                        <code>StatefulShellRoute.indexedStack</code>.</li>
+                                        <code>StatefulShellRoute.indexedStack</code>.
+                                    </li>
                                     <li>Dynamic, role-adaptive scaffold presenting dynamic screens and live badges.</li>
                                     <li>Groq SDK integration using llama vision model for structured JSON receipt scans
                                         in &lt; 2s.</li>
