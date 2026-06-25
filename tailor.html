@@ -276,6 +276,12 @@
     }
     .tailor-btn:active:not(:disabled) { transform: translateY(0); }
     .tailor-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+    #cover-btn:hover:not(:disabled) {
+      background: var(--accent-light) !important;
+      box-shadow: 0 2px 8px rgba(26,158,117,0.15) !important;
+      transform: translateY(-1px);
+    }
+    #cover-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
 
     /* ── Status / error ── */
     .status-box {
