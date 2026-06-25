@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Tailor — Rizwan Mulla</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --bg-tertiary: #f0f2f4;
+      --text-primary: #0d1117;
+      --text-secondary: #4a5568;
+      --text-muted: #718096;
+      --accent: #1a9e75;
+      --accent-dark: #0f6e56;
+      --accent-light: #e1f5ee;
+      --border: #e2e8f0;
+      --border-hover: #cbd5e0;
+      --card-bg: #ffffff;
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.10), 0 8px 32px rgba(0,0,0,0.06);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --navbar-bg: rgba(255,255,255,0.92);
+      --danger: #e53e3e;
+      --danger-bg: #fff5f5;
+      --success: #1a9e75;
+      --success-bg: #e1f5ee;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #0d1117;
+      --bg-secondary: #161b22;
+      --bg-tertiary: #1c2128;
+      --text-primary: #e6edf3;
+      --text-secondary: #8b949e;
+      --text-muted: #6e7681;
+      --accent: #1a9e75;
+      --accent-dark: #5dcaa5;
+      --accent-light: #0a2e22;
+      --border: #30363d;
+      --border-hover: #484f58;
+      --card-bg: #161b22;
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+      --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.4), 0 8px 32px rgba(0,0,0,0.3);
+      --navbar-bg: rgba(13,17,23,0.92);
+      --danger: #fc8181;
+      --danger-bg: #2d1515;
+      --success: #5dcaa5;
+      --success-bg: #0a2e22;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* ── Navbar ── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: 60px;
+      display: flex;
+      align-items: center;
+      padding: 0 1.5rem;
+      justify-content: space-between;
+    }
+    .navbar-brand {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+    .navbar-brand span { color: var(--accent); }
+    .navbar-right { display: flex; align-items: center; gap: 12px; }
+    .nav-back {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+      background: var(--card-bg);
+    }
+    .nav-back:hover { color: var(--text-primary); border-color: var(--border-hover); background: var(--bg-secondary); }
+    .theme-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .theme-btn:hover { border-color: var(--border-hover); background: var(--bg-secondary); }
+
+    /* ── Layout ── */
+    .page-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 84px 1.5rem 3rem;
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    .page-header .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .page-header h1 {
+      font-size: clamp(26px, 5vw, 38px);
+      font-weight: 700;
+      letter-spacing: -0.8px;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+    .page-header h1 span { color: var(--accent); }
+    .page-header p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    .card:nth-child(2) { animation-delay: 0.07s; }
+    .card:nth-child(3) { animation-delay: 0.14s; }
+    .card:nth-child(4) { animation-delay: 0.21s; }
+
+    .card-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .card-label i { color: var(--accent); font-size: 13px; }
+
+    /* ── Textarea ── */
+    textarea {
+      width: 100%;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      resize: vertical;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      min-height: 180px;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(26,158,117,0.12);
+    }
+    textarea::placeholder { color: var(--text-muted); }
+
+    /* ── Options grid ── */
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 540px) { .options-grid { grid-template-columns: 1fr; } }
+
+    .option-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+    select {
+      width: 100%;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236e7681' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+    select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(26,158,117,0.12); }
+
+    /* ── Tailor button ── */
+    .tailor-btn {
+      width: 100%;
+      padding: 13px 24px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      background: var(--accent);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      box-shadow: 0 2px 8px rgba(26,158,117,0.25);
+      letter-spacing: -0.1px;
+    }
+    .tailor-btn:hover:not(:disabled) {
+      background: var(--accent-dark);
+      box-shadow: 0 4px 16px rgba(26,158,117,0.35);
+      transform: translateY(-1px);
+    }
+    .tailor-btn:active:not(:disabled) { transform: translateY(0); }
+    .tailor-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+    /* ── Status / error ── */
+    .status-box {
+      display: none;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      margin-top: 1rem;
+      align-items: center;
+      gap: 10px;
+    }
+    .status-box.loading {
+      display: flex;
+      background: var(--accent-light);
+      color: var(--accent-dark);
+      border: 1px solid rgba(26,158,117,0.2);
+    }
+    .status-box.error {
+      display: flex;
+      background: var(--danger-bg);
+      color: var(--danger);
+      border: 1px solid rgba(229,62,62,0.2);
+    }
+    .spinner {
+      width: 16px; height: 16px;
+      border: 2px solid rgba(26,158,117,0.3);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Output section ── */
+    .output-section { display: none; }
+    .output-section.visible { display: block; }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0;
+    }
+    .tab-btn {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13.5px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border: none;
+      background: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    }
+    .tab-btn:hover { color: var(--text-primary); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── Output box ── */
+    .output-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .output-meta { font-size: 12px; color: var(--text-muted); }
+    .copy-btn {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 12px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { background: var(--bg-tertiary); border-color: var(--border-hover); color: var(--text-primary); }
+    .copy-btn.copied { color: var(--success); border-color: var(--success); background: var(--success-bg); }
+
+    .output-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      font-size: 13px;
+      line-height: 1.75;
+      color: var(--text-primary);
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 560px;
+      overflow-y: auto;
+      font-family: 'Space Grotesk', sans-serif;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .output-box::-webkit-scrollbar { width: 5px; }
+    .output-box::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    /* ── Analysis specific styling ── */
+    #analysis-output {
+      font-size: 13.5px;
+      line-height: 1.8;
+    }
+
+    /* ── Fit score badge ── */
+    .fit-score {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+    .fit-score.high { background: var(--success-bg); color: var(--success); }
+    .fit-score.mid { background: #fffbeb; color: #b7791f; }
+    .fit-score.low { background: var(--danger-bg); color: var(--danger); }
+
+    /* ── Footer ── */
+    .page-footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .page-footer a { color: var(--accent); text-decoration: none; }
+    .page-footer a:hover { text-decoration: underline; }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Scrollbar for page ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    /* ── Divider ── */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1.5rem 0;
+    }
+
+    /* ── Tip box ── */
+    .tip-box {
+      background: var(--accent-light);
+      border: 1px solid rgba(26,158,117,0.18);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: var(--accent-dark);
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.55;
+    }
+    [data-theme="dark"] .tip-box { color: var(--accent); }
+    .tip-box i { margin-top: 1px; flex-shrink: 0; }
+  </style>
+</head>
+
+<body data-theme="light">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="https://rizwan-mulla-portfolio.vercel.app/">Rizwan <span>M</span></a>
+    <div class="navbar-right">
+      <a class="nav-back" href="https://rizwan-mulla-portfolio.vercel.app/"><i class="fa-solid fa-arrow-left" style="font-size:11px;"></i> Portfolio</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme" title="Toggle theme">🌙</button>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Header -->
+    <div class="page-header">
+      <div class="badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI-Powered</div>
+      <h1>Resume <span>Tailor</span></h1>
+      <p>Paste any job description. The AI rewrites your resume bullet-by-bullet to match — factual content only, no fabrication, rules locked in.</p>
+    </div>
+
+    <!-- Step 1: JD Input -->
+    <div class="card">
+      <div class="card-label"><i class="fa-solid fa-file-lines"></i> Step 1 — Job description</div>
+      <textarea id="jd-input" placeholder="Paste the full job description here — role title, company, requirements, tech stack, responsibilities...&#10;&#10;The more detail you paste, the better the tailoring."></textarea>
+      <div class="section-divider" style="margin:1rem 0 0.75rem;"></div>
+      <div class="tip-box">
+        <i class="fa-solid fa-lightbulb"></i>
+        <span>Include the role title, company name, and full requirements text. Longer JDs give better results — don't trim.</span>
+      </div>
+    </div>
+
+    <!-- Step 2: Options -->
+    <div class="card">
+      <div class="card-label"><i class="fa-solid fa-sliders"></i> Step 2 — Tailoring options</div>
+      <div class="options-grid">
+        <div class="option-group">
+          <label>Target market</label>
+          <select id="market-select">
+            <option value="UAE">🇦🇪 UAE (Dubai / Abu Dhabi)</option>
+            <option value="GCC">🌍 GCC (KSA / Qatar / Bahrain / Kuwait / Oman)</option>
+            <option value="India">🇮🇳 India (Bangalore / Remote)</option>
+            <option value="Global">🌐 Global / Remote</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>Focus angle</label>
+          <select id="angle-select">
+            <option value="Auto-detect from JD">⚡ Auto-detect from JD</option>
+            <option value="Flutter-primary">📱 Flutter-primary</option>
+            <option value="Full-stack MERN">🔧 Full-stack MERN</option>
+            <option value="AI integration">🤖 AI integration</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Generate -->
+    <div class="card">
+      <div class="card-label"><i class="fa-solid fa-bolt"></i> Step 3 — Generate</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <button class="tailor-btn" id="tailor-btn" onclick="tailorResume()">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          Tailor resume
+        </button>
+        <button class="tailor-btn" id="cover-btn" onclick="generateCoverLetter()" style="background:transparent;color:var(--accent);border:1.5px solid var(--accent);box-shadow:none;">
+          <i class="fa-solid fa-pen-to-square"></i>
+          Cover letter
+        </button>
+      </div>
+      <div class="status-box" id="status-box">
+        <div class="spinner"></div>
+        <span id="status-text">Analysing JD and rewriting resume...</span>
+      </div>
+    </div>
+
+    <!-- Output -->
+    <div class="output-section card" id="output-section">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('tailored')" id="tab-btn-tailored">
+          <i class="fa-solid fa-file-lines"></i> Tailored resume
+        </button>
+        <button class="tab-btn" onclick="switchTab('analysis')" id="tab-btn-analysis">
+          <i class="fa-solid fa-chart-pie"></i> JD analysis
+        </button>
+        <button class="tab-btn" onclick="switchTab('cover')" id="tab-btn-cover">
+          <i class="fa-solid fa-pen-to-square"></i> Cover letter
+        </button>
+      </div>
+
+      <div class="tab-content active" id="tab-tailored">
+        <div class="output-header">
+          <span class="output-meta" id="tailored-meta"></span>
+          <button class="copy-btn" id="copy-tailored" onclick="copyOutput('tailored-output','copy-tailored')">
+            <i class="fa-regular fa-copy"></i> Copy
+          </button>
+        </div>
+        <div class="output-box" id="tailored-output"></div>
+      </div>
+
+      <div class="tab-content" id="tab-analysis">
+        <div class="output-header">
+          <span class="output-meta" id="analysis-meta"></span>
+          <button class="copy-btn" id="copy-analysis" onclick="copyOutput('analysis-output','copy-analysis')">
+            <i class="fa-regular fa-copy"></i> Copy
+          </button>
+        </div>
+        <div class="output-box" id="analysis-output"></div>
+      </div>
+
+      <div class="tab-content" id="tab-cover">
+        <div class="output-header">
+          <span class="output-meta" id="cover-meta"></span>
+          <button class="copy-btn" id="copy-cover" onclick="copyOutput('cover-output','copy-cover')">
+            <i class="fa-regular fa-copy"></i> Copy
+          </button>
+        </div>
+        <div class="tip-box" id="cover-empty-tip" style="margin-bottom:1rem;">
+          <i class="fa-solid fa-lightbulb"></i>
+          <span>Click <strong>Cover letter</strong> above to generate one from the JD. The resume must be tailored first, or you can generate the cover letter standalone.</span>
+        </div>
+        <div class="output-box" id="cover-output" style="display:none;"></div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      Private tool · <a href="https://rizwan-mulla-portfolio.vercel.app/">rizwan-mulla-portfolio.vercel.app</a> · Content is AI-generated — always verify before sending
+    </footer>
+
+  </div>
+
+  <script>
+    // ── Theme toggle ──
+    const body = document.body;
+    const themeBtn = document.getElementById('themeBtn');
+    const saved = localStorage.getItem('rm-theme') || 'light';
+    body.setAttribute('data-theme', saved);
+    themeBtn.textContent = saved === 'dark' ? '☀️' : '🌙';
+    themeBtn.addEventListener('click', () => {
+      const next = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      body.setAttribute('data-theme', next);
+      themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+      localStorage.setItem('rm-theme', next);
+    });
+
+    // ── Resume content ──
+    const RESUMES = {
+      India: `RIZWAN MULLA
+Flutter & Full-Stack MERN Developer | AI Integration (Groq / OpenAI / Gemini)
+
+rizwanmulla6@gmail.com · +91 96200 57555 · linkedin.com/in/rizwan-r-mulla
+github.com/r6rizwan · rizwan-mulla-portfolio.vercel.app
+Currently in Hubballi, Karnataka · Open to: Bangalore (On-site) · Remote India · Immediate Joiner
+
+PROFESSIONAL SUMMARY
+Flutter and full-stack MERN developer with 3+ years of production experience. Shipped two apps to Google Play under employer ownership, built a 51-endpoint role-based MERN backend from scratch, and delivered a complete Razorpay-integrated e-commerce platform with HMAC-SHA256 payment verification. Groq, OpenAI, and Gemini APIs integrated into live projects. Open to Bangalore on-site or fully remote roles across India, immediate joiner.
+
+TECHNICAL SKILLS
+Mobile: Flutter, Dart, Riverpod, Provider, GetX, Firebase (Auth, FCM, Firestore), local_auth, flutter_secure_storage, Drift ORM
+Frontend: React.js, TypeScript, JavaScript ES6+, HTML5, CSS3, Axios, React Router
+Backend: Node.js, Express.js, REST API design, JWT authentication, bcryptjs, Multer, Nodemailer
+Databases: MongoDB (Mongoose ODM), MySQL (mysql2), SQLite, Firebase Firestore
+Security: AES-GCM encryption, biometric auth (local_auth), flutter_secure_storage, JWT, bcrypt, HMAC-SHA256
+Payments: Razorpay (order creation + HMAC-SHA256 verification)
+AI & APIs: Groq API (Llama 3.3 70b), OpenAI API, Gemini API
+Tools: Git, GitHub Actions (CI/CD), Postman, Figma, Cursor AI, GitHub Copilot, Agile/Scrum, Play Store deployment
+
+WORK EXPERIENCE
+
+Independent Developer & Full-Stack Upskilling | 03/2024 – Present
+- Completed MERN stack development training, UI/UX design certification, and a formal full-stack internship at GIT IT Academy (Hubli). Also attended Bosch BRIDGE Industry Readiness Program (June 2025) and Outskill Generative AI Mastermind Workshop (Aug 2025).
+- Engineered CivilEye — full-stack complaint management on React, Node.js, MongoDB with 51 REST endpoints, 4-role JWT auth, 38 protected routes, and Groq AI (Llama 3.3 70b) integrated for automated complaint triage. Non-blocking fallback keeps the system at 100% availability if the AI service goes down.
+- Developed ShopSphere — 32-endpoint e-commerce platform on React + Node.js + MySQL with HMAC-SHA256 Razorpay integration, OTP-based auth flows, guest cart with post-login merge, and a dual admin system with independent middleware.
+- Developed IronVault — offline-first Flutter password manager with AES-GCM encryption, biometric + PIN unlock, auto-lock on backgrounding, 24 screens including password health analytics, CSV import/export, and encrypted backup/restore. MIT licensed.
+
+Flutter Developer · SoftInfo Systems Pvt Ltd | 08/2022 – 02/2024 · Remote, Noida
+- Shipped TickIt to Google Play — cross-platform task management app with smart due dates, category organisation, progress tracking, and analytics. Real-time Firebase Firestore sync across admin, agent, and user roles. Delivered 2 post-release update cycles.
+- Launched WizApp on Google Play — inventory management with barcode scanning, real-time stock monitoring, quantity/status threshold alerts, and 4-period sales reporting (daily/weekly/monthly/yearly). Designed REST API contracts and integrated a Node.js + MySQL backend across 4 API modules.
+- Worked in 2-week Agile sprints with design and backend teams; handled QA cycles, bug-fix releases, and Play Store deployment.
+
+Flutter Developer · AMW Infotech | 01/2021 – 05/2022 · On-site, Hubli
+- Delivered MPD — a Flutter CA service management app handling centralised client request tracking, secure document storage, and daily CA office workflows. Implemented Firebase Cloud Messaging push notifications and real-time Firestore sync using Provider state management.
+- Shipped 3 stable production releases, working directly with Chartered Accountant professionals through the full requirements-to-delivery cycle.
+
+Flutter Intern · Clear Stream Solutions | 01/2020 – 12/2020 · Hubli
+- Developed Flutter UI components, REST API integrations, and local SQLite storage across 4+ prototype projects under senior developer guidance.
+
+KEY PROJECTS
+
+CivilEye — Role-Based Complaint System · React · Node.js · MongoDB · JWT · Groq API
+- Full-stack complaint management: 51 REST endpoints, 4-role JWT auth (User/Investigator/Admin/SuperAdmin), 38 protected routes, 10 normalised MongoDB models. Complete case lifecycle — file, assign, investigate, resolve, close — with OTP verification, Multer evidence upload, and full audit trail.
+- Groq API (Llama 3.3 70b) for AI-assisted complaint triage — automatically suggests category, priority, and reasoning. Non-blocking fallback ensures 100% availability if AI is unreachable.
+
+ShopSphere — E-Commerce Platform · React · Node.js · MySQL · Razorpay
+- 32 REST endpoints, 3 user roles, guest cart with post-login merge, production-grade Razorpay integration with HMAC-SHA256 signature verification, GST + delivery checkout, dual admin system with independent middleware and access scopes.
+
+IronVault — Offline Password Manager · Flutter · Riverpod · Drift ORM · AES-GCM · local_auth
+- Zero cloud dependency, AES-GCM encryption at rest, biometric + PIN auth, auto-lock on backgrounding, 24 screens, password health analytics, CSV import/export, encrypted backup/restore. MIT licensed. GitHub Actions CI/CD for signed APK builds.
+
+MPD — CA Service Management App · Flutter · Firebase · Provider · AMW Infotech
+- Production client project: centralised CA request tracking, FCM push notifications, Firestore real-time sync, Provider state management. 3 production releases.
+
+TickIt — Task Management App · Flutter · Firebase Firestore · Play Store
+- Cross-platform Flutter app, 3-role architecture (admin/agent/user), real-time Firebase sync. 2 post-release update cycles. Google Play Store.
+
+WizApp — Inventory Management App · Flutter · Node.js · MySQL · Play Store
+- Barcode scanning, real-time stock monitoring, 4-period sales reporting. 1,000+ installs, 4.5★ rating. Google Play Store.
+
+CERTIFICATIONS & TRAINING
+MERN Full-Stack Internship · GIT IT Academy · 11/2025 – 02/2026
+MERN Stack Development · GIT IT Academy · 04/2025 – 08/2025
+UI/UX Design Certification · GIT IT Academy · 08/2025 – 10/2025
+Generative AI Mastermind Workshop · Outskill · Aug 23–25, 2025
+Bosch BRIDGE Industry Readiness · Bosch · June 2025 (30 days)
+
+EDUCATION
+Master of Computer Applications (MCA) · KLE Institute of Technology, Hubli
+Bachelor of Computer Applications (BCA) · Fatima Degree College, Hubli
+
+LANGUAGES
+English (Professional) · Hindi (Fluent) · Kannada (Native)
+Immediate Joiner · Bangalore On-site · Remote India`,
+
+      UAE: `RIZWAN MULLA
+Flutter & Full-Stack MERN Developer | AI Integration (Groq / OpenAI / Gemini)
+
+rizwanmulla6@gmail.com · +91 96200 57555 (WhatsApp) · linkedin.com/in/rizwan-r-mulla
+github.com/r6rizwan · rizwan-mulla-portfolio.vercel.app
+Currently in Hubballi, India · Nationality: Indian · Requires UAE Visa Sponsorship · Notice: Immediate
+Open to: Dubai / Abu Dhabi (On-site) · Remote UAE
+
+PROFESSIONAL SUMMARY
+Flutter and full-stack MERN developer with 3+ years of production experience. Shipped two apps to Google Play under employer ownership, built a 51-endpoint role-based MERN backend, and delivered Zarf — a live B2B expense management platform purpose-built for UAE/GCC SMEs. Groq, OpenAI, and Gemini APIs integrated into production projects. Currently targeting UAE/GCC roles where mobile-first thinking and full-stack Node.js/React capability are both in play.
+
+TECHNICAL SKILLS
+Mobile: Flutter, Dart, Riverpod, Provider, GetX, GoRouter, Dio, Firebase (Auth, FCM, Firestore), local_auth, flutter_secure_storage, Drift ORM
+Frontend: React.js, TypeScript, JavaScript ES6+, Tailwind CSS, shadcn/ui, HTML5, CSS3, Axios, React Router, Recharts
+Backend: Node.js, Express.js, REST API design, JWT (access + refresh token rotation), bcryptjs, Multer, Cloudinary, Nodemailer
+Databases: MongoDB (Mongoose ODM), MySQL (mysql2), SQLite, Firebase Firestore
+Security: AES-GCM encryption, biometric auth, flutter_secure_storage, JWT, bcrypt, HMAC-SHA256, rate limiting, CSP/HSTS headers
+AI & APIs: Groq API (Llama 3.3 70b), OpenAI API, Gemini API
+Tools: Git, GitHub Actions (CI/CD), Postman, Figma, Cursor AI, GitHub Copilot, Agile/Scrum, Play Store deployment
+
+WORK EXPERIENCE
+
+Independent Developer & Full-Stack Upskilling | 03/2024 – Present
+- Completed MERN stack development training, UI/UX design certification, and a formal full-stack internship at GIT IT Academy (Hubli). Also attended Bosch BRIDGE Industry Readiness Program (June 2025) and Outskill Generative AI Mastermind Workshop (Aug 2025).
+- Architected Zarf — a B2B expense management platform for UAE/GCC SMEs: Flutter mobile app, React web dashboard, and Node.js + MongoDB API. Groq AI receipt parsing, VAT-aware workflows (UAE 5% / Saudi 15%), multi-currency AED conversion, and role-based access across Employee, Manager, and Admin tiers.
+- Engineered CivilEye — full-stack complaint management on React, Node.js, MongoDB with 51 REST endpoints, 4-role JWT auth, 38 protected routes, and Groq AI (Llama 3.3 70b) integrated for automated complaint triage. Non-blocking fallback keeps the system at 100% availability if the AI service goes down.
+- Developed IronVault — offline-first Flutter password manager with AES-GCM encryption, biometric + PIN unlock, auto-lock on backgrounding, 24 screens including password health analytics, CSV import/export, and encrypted backup/restore. MIT licensed.
+
+Flutter Developer · SoftInfo Systems Pvt Ltd | 08/2022 – 02/2024 · Remote, Noida
+- Shipped TickIt to Google Play — cross-platform task management app with smart due dates, category organisation, progress tracking, and analytics. Real-time Firebase Firestore sync across admin, agent, and user roles. Delivered 2 post-release update cycles.
+- Launched WizApp on Google Play — inventory management with barcode scanning, real-time stock monitoring, quantity/status threshold alerts, and 4-period sales reporting. Designed REST API contracts and integrated Node.js + MySQL backend across 4 API modules.
+- Worked in 2-week Agile sprints with design and backend teams; handled QA cycles, bug-fix releases, and Play Store deployment.
+
+Flutter Developer · AMW Infotech | 01/2021 – 05/2022 · On-site, Hubli
+- Delivered MPD — a Flutter CA service management app handling centralised client request tracking, secure document storage, and daily CA office workflows. Implemented Firebase Cloud Messaging push notifications and real-time Firestore sync using Provider state management.
+- Shipped 3 stable production releases, working directly with Chartered Accountant professionals through the full requirements-to-delivery cycle.
+
+Flutter Intern · Clear Stream Solutions | 01/2020 – 12/2020 · Hubli
+- Developed Flutter UI components, REST API integrations, and local SQLite storage across 4+ prototype projects under senior developer guidance.
+
+KEY PROJECTS
+
+Zarf — B2B Expense Management · Flutter · React · Node.js · MongoDB · Groq API
+- Full-stack B2B expense platform for UAE/GCC SMEs — Flutter mobile (Riverpod, Dio, GoRouter), React web dashboard (Tailwind, shadcn/ui, Recharts), and Node.js + MongoDB API. VAT-aware (UAE 5%/Saudi 15%), AED conversion, Groq AI receipt OCR, Cloudinary, FCM notifications, JWT refresh rotation, rate limiting, CSP/HSTS. Live on Vercel and Render.
+- Strict role separation: employees on mobile only; managers on both platforms; admins on web exclusively for VAT, TRN, and base currency settings.
+
+CivilEye — Role-Based Complaint System · React · Node.js · MongoDB · JWT · Groq API
+- 51 REST endpoints, 4-role JWT auth (User/Investigator/Admin/SuperAdmin), 38 protected routes, 10 normalised MongoDB models. Non-blocking Groq AI triage. OTP verification, Multer evidence upload, full audit trail.
+
+IronVault — Offline Password Manager · Flutter · Riverpod · Drift ORM · AES-GCM
+- Zero cloud dependency, AES-GCM encryption, biometric + PIN auth, 24 screens, encrypted backup/restore, GitHub Actions CI/CD for signed APK builds.
+
+MPD, TickIt, WizApp — Production Flutter apps from employer roles. Play Store deployed.
+
+CERTIFICATIONS & TRAINING
+MERN Full-Stack Internship · GIT IT Academy · 11/2025 – 02/2026
+MERN Stack Development · GIT IT Academy · 04/2025 – 08/2025
+UI/UX Design Certification · GIT IT Academy · 08/2025 – 10/2025
+Generative AI Mastermind Workshop · Outskill · Aug 23–25, 2025
+Bosch BRIDGE Industry Readiness · Bosch · June 2025 (30 days)
+
+EDUCATION
+Master of Computer Applications (MCA) · KLE Institute of Technology, Hubli
+Bachelor of Computer Applications (BCA) · Fatima Degree College, Hubli
+
+LANGUAGES
+English (Professional) · Hindi (Fluent) · Kannada (Native)
+Available for immediate relocation to UAE/Dubai · Open to on-site and hybrid roles`,
+
+      GCC: `RIZWAN MULLA
+Flutter & Full-Stack MERN Developer | AI Integration (Groq / OpenAI / Gemini)
+
+rizwanmulla6@gmail.com · +91 96200 57555 (WhatsApp) · linkedin.com/in/rizwan-r-mulla
+github.com/r6rizwan · rizwan-mulla-portfolio.vercel.app
+Currently in Hubballi, India · Nationality: Indian · Requires GCC Visa Sponsorship · Notice: Immediate
+Open to: UAE · Saudi Arabia · Qatar · Bahrain · Kuwait · Oman · Remote
+
+PROFESSIONAL SUMMARY
+Flutter and full-stack MERN developer with 3+ years of production experience. Shipped two apps to Google Play under employer ownership, built a 51-endpoint role-based MERN backend, and delivered Zarf — a live B2B expense management platform purpose-built for UAE/GCC SMEs. Groq, OpenAI, and Gemini APIs integrated into production projects. Targeting GCC roles where mobile-first and full-stack Node.js/React capability are both in play.
+
+TECHNICAL SKILLS
+Mobile: Flutter, Dart, Riverpod, Provider, GetX, GoRouter, Dio, Firebase (Auth, FCM, Firestore), local_auth, flutter_secure_storage, Drift ORM
+Frontend: React.js, TypeScript, JavaScript ES6+, Tailwind CSS, shadcn/ui, HTML5, CSS3, Axios, React Router, Recharts
+Backend: Node.js, Express.js, REST API design, JWT (access + refresh token rotation), bcryptjs, Multer, Cloudinary, Nodemailer
+Databases: MongoDB (Mongoose ODM), MySQL (mysql2), SQLite, Firebase Firestore
+Security: AES-GCM encryption, biometric auth, flutter_secure_storage, JWT, bcrypt, HMAC-SHA256, rate limiting, CSP/HSTS headers
+AI & APIs: Groq API (Llama 3.3 70b), OpenAI API, Gemini API
+Tools: Git, GitHub Actions (CI/CD), Postman, Figma, Cursor AI, GitHub Copilot, Agile/Scrum, Play Store deployment
+
+WORK EXPERIENCE
+
+Independent Developer & Full-Stack Upskilling | 03/2024 – Present
+- Completed MERN stack development training, UI/UX design certification, and a formal full-stack internship at GIT IT Academy (Hubli). Also attended Bosch BRIDGE Industry Readiness Program (June 2025) and Outskill Generative AI Mastermind Workshop (Aug 2025).
+- Architected Zarf — a B2B expense management platform for UAE/GCC SMEs: Flutter mobile app, React web dashboard, and Node.js + MongoDB API. Groq AI receipt parsing, VAT-aware workflows (UAE 5% / Saudi 15%), multi-currency AED conversion, and role-based access across Employee, Manager, and Admin tiers.
+- Engineered CivilEye — full-stack complaint management on React, Node.js, MongoDB with 51 REST endpoints, 4-role JWT auth, 38 protected routes, and Groq AI (Llama 3.3 70b) integrated for automated complaint triage. Non-blocking fallback keeps the system at 100% availability if the AI service goes down.
+- Developed IronVault — offline-first Flutter password manager with AES-GCM encryption, biometric + PIN unlock, auto-lock on backgrounding, 24 screens, CSV import/export, encrypted backup/restore. MIT licensed.
+
+Flutter Developer · SoftInfo Systems Pvt Ltd | 08/2022 – 02/2024 · Remote, Noida
+- Shipped TickIt to Google Play — cross-platform task management app with smart due dates, category organisation, progress tracking, and analytics. Real-time Firebase Firestore sync across admin, agent, and user roles.
+- Launched WizApp on Google Play — inventory management with barcode scanning, real-time stock monitoring, and 4-period sales reporting. Designed REST API contracts and integrated Node.js + MySQL backend.
+- Worked in 2-week Agile sprints; handled QA cycles, bug-fix releases, and Play Store deployment.
+
+Flutter Developer · AMW Infotech | 01/2021 – 05/2022 · On-site, Hubli
+- Delivered MPD — Flutter CA service management app with FCM push notifications, Firestore sync, Provider state management. 3 production releases.
+
+Flutter Intern · Clear Stream Solutions | 01/2020 – 12/2020
+
+KEY PROJECTS
+
+Zarf — B2B Expense Management · Flutter · React · Node.js · MongoDB · Groq API
+- Full-stack B2B expense platform for UAE/GCC SMEs. Flutter mobile (Riverpod, Dio, GoRouter), React web dashboard (Tailwind, shadcn/ui), Node.js + MongoDB API. VAT-aware (UAE 5%/Saudi 15%), AED conversion, Groq AI receipt OCR, Cloudinary, FCM, JWT refresh rotation, rate limiting, CSP/HSTS.
+
+CivilEye · IronVault · MPD · TickIt · WizApp — see above and github.com/r6rizwan
+
+CERTIFICATIONS, EDUCATION, LANGUAGES — same as UAE variant.
+Available for immediate relocation to GCC · Open to on-site and hybrid roles`,
+
+      Global: `RIZWAN MULLA
+Flutter & Full-Stack MERN Developer | AI Integration (Groq / OpenAI / Gemini)
+
+rizwanmulla6@gmail.com · +91 96200 57555 · linkedin.com/in/rizwan-r-mulla
+github.com/r6rizwan · rizwan-mulla-portfolio.vercel.app
+Based in India · Nationality: Indian · Visa Sponsorship Required · Notice: Immediate
+Open to Relocation Globally · Remote · Immediate Joiner
+
+PROFESSIONAL SUMMARY
+Flutter and full-stack MERN developer with 3+ years of production experience. Shipped two apps to Google Play under employer ownership, built a 51-endpoint role-based MERN backend, and delivered a complete payment-integrated e-commerce platform with HMAC-SHA256 verification. Groq, OpenAI, and Gemini APIs integrated into production projects. Looking for roles where mobile-first thinking and full-stack Node.js/React capability are both in play.
+
+TECHNICAL SKILLS
+Mobile: Flutter, Dart, Riverpod, Provider, GetX, GoRouter, Dio, Firebase (Auth, FCM, Firestore), local_auth, flutter_secure_storage, Drift ORM
+Frontend: React.js, TypeScript, JavaScript ES6+, Tailwind CSS, shadcn/ui, HTML5, CSS3, Axios, React Router, Recharts
+Backend: Node.js, Express.js, REST API design, JWT (access + refresh token rotation), bcryptjs, Multer, Cloudinary, Nodemailer
+Databases: MongoDB (Mongoose ODM), MySQL (mysql2), SQLite, Firebase Firestore
+Security: AES-GCM encryption, biometric auth, flutter_secure_storage, JWT, bcrypt, HMAC-SHA256, rate limiting, CSP/HSTS headers
+AI & APIs: Groq API (Llama 3.3 70b), OpenAI API, Gemini API
+Tools: Git, GitHub Actions (CI/CD), Postman, Figma, Cursor AI, GitHub Copilot, Agile/Scrum, Play Store deployment
+
+WORK EXPERIENCE
+
+Independent Developer & Full-Stack Upskilling | 03/2024 – Present
+- Completed MERN stack development training, UI/UX design certification, and a formal full-stack internship at GIT IT Academy (Hubli). Also attended Bosch BRIDGE Industry Readiness Program (June 2025) and Outskill Generative AI Mastermind Workshop (Aug 2025).
+- Engineered CivilEye — full-stack complaint management on React, Node.js, MongoDB with 51 REST endpoints, 4-role JWT auth, 38 protected routes, and Groq AI (Llama 3.3 70b) integrated for automated complaint triage. Non-blocking fallback keeps the system at 100% availability if the AI service goes down.
+- Developed ShopSphere — 32-endpoint e-commerce platform on React + Node.js + MySQL with HMAC-SHA256 payment gateway integration, OTP-based auth flows, guest cart with post-login merge, and a dual admin system with independent middleware.
+- Developed IronVault — offline-first Flutter password manager with AES-GCM encryption, biometric + PIN unlock, auto-lock on backgrounding, 24 screens, CSV import/export, encrypted backup/restore. MIT licensed.
+
+Flutter Developer · SoftInfo Systems Pvt Ltd | 08/2022 – 02/2024 · Remote, Noida
+- Shipped TickIt to Google Play — cross-platform task management app with Firebase Firestore sync across 3 roles, 2 post-release update cycles.
+- Launched WizApp on Google Play — inventory management with barcode scanning, 4-period sales reporting. 1,000+ installs, 4.5★ rating. Designed REST API contracts, Node.js + MySQL backend.
+- 2-week Agile sprints with design and backend teams; QA cycles, bug-fix releases, Play Store deployment.
+
+Flutter Developer · AMW Infotech | 01/2021 – 05/2022 · On-site, Hubli
+- Delivered MPD — Flutter CA service management app, FCM push notifications, Firestore sync, Provider state management. 3 production releases.
+
+Flutter Intern · Clear Stream Solutions | 01/2020 – 12/2020
+
+KEY PROJECTS
+
+ShopSphere — E-Commerce Platform · React · Node.js · MySQL · Payment Gateway
+- 32 REST endpoints, 3 user roles, guest cart with post-login merge, production-grade payment gateway integration with HMAC-SHA256 signature verification, GST + delivery checkout, dual admin system with independent middleware.
+
+CivilEye — Role-Based Complaint System · React · Node.js · MongoDB · JWT · Groq API
+- 51 REST endpoints, 4-role JWT auth, 38 protected routes, 10 normalised MongoDB models, Groq AI triage (non-blocking), OTP verification, Multer evidence upload, full audit trail.
+
+IronVault — Offline Password Manager · Flutter · Riverpod · Drift ORM · AES-GCM · local_auth
+- Zero cloud dependency, AES-GCM encryption, biometric + PIN auth, 24 screens, encrypted backup/restore, GitHub Actions CI/CD.
+
+MPD, TickIt, WizApp — Production Flutter apps from employer roles. Play Store deployed.
+
+CERTIFICATIONS & TRAINING
+MERN Full-Stack Internship · GIT IT Academy · 11/2025 – 02/2026
+MERN Stack Development · GIT IT Academy · 04/2025 – 08/2025
+UI/UX Design Certification · GIT IT Academy · 08/2025 – 10/2025
+Generative AI Mastermind Workshop · Outskill · Aug 23–25, 2025
+Bosch BRIDGE Industry Readiness · Bosch · June 2025 (30 days)
+
+EDUCATION
+Master of Computer Applications (MCA) · KLE Institute of Technology, Hubli
+Bachelor of Computer Applications (BCA) · Fatima Degree College, Hubli
+
+LANGUAGES
+English (Professional) · Hindi (Fluent) · Kannada (Native)
+Open to Relocation Globally · Remote · Visa Sponsorship Required · Immediate Joiner`
+    };
+
+    const SYSTEM_PROMPT = `You are an expert resume writer for Rizwan Mulla, a Flutter and full-stack MERN developer with 3+ years of production experience. Your job is to tailor his resume specifically for the job description provided.
+
+STRICT CONTENT RULES — never break these:
+- Never fabricate experience, projects, or skills. Only use what is in the base resume.
+- Career gap (Mar 2024 – Present) is always "Independent Developer & Full-Stack Upskilling" — never a "gap" or "career break".
+- Razorpay is named explicitly ONLY in India market resumes. UAE / GCC / Global: use "payment gateway" only.
+- Zarf project is included ONLY for UAE and GCC markets. Never in India or Global resumes.
+- WhatsApp note on phone number is ONLY in GCC market resumes.
+- CivilEye always refers to the full-stack MERN app — never a Figma mockup.
+- NexBrief, CompanyLens, TaskFlow AI, DSA-Grind are never mentioned under any circumstances.
+- MPD must always be included.
+- Resume max 2 pages, ATS-friendly, no columns, no graphics, plain text structure.
+- Never add skills or experience that are not in the base resume.
+
+WHAT YOU SHOULD DO:
+- Rewrite the professional summary to speak directly to this specific role and company.
+- Reorder bullets within each job to put the most JD-relevant ones first.
+- Reorder the projects section to lead with the most relevant project for this JD.
+- Emphasise keywords from the JD within existing bullet content where truthful.
+- Adjust the skills section order to surface what the JD prioritises.
+- Keep all facts truthful — reframe emphasis and ordering, never invent.
+
+WRITING STYLE — anti-AI rules (apply to every sentence you write):
+The output must sound like a human wrote it. A recruiter who reads 200 resumes a day will spot AI writing immediately. Follow these rules without exception:
+
+BANNED WORDS — never use these under any circumstances:
+leveraged, spearheaded, delved, cutting-edge, seamlessly, robust, comprehensive, meticulous, pivotal, underscores, tapestry, realm, paradigm, embark, beacon, testament to, game-changer, utilize, holistic, actionable, impactful, thought leader, synergy, at its core, vibrant, thriving, nestled, bustling, intricate, ever-evolving, daunting, showcasing, deep dive, unpack
+
+SENTENCE STRUCTURE RULES:
+- No tricolon stacking (X, Y, and Z pattern). Use two items or write a full sentence instead. Max one tricolon per entire resume.
+- No em dashes in bullets. Use commas, periods, or split into two sentences.
+- No hollow intensifiers: cut "genuine", "real" (as in "a real improvement"), "truly", "quite frankly".
+- No hedging: cut "perhaps", "could potentially", "it's important to note that".
+- No copula avoidance: do not say "serves as", "functions as", "acts as" — just say what it is.
+- No transition inflation: cut "Moreover", "Furthermore", "Additionally" at the start of bullets.
+- No promotional language: do not assert that something is impressive — show it with a number or a specific outcome.
+- Vary sentence length. Mix short punchy bullets with longer ones. Fragments are fine in resume bullets.
+- Be concrete. Replace vague claims with numbers, specifics, or named outcomes.
+
+RESUME BULLET VOICE:
+- Lead with the action, not a gerund stack. "Built X that does Y" not "Responsible for building X which was designed to do Y".
+- Every bullet should answer: what did you build or do, and what did it handle or enable or change?
+- Specifics beat adjectives. "51 REST endpoints" beats "extensive backend". "AES-GCM encryption" beats "strong security".
+- Do not start multiple consecutive bullets with the same word.
+- Professional summary: 3 to 4 sentences max. Direct. No mission-statement language. First person implied, not stated.
+
+OUTPUT FORMAT — use exactly this separator:
+First output the full tailored resume as plain text.
+Then output the line: ---ANALYSIS---
+Then output the JD fit analysis with these sections:
+- Fit score: X% — one sentence reason
+- Matched skills: bullet list of direct matches
+- Honest gaps: bullet list of things the JD wants that are not in the resume (be direct, do not soften)
+- Lead with: what angle or project to emphasise in cover letter and screening call
+- Salary estimate: specific range for this market and role level`;
+
+    // ── Tab switching ──
+    function switchTab(name) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById('tab-btn-' + name).classList.add('active');
+      document.getElementById('tab-' + name).classList.add('active');
+    }
+    window.switchTab = switchTab;
+
+    // ── Copy ──
+    function copyOutput(id, btnId) {
+      const text = document.getElementById(id).textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById(btnId);
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+    window.copyOutput = copyOutput;
+
+    // ── Main tailor function ──
+    async function tailorResume() {
+      const jd = document.getElementById('jd-input').value.trim();
+      if (!jd) {
+        document.getElementById('jd-input').focus();
+        document.getElementById('jd-input').style.borderColor = 'var(--danger)';
+        setTimeout(() => { document.getElementById('jd-input').style.borderColor = ''; }, 2000);
+        return;
+      }
+
+      const market = document.getElementById('market-select').value;
+      const angle = document.getElementById('angle-select').value;
+      const resume = RESUMES[market];
+      const btn = document.getElementById('tailor-btn');
+      const statusBox = document.getElementById('status-box');
+      const outputSection = document.getElementById('output-section');
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Tailoring...';
+      outputSection.className = 'output-section card';
+      statusBox.className = 'status-box loading';
+      document.getElementById('status-text').textContent = 'Analysing JD and rewriting your resume...';
+
+      const messages = [
+        {
+          role: 'user',
+          content: `Target market: ${market}\nFocus angle: ${angle}\n\nBase resume:\n${resume}\n\nJob description:\n${jd}`
+        }
+      ];
+
+      try {
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-6',
+            max_tokens: 4000,
+            system: SYSTEM_PROMPT,
+            messages
+          })
+        });
+
+        if (!response.ok) {
+          const err = await response.json().catch(() => ({}));
+          throw new Error(err.error?.message || `API error ${response.status}`);
+        }
+
+        const data = await response.json();
+        const fullText = data.content?.find(b => b.type === 'text')?.text || '';
+        const parts = fullText.split('---ANALYSIS---');
+        const tailored = (parts[0] || fullText).trim();
+        const analysis = (parts[1] || 'Analysis not generated.').trim();
+
+        document.getElementById('tailored-output').textContent = tailored;
+        document.getElementById('analysis-output').textContent = analysis;
+        document.getElementById('tailored-meta').textContent = `${market} · ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+        document.getElementById('analysis-meta').textContent = `${market} · ${angle}`;
+
+        outputSection.className = 'output-section card visible';
+        statusBox.className = 'status-box';
+        switchTab('tailored');
+        outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      } catch (err) {
+        statusBox.className = 'status-box error';
+        statusBox.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> <span>${err.message}</span>`;
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Tailor my resume';
+      }
+    }
+    window.tailorResume = tailorResume;
+
+    // Enter in textarea: Ctrl/Cmd+Enter to submit
+    document.getElementById('jd-input').addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') tailorResume();
+    });
+
+    // ── Cover letter system prompt ──
+    const COVER_PROMPT = `You are writing a cover letter for Rizwan Mulla, a Flutter and full-stack MERN developer with 3+ years of production experience. You will be given a job description and a tailored resume (if available). Write a cover letter that gets him an interview.
+
+STRICT CONTENT RULES:
+- Never fabricate experience. Only use what is in the resume provided.
+- Career gap is always "Independent Developer & Full-Stack Upskilling" — never a gap or career break.
+- Razorpay named explicitly only for India market. UAE/GCC/Global: use "payment gateway".
+- Zarf included only for UAE and GCC markets.
+- WhatsApp on contact line only for GCC market.
+- NexBrief, CompanyLens, TaskFlow AI, DSA-Grind never mentioned.
+- Max 3 short paragraphs. If going over, cut — do not compress.
+- Never start with "I am writing to apply" or "I am a passionate developer".
+- Never end with "I look forward to hearing from you" or "Please find my resume attached".
+- If the JD mentions a specific tech (Riverpod, GetX, LangChain, etc.) — name it explicitly.
+
+STRUCTURE — 3 paragraphs only:
+Para 1: One specific observation about the company or product (not generic praise — something real from the JD or what you know about them). Then establish the direct match: what you build + why it overlaps with what they need. Lead with the most relevant project by name.
+Para 2: The most relevant technical proof point. Pick one project, go specific: what you built, what it does, one concrete detail (endpoint count, encryption method, VAT logic, Play Store stats — whatever fits). Then connect the dot to this role explicitly.
+Para 3: Closing. For India roles: "Immediate joiner, targeting Bangalore on-site or remote." For UAE/GCC: "Based in India, ready to relocate to [city] immediately on visa sponsorship." For Global: "Based in India, open to relocation or fully remote." End with contact line — no flowery sign-off.
+
+CONTACT LINE BY MARKET:
+- India: rizwanmulla6@gmail.com · +91 96200 57555 · rizwan-mulla-portfolio.vercel.app
+- UAE: rizwanmulla6@gmail.com · WhatsApp +91 96200 57555 · rizwan-mulla-portfolio.vercel.app
+- GCC: rizwanmulla6@gmail.com · WhatsApp +91 96200 57555 · rizwan-mulla-portfolio.vercel.app
+- Global: rizwanmulla6@gmail.com · +91 96200 57555 · rizwan-mulla-portfolio.vercel.app
+
+SUBJECT LINE: Output a subject line before the letter body, on its own line, prefixed with "Subject: "
+
+WRITING STYLE — anti-AI rules (every sentence):
+BANNED WORDS: leveraged, spearheaded, delved, cutting-edge, seamlessly, robust, comprehensive, meticulous, pivotal, underscores, tapestry, realm, paradigm, embark, beacon, testament to, game-changer, utilize, holistic, actionable, impactful, thought leader, synergy, at its core, vibrant, thriving, showcasing, deep dive, unpack, passionate, dedicated, detail-oriented, results-driven, team player, go-getter, hard worker, motivated
+
+STYLE RULES:
+- No tricolon stacking (X, Y, and Z). Use two items or a full sentence. Max one tricolon per letter.
+- No hollow intensifiers: cut "genuine", "truly", "quite frankly", "to be honest".
+- No hedging: cut "perhaps", "could potentially".
+- No em dashes. Use commas or split sentences.
+- No promotional language: do not assert impressiveness — show it with a specific fact.
+- Vary sentence length. Mix short with long. One-sentence paragraphs are fine.
+- Sound like a developer wrote it, not a marketing copywriter.
+- First person throughout. Direct. Confident without being boastful.
+- The letter should demonstrate knowledge, not just claim it.
+
+OUTPUT FORMAT:
+Subject: [subject line here]
+
+[Para 1]
+
+[Para 2]
+
+[Para 3]
+
+[contact line]`;
+
+    // ── Cover letter generator ──
+    async function generateCoverLetter() {
+      const jd = document.getElementById('jd-input').value.trim();
+      if (!jd) {
+        document.getElementById('jd-input').focus();
+        document.getElementById('jd-input').style.borderColor = 'var(--danger)';
+        setTimeout(() => { document.getElementById('jd-input').style.borderColor = ''; }, 2000);
+        return;
+      }
+
+      const market = document.getElementById('market-select').value;
+      const angle = document.getElementById('angle-select').value;
+      const resume = RESUMES[market];
+      const coverBtn = document.getElementById('cover-btn');
+      const statusBox = document.getElementById('status-box');
+      const outputSection = document.getElementById('output-section');
+
+      // Use any already-tailored resume if available, otherwise use base resume
+      const tailoredResume = document.getElementById('tailored-output').textContent.trim();
+      const resumeToUse = tailoredResume || resume;
+
+      coverBtn.disabled = true;
+      coverBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Writing...';
+      outputSection.className = 'output-section card visible';
+      statusBox.className = 'status-box loading';
+      document.getElementById('status-text').textContent = 'Writing your cover letter...';
+
+      const userContent = `Target market: ${market}
+Focus angle: ${angle}
+
+Resume (use this as the factual basis):
+${resumeToUse}
+
+Job description:
+${jd}`;
+
+      try {
+        const response = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-6',
+            max_tokens: 1200,
+            system: COVER_PROMPT,
+            messages: [{ role: 'user', content: userContent }]
+          })
+        });
+
+        if (!response.ok) {
+          const err = await response.json().catch(() => ({}));
+          throw new Error(err.error?.message || `API error ${response.status}`);
+        }
+
+        const data = await response.json();
+        const letter = data.content?.find(b => b.type === 'text')?.text?.trim() || '';
+
+        const coverOutput = document.getElementById('cover-output');
+        const coverEmptyTip = document.getElementById('cover-empty-tip');
+        coverOutput.textContent = letter;
+        coverOutput.style.display = 'block';
+        coverEmptyTip.style.display = 'none';
+        document.getElementById('cover-meta').textContent = `${market} · ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+
+        statusBox.className = 'status-box';
+        switchTab('cover');
+        outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      } catch (err) {
+        statusBox.className = 'status-box error';
+        statusBox.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> <span>${err.message}</span>`;
+      } finally {
+        coverBtn.disabled = false;
+        coverBtn.innerHTML = '<i class="fa-solid fa-pen-to-square"></i> Cover letter';
+      }
+    }
+    window.generateCoverLetter = generateCoverLetter;
+  </script>
+
+</body>
+</html>
