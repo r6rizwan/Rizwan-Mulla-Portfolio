@@ -1147,6 +1147,16 @@ WHAT YOU SHOULD DO:
 - Adjust the skills section order to surface what the JD prioritises.
 - Keep all facts truthful — reframe emphasis and ordering, never invent.
 
+BULLET PRESERVATION — this is the most critical rule:
+- KEEP EVERY SINGLE BULLET from the base resume. Do not drop, merge, or summarise any bullet.
+- If a project has 3 bullets in the base resume, the output must have exactly 3 bullets. Never fewer.
+- If a work experience entry has 3 bullets, the output must have exactly 3 bullets. Never fewer.
+- You are ONLY allowed to reorder bullets (most JD-relevant first) and rephrase wording — never remove or combine them.
+- Condensing two bullets into one is strictly forbidden. Split is fine, merge is not.
+- Every project section must include ALL bullet points from the base resume — not a summary, not a subset.
+- Count the bullets in the base resume before writing. Then count again after. They must match.
+- The output resume must be as long as the base resume. If it is shorter, you have dropped content. Start over.
+
 WRITING STYLE — anti-AI rules (apply to every sentence you write):
 The output must sound like a human wrote it. A recruiter who reads 200 resumes a day will spot AI writing immediately. Follow these rules without exception:
 
@@ -1250,7 +1260,7 @@ Then output the JD fit analysis with these sections:
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             model: 'llama-3.3-70b-versatile',
-            max_tokens: 4000,
+            max_tokens: 8000,
             system: SYSTEM_PROMPT,
             messages
           })
