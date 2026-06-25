@@ -984,7 +984,7 @@ Then output the JD fit analysis with these sections:
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            model: 'claude-sonnet-4-6',
+            model: 'llama-3.3-70b-versatile',
             max_tokens: 4000,
             system: SYSTEM_PROMPT,
             messages
@@ -1121,7 +1121,7 @@ ${jd}`;
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            model: 'claude-sonnet-4-6',
+            model: 'llama-3.3-70b-versatile',
             max_tokens: 1200,
             system: COVER_PROMPT,
             messages: [{ role: 'user', content: userContent }]
