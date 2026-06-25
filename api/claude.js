@@ -1,3 +1,12 @@
+// Tell Vercel to allow larger request bodies (default is 1MB, we need ~4MB)
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb',
+    },
+  },
+};
+
 export default async function handler(req, res) {
   // Handle preflight
   if (req.method === 'OPTIONS') {
@@ -25,9 +34,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Request body is empty' });
   }
 
-  // Groq uses OpenAI-compatible format — convert from Anthropic format
-  // Anthropic: { model, max_tokens, system, messages: [{role,content}] }
-  // Groq:      { model, max_tokens, messages: [{role,content}] } — system goes as first message
+  // Convert Anthropic format → Groq (OpenAI-compatible) format
   const groqMessages = [];
   if (body.system) {
     groqMessages.push({ role: 'system', content: body.system });
@@ -59,9 +66,7 @@ export default async function handler(req, res) {
       return res.status(response.status).json({ error: data.error?.message || 'Groq API error' });
     }
 
-    // Convert Groq response back to Anthropic format so the HTML needs zero changes
-    // Groq: data.choices[0].message.content
-    // Anthropic: data.content[0].text
+    // Convert Groq response → Anthropic format so tailor.html needs no changes
     const text = data.choices?.[0]?.message?.content || '';
     return res.status(200).json({
       content: [{ type: 'text', text }],
