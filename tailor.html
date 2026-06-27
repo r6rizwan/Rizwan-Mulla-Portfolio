@@ -616,13 +616,15 @@
 
     // ── Resume tailor function ──
     async function tailorResume() {
-      const jd = document.getElementById('jd-input').value.trim();
-      if (!jd) {
+      const rawJd = document.getElementById('jd-input').value.trim();
+      if (!rawJd) {
         document.getElementById('jd-input').focus();
         document.getElementById('jd-input').style.borderColor = 'var(--danger)';
         setTimeout(() => { document.getElementById('jd-input').style.borderColor = ''; }, 2000);
         return;
       }
+      // Trim JD to 3000 chars max to keep request payload small
+      const jd = rawJd.slice(0, 3000);
 
       const market = document.getElementById('market-select').value;
       const angle = document.getElementById('angle-select').value;
@@ -686,13 +688,14 @@
 
     // ── Cover letter generator ──
     async function generateCoverLetter() {
-      const jd = document.getElementById('jd-input').value.trim();
-      if (!jd) {
+      const rawJd2 = document.getElementById('jd-input').value.trim();
+      if (!rawJd2) {
         document.getElementById('jd-input').focus();
         document.getElementById('jd-input').style.borderColor = 'var(--danger)';
         setTimeout(() => { document.getElementById('jd-input').style.borderColor = ''; }, 2000);
         return;
       }
+      const jd = rawJd2.slice(0, 3000);
 
       const market = document.getElementById('market-select').value;
       const angle = document.getElementById('angle-select').value;

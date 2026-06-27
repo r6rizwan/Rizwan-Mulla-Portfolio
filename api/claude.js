@@ -138,6 +138,12 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'market and jd are required' });
   }
 
+  // Log sizes to Vercel function logs for debugging
+  const jdSize = (jd || '').length;
+  const resume = RESUMES[market] || RESUMES.India;
+  const estimatedPayload = resume.length + jdSize;
+  console.log('[claude.js] type=' + type + ' market=' + market + ' jdChars=' + jdSize + ' resumeChars=' + resume.length + ' estimatedTotal=' + estimatedPayload);
+
   const resume = RESUMES[market] || RESUMES.India;
   let systemPrompt, userContent, maxTokens;
 
@@ -148,7 +154,7 @@ export default async function handler(req, res) {
   } else {
     systemPrompt = SYSTEM_PROMPT;
     userContent = 'Target market: ' + market + '\nFocus angle: ' + (angle || 'Auto-detect') + '\n\nBase resume:\n' + resume + '\n\nJob description:\n' + jd;
-    maxTokens = 8000;
+    maxTokens = 4000;
   }
 
   const groqBody = {
