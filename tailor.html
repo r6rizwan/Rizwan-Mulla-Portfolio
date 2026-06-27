@@ -609,9 +609,14 @@
       <div class="tab-content active" id="tab-tailored">
         <div class="output-header">
           <span class="output-meta" id="tailored-meta"></span>
-          <button class="copy-btn" id="copy-tailored" onclick="copyOutput('tailored-output','copy-tailored')">
-            <i class="fa-regular fa-copy"></i> Copy
-          </button>
+          <div style="display:flex;gap:8px;">
+            <button class="copy-btn" onclick="openPdfView()" id="pdf-btn">
+              <i class="fa-solid fa-file-pdf"></i> PDF view
+            </button>
+            <button class="copy-btn" id="copy-tailored" onclick="copyOutput('tailored-output','copy-tailored')">
+              <i class="fa-regular fa-copy"></i> Copy
+            </button>
+          </div>
         </div>
         <div class="output-box" id="tailored-output"></div>
       </div>
@@ -925,6 +930,201 @@
       });
     }
     window.copyOutput = copyOutput;
+
+    // ── PDF view ──
+    function openPdfView() {
+      const text = _copyStore.tailored;
+      if (!text) {
+        alert('Generate a tailored resume first.');
+        return;
+      }
+
+      // Build a clean print-ready HTML document
+      const resumeHtml = buildPdfHtml(text);
+      const win = window.open('', '_blank', 'width=900,height=1100');
+      win.document.write(resumeHtml);
+      win.document.close();
+    }
+    window.openPdfView = openPdfView;
+
+    function buildPdfHtml(text) {
+      const lines = text.split('\n');
+      let body = '';
+      let i = 0;
+
+      const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      const bold = s => esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+      const mdLinks = s => s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2">$1</a>');
+
+      let inBullets = false;
+      const closeBullets = () => { if (inBullets) { body += '</ul>'; inBullets = false; } };
+
+      // Name — first non-empty line
+      while (i < lines.length) {
+        const t = lines[i].trim().replace(/^#+\s*/,'').replace(/\*\*/g,'');
+        if (t) { body += '<h1>' + esc(t) + '</h1>'; i++; break; }
+        i++;
+      }
+      // Tagline
+      while (i < lines.length) {
+        const t = lines[i].trim();
+        if (!t || t === '---') { i++; if (t === '---') break; continue; }
+        body += '<div class="tagline">' + esc(t.replace(/\*\*/g,'')) + '</div>'; i++; break;
+      }
+      // Contact lines until ---
+      while (i < lines.length) {
+        const t = lines[i].trim();
+        if (!t) { i++; continue; }
+        if (t === '---' || t.startsWith('##') || (t === t.toUpperCase() && t.length > 10 && /[A-Z]/.test(t))) break;
+        body += '<div class="contact">' + mdLinks(esc(t.replace(/\*\*/g,''))) + '</div>'; i++;
+      }
+      // Skip ---
+      while (i < lines.length && (lines[i].trim() === '---' || !lines[i].trim())) i++;
+
+      let inSection = false;
+      while (i < lines.length) {
+        const raw = lines[i].trim();
+        const clean = raw.replace(/^#+\s*/,'').replace(/\*\*/g,'').replace(/---/g,'').trim();
+
+        if (raw === '---') { i++; continue; }
+
+        // Section heading
+        const isH2 = raw.startsWith('##') && !raw.startsWith('###');
+        const isAllCaps = clean.length > 3 && clean === clean.toUpperCase() && /[A-Z]/.test(clean) && !/^[-*|]/.test(clean);
+        if (isH2 || isAllCaps) {
+          closeBullets();
+          if (inSection) body += '</div>';
+          body += '<div class="section"><div class="section-title">' + esc(clean) + '</div>';
+          inSection = true;
+          i++; continue;
+        }
+
+        // Bullet
+        if (raw.startsWith('- ') || raw.startsWith('* ')) {
+          if (!inBullets) { body += '<ul>'; inBullets = true; }
+          body += '<li>' + bold(raw.replace(/^[-*]\s+/,'')) + '</li>';
+          i++; continue;
+        }
+
+        // H3 project / job heading
+        if (raw.startsWith('###')) {
+          closeBullets();
+          const line = raw.replace(/^###\s*/,'');
+          const parts = line.split(' · ');
+          const title = parts[0].replace(/\*\*/g,'').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').trim();
+          const stack = parts.slice(1).join(' · ').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/\*\*/g,'').trim();
+          body += '<div class="entry-title">' + esc(title) + '</div>';
+          if (stack) body += '<div class="entry-stack">' + esc(stack) + '</div>';
+          i++; continue;
+        }
+
+        // Bold job title line: **Title** · Company | Period
+        if (raw.startsWith('**') && !inBullets) {
+          closeBullets();
+          const m = raw.match(/^\*\*(.+?)\*\*(.*)$/);
+          if (m) {
+            const title = m[1];
+            const rest = m[2].replace(/[·|—]/g,'|').trim();
+            const parts = rest.split('|').map(s => s.replace(/\*\*/g,'').trim()).filter(Boolean);
+            body += '<div class="job-header"><span class="job-title">' + esc(title) + '</span>';
+            if (parts.length) body += '<span class="job-period">' + esc(parts[parts.length-1]) + '</span>';
+            body += '</div>';
+            if (parts.length > 1) body += '<div class="job-company">' + esc(parts.slice(0,-1).join(' · ')) + '</div>';
+            i++; continue;
+          }
+        }
+
+        // Italic company line *text*
+        if (raw.startsWith('*') && raw.endsWith('*') && !raw.startsWith('**')) {
+          closeBullets();
+          body += '<div class="job-company">' + esc(raw.replace(/^\*|\*$/g,'')) + '</div>';
+          i++; continue;
+        }
+
+        // Skill rows **Label:** value
+        const sm = raw.match(/^\*\*(.+?):\*\*\s*(.+)$/);
+        if (sm) {
+          closeBullets();
+          body += '<div class="skill-row"><strong>' + esc(sm[1]) + ':</strong> ' + esc(sm[2]) + '</div>';
+          i++; continue;
+        }
+
+        // Table row (certifications) — skip | separators, render as plain row
+        if (raw.startsWith('|') && !raw.startsWith('|---')) {
+          closeBullets();
+          const cells = raw.split('|').map(c => c.trim()).filter(Boolean);
+          if (cells.length >= 2 && !cells[0].startsWith('---')) {
+            body += '<div class="cert-row">' + cells.map(esc).join(' · ') + '</div>';
+          }
+          i++; continue;
+        }
+
+        // Footer / availability line
+        if (raw.startsWith('*') || raw.startsWith('_') || raw.match(/^(Available|Immediate|Open to)/)) {
+          closeBullets();
+          body += '<div class="footer-line">' + esc(raw.replace(/^\*|_|\*$/g,'').trim()) + '</div>';
+          i++; continue;
+        }
+
+        // Plain text
+        if (raw) {
+          closeBullets();
+          body += '<p>' + bold(raw) + '</p>';
+        }
+        i++;
+      }
+
+      closeBullets();
+      if (inSection) body += '</div>';
+
+      return `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Rizwan Mulla — Resume</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; font-size: 10.5pt; color: #111827; background: #fff; }
+  h1 { font-size: 20pt; font-weight: 700; color: #111827; letter-spacing: -0.3px; margin-bottom: 3px; }
+  .tagline { font-size: 10pt; color: #374151; margin-bottom: 4px; }
+  .contact { font-size: 9.5pt; color: #4b5563; line-height: 1.5; }
+  .contact a { color: #1a9e75; text-decoration: none; }
+  hr { border: none; border-top: 1px solid #e5e7eb; margin: 8px 0; }
+  .section { margin-top: 11px; }
+  .section-title { font-size: 8.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #1a9e75; border-bottom: 1.5px solid #1a9e75; padding-bottom: 3px; margin-bottom: 7px; }
+  .entry-title { font-size: 10.5pt; font-weight: 600; color: #111827; margin-bottom: 1px; }
+  .entry-stack { font-size: 9pt; color: #6b7280; margin-bottom: 4px; }
+  .job-header { display: flex; justify-content: space-between; align-items: baseline; }
+  .job-title { font-size: 10.5pt; font-weight: 600; color: #111827; }
+  .job-period { font-size: 9pt; color: #6b7280; }
+  .job-company { font-size: 9.5pt; color: #4b5563; font-style: italic; margin-bottom: 3px; }
+  ul { margin: 4px 0 6px 16px; }
+  ul li { font-size: 10pt; line-height: 1.55; margin-bottom: 2px; color: #111827; }
+  ul li strong { font-weight: 600; }
+  .skill-row { font-size: 10pt; line-height: 1.6; margin-bottom: 2px; }
+  .cert-row { font-size: 10pt; line-height: 1.6; margin-bottom: 2px; }
+  .footer-line { font-size: 9pt; color: #6b7280; font-style: italic; margin-top: 10px; }
+  p { font-size: 10pt; line-height: 1.6; margin-bottom: 3px; }
+  .print-bar { position: fixed; top: 0; left: 0; right: 0; background: #1a9e75; color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; font-family: sans-serif; font-size: 13px; z-index: 100; }
+  .print-bar button { background: #fff; color: #1a9e75; border: none; padding: 6px 18px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .print-bar button:hover { background: #e1f5ee; }
+  @media print { .print-bar { display: none; } body { margin: 0; } }
+  .resume-body { padding-top: 48px; }
+  @media print { .resume-body { padding-top: 0; } }
+</style>
+</head>
+<body>
+<div class="print-bar">
+  <span>Rizwan Mulla — Tailored Resume</span>
+  <button onclick="window.print()">⬇ Save as PDF</button>
+</div>
+<div class="resume-body">
+${body}
+</div>
+</body>
+</html>`;
+    }
 
     function renderCoverLetter(text) {
       if (!text) return '';
