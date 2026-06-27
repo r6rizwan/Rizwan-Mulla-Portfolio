@@ -379,13 +379,12 @@
       background: var(--bg-secondary);
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
-      padding: 16px 18px;
-      font-size: 13px;
+      padding: 20px 24px;
+      font-size: 13.5px;
       line-height: 1.75;
       color: var(--text-primary);
-      white-space: pre-wrap;
       word-break: break-word;
-      max-height: 560px;
+      max-height: 640px;
       overflow-y: auto;
       font-family: 'Space Grotesk', sans-serif;
       scrollbar-width: thin;
@@ -393,6 +392,61 @@
     }
     .output-box::-webkit-scrollbar { width: 5px; }
     .output-box::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    /* ── Resume rendered HTML styles ── */
+    .resume-rendered { font-family: 'Space Grotesk', sans-serif; }
+    .resume-rendered .r-name {
+      font-size: 22px; font-weight: 700; color: var(--text-primary);
+      letter-spacing: -0.5px; margin-bottom: 4px;
+    }
+    .resume-rendered .r-tagline {
+      font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 6px;
+    }
+    .resume-rendered .r-contact {
+      font-size: 12.5px; color: var(--text-secondary); margin-bottom: 4px; line-height: 1.6;
+    }
+    .resume-rendered .r-contact a { color: var(--accent); text-decoration: none; }
+    .resume-rendered .r-contact a:hover { text-decoration: underline; }
+    .resume-rendered .r-skills-bar {
+      font-size: 12px; color: var(--text-secondary); margin-bottom: 2px;
+      font-style: italic; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 12px;
+    }
+    .resume-rendered .r-section {
+      margin-top: 16px;
+    }
+    .resume-rendered .r-section-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent);
+      border-bottom: 1.5px solid var(--accent); padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+    .resume-rendered .r-summary {
+      font-size: 13.5px; line-height: 1.7; color: var(--text-primary); margin-bottom: 0;
+    }
+    .resume-rendered .r-job { margin-bottom: 14px; }
+    .resume-rendered .r-job-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px; margin-bottom: 2px; }
+    .resume-rendered .r-job-title { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+    .resume-rendered .r-job-period { font-size: 12px; color: var(--text-muted); }
+    .resume-rendered .r-job-company { font-size: 12.5px; color: var(--text-secondary); margin-bottom: 5px; font-style: italic; }
+    .resume-rendered .r-bullets { margin: 0; padding-left: 18px; }
+    .resume-rendered .r-bullets li { font-size: 13px; line-height: 1.65; color: var(--text-primary); margin-bottom: 3px; }
+    .resume-rendered .r-bullets li strong { color: var(--text-primary); }
+    .resume-rendered .r-project { margin-bottom: 14px; }
+    .resume-rendered .r-project-title { font-size: 13.5px; font-weight: 600; color: var(--text-primary); margin-bottom: 2px; }
+    .resume-rendered .r-project-stack { font-size: 11.5px; color: var(--text-muted); margin-bottom: 5px; }
+    .resume-rendered .r-skill-row { margin-bottom: 4px; font-size: 12.5px; line-height: 1.6; }
+    .resume-rendered .r-skill-label { font-weight: 600; color: var(--text-primary); }
+    .resume-rendered .r-cert-row { font-size: 13px; line-height: 1.7; }
+    .resume-rendered .r-edu-row { font-size: 13px; line-height: 1.7; }
+    .resume-rendered .r-footer { font-size: 12px; color: var(--text-muted); margin-top: 12px; font-style: italic; }
+
+    /* Analysis rendered styles */
+    .analysis-rendered h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin: 14px 0 6px; }
+    .analysis-rendered .fit-score-badge { display: inline-block; font-size: 24px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+    .analysis-rendered .fit-reason { font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+    .analysis-rendered ul { margin: 0; padding-left: 18px; }
+    .analysis-rendered ul li { font-size: 13px; line-height: 1.65; margin-bottom: 3px; color: var(--text-primary); }
+    .analysis-rendered .salary { font-size: 14px; font-weight: 600; color: var(--text-primary); }
 
     /* ── Analysis specific styling ── */
     #analysis-output {
@@ -594,7 +648,302 @@
   </div>
 
   <script>
-    // ── Theme toggle ──
+    // ── Resume renderer ──
+    function escHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function boldKeywords(text) {
+      // Bold **text** markdown and project names
+      return escHtml(text)
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    }
+
+    function renderResume(text) {
+      const lines = text.split('\n');
+      let html = '<div class="resume-rendered">';
+      let i = 0;
+      let inSection = false;
+      let inJob = false;
+      let inBullets = false;
+      let currentSection = '';
+
+      const closeBullets = () => { if (inBullets) { html += '</ul>'; inBullets = false; } };
+      const closeJob = () => { closeBullets(); if (inJob) { html += '</div>'; inJob = false; } };
+
+      // First 2-4 lines: name, tagline, contact, skills bar
+      // Find the name line (all caps or starts with #)
+      while (i < lines.length) {
+        const raw = lines[i].trim();
+        const clean = raw.replace(/^#+\s*/, '').replace(/\*\*/g, '');
+
+        if (!clean) { i++; continue; }
+
+        // Name line — first non-empty line
+        html += '<div class="r-name">' + escHtml(clean) + '</div>';
+        i++;
+        break;
+      }
+
+      // Tagline / subtitle line
+      while (i < lines.length) {
+        const raw = lines[i].trim();
+        if (!raw || raw === '---') { i++; if (raw === '---') break; continue; }
+        const clean = raw.replace(/\*\*/g, '').replace(/^#+\s*/, '');
+        html += '<div class="r-tagline">' + escHtml(clean) + '</div>';
+        i++;
+        break;
+      }
+
+      // Contact lines until we hit --- or a section heading
+      while (i < lines.length) {
+        const raw = lines[i].trim();
+        if (!raw) { i++; continue; }
+        if (raw === '---' || raw.startsWith('##') || raw.toUpperCase() === raw && raw.length > 10) break;
+        // Convert markdown links [text](url) to <a>
+        const linked = raw
+          .replace(/\*\*/g,'')
+          .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+        html += '<div class="r-contact">' + linked + '</div>';
+        i++;
+      }
+
+      // Skip --- separator
+      while (i < lines.length && (lines[i].trim() === '---' || !lines[i].trim())) i++;
+
+      // Main body
+      while (i < lines.length) {
+        const raw = lines[i].trim();
+        const clean = raw.replace(/^#+\s*/, '').replace(/\*\*/g,'').replace(/---/g,'');
+
+        // Section heading: ## HEADING or ALL CAPS line
+        const isMarkdownH2 = raw.startsWith('##');
+        const isAllCaps = clean.length > 3 && clean === clean.toUpperCase() && /[A-Z]/.test(clean) && !/^[-*]/.test(clean);
+        const isSectionDiv = raw === '---';
+
+        if (isSectionDiv) { i++; continue; }
+
+        if (isMarkdownH2 || isAllCaps) {
+          closeJob();
+          if (inSection) html += '</div>'; // close previous section
+          currentSection = clean.trim();
+          html += '<div class="r-section"><div class="r-section-title">' + escHtml(currentSection) + '</div>';
+          inSection = true;
+          i++;
+          continue;
+        }
+
+        // Bullet point
+        if (raw.startsWith('- ') || raw.startsWith('* ')) {
+          if (!inBullets) { html += '<ul class="r-bullets">'; inBullets = true; }
+          const bulletText = raw.replace(/^[-*]\s+/, '');
+          html += '<li>' + boldKeywords(bulletText) + '</li>';
+          i++;
+          continue;
+        }
+
+        // Project heading: ### Title or italic *stack* line or bold **Title**
+        const isH3 = raw.startsWith('###');
+        if (isH3) {
+          closeBullets();
+          if (inJob) { html += '</div>'; inJob = false; }
+          const projectLine = raw.replace(/^###\s*/, '');
+          // Split on · for title vs stack
+          const parts = projectLine.split(' · ');
+          const titlePart = parts[0].replace(/\*\*/g,'').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').trim();
+          const stackPart = parts.slice(1).join(' · ').replace(/\[([^\]]+)\]\([^)]+\)/g,'$1').replace(/\*\*/g,'').trim();
+          html += '<div class="r-project"><div class="r-project-title">' + escHtml(titlePart) + '</div>';
+          if (stackPart) html += '<div class="r-project-stack">' + escHtml(stackPart) + '</div>';
+          inJob = true;
+          i++;
+          continue;
+        }
+
+        // Job heading detection: line with | separator (Title | Company) or bold title
+        // Pattern: "### Job Title · Company" or "**Job Title** · Company | period"
+        const isBoldTitle = raw.startsWith('**') && raw.includes('**');
+        if (isBoldTitle && !inBullets) {
+          closeBullets();
+          if (inJob) { html += '</div>'; inJob = false; }
+          // Try to detect if this looks like a job title line
+          const titleMatch = raw.match(/^\*\*(.+?)\*\*(.*)$/);
+          if (titleMatch) {
+            const title = titleMatch[1];
+            const rest = titleMatch[2].replace(/·|—/g,'|').trim();
+            const restParts = rest.split('|').map(s => s.replace(/\*\*/g,'').trim()).filter(Boolean);
+            html += '<div class="r-job"><div class="r-job-header">';
+            html += '<span class="r-job-title">' + escHtml(title) + '</span>';
+            if (restParts.length > 0) html += '<span class="r-job-period">' + escHtml(restParts[restParts.length-1]) + '</span>';
+            html += '</div>';
+            if (restParts.length > 1) html += '<div class="r-job-company">' + escHtml(restParts.slice(0,-1).join(' · ')) + '</div>';
+            inJob = true;
+            i++;
+            continue;
+          }
+        }
+
+        // Italic company/period line: *text*
+        const isItalic = raw.startsWith('*') && raw.endsWith('*') && !raw.startsWith('**');
+        if (isItalic && inJob && !inBullets) {
+          const italicText = raw.replace(/^\*|\*$/g,'');
+          html += '<div class="r-job-company">' + escHtml(italicText) + '</div>';
+          i++;
+          continue;
+        }
+
+        // Skill rows: **Label:** value
+        const skillMatch = raw.match(/^\*\*(.+?):\*\*\s*(.+)$/);
+        if (skillMatch && currentSection.includes('SKILL')) {
+          closeBullets();
+          html += '<div class="r-skill-row"><span class="r-skill-label">' + escHtml(skillMatch[1]) + ':</span> ' + escHtml(skillMatch[2]) + '</div>';
+          i++;
+          continue;
+        }
+
+        // Cert / education rows
+        if ((currentSection.includes('CERT') || currentSection.includes('TRAIN')) && raw) {
+          closeBullets();
+          html += '<div class="r-cert-row">' + boldKeywords(raw) + '</div>';
+          i++;
+          continue;
+        }
+
+        if (currentSection.includes('EDUC') && raw) {
+          closeBullets();
+          html += '<div class="r-edu-row">' + boldKeywords(raw) + '</div>';
+          i++;
+          continue;
+        }
+
+        // Plain text / job title line without markdown
+        if (raw && !raw.startsWith('|')) {
+          closeBullets();
+          // Could be a job entry header in plain text format: "Job Title · Company | period"
+          const plainJobMatch = raw.match(/^(.+?)\s*[·|]\s*(.+?)\s*[·|]\s*(.+)$/);
+          if (plainJobMatch && !inBullets && currentSection.includes('EXPERIENCE')) {
+            if (inJob) { html += '</div>'; inJob = false; }
+            html += '<div class="r-job"><div class="r-job-header">';
+            html += '<span class="r-job-title">' + escHtml(plainJobMatch[1].trim()) + '</span>';
+            html += '<span class="r-job-period">' + escHtml(plainJobMatch[3].trim()) + '</span>';
+            html += '</div><div class="r-job-company">' + escHtml(plainJobMatch[2].trim()) + '</div>';
+            inJob = true;
+          } else {
+            // Generic paragraph / footer line
+            const isFooter = raw.startsWith('*') || raw.startsWith('_') || raw.startsWith('Available') || raw.startsWith('Immediate') || raw.startsWith('Open to');
+            if (isFooter) {
+              html += '<div class="r-footer">' + escHtml(raw.replace(/^\*|_|\*$/g,'').trim()) + '</div>';
+            } else {
+              html += '<p style="font-size:13px;line-height:1.65;margin:3px 0;">' + boldKeywords(raw) + '</p>';
+            }
+          }
+        }
+
+        i++;
+      }
+
+      closeBullets();
+      if (inJob) html += '</div>';
+      if (inSection) html += '</div>';
+      html += '</div>';
+      return html;
+    }
+
+    function renderAnalysis(text) {
+      if (!text || text === 'Analysis not generated.') return '<p style="color:var(--text-muted);font-size:13px;">No analysis available.</p>';
+      let html = '<div class="analysis-rendered">';
+      const lines = text.split('\n');
+      let inList = false;
+
+      for (const line of lines) {
+        const t = line.trim();
+        if (!t) { if (inList) { html += '</ul>'; inList = false; } continue; }
+
+        // Fit score line
+        const scoreMatch = t.match(/fit score[:\s]*(\d+)%/i);
+        if (scoreMatch) {
+          html += '<div class="fit-score-badge">' + scoreMatch[1] + '%</div>';
+          const reason = t.replace(/fit score[:\s]*\d+%\s*[—-]?\s*/i,'').trim();
+          if (reason) html += '<div class="fit-reason">' + escHtml(reason) + '</div>';
+          continue;
+        }
+
+        // Section headers
+        if (t.match(/^[-*]?\s*(matched skills|honest gaps|lead with|salary estimate|gaps|skills)/i)) {
+          if (inList) { html += '</ul>'; inList = false; }
+          html += '<h4>' + escHtml(t.replace(/^[-*:]+\s*/,'').replace(/:$/,'')) + '</h4>';
+          continue;
+        }
+
+        // Salary line
+        if (t.match(/salary/i) && !t.match(/^[-*]/)) {
+          if (inList) { html += '</ul>'; inList = false; }
+          html += '<h4>Salary estimate</h4><div class="salary">' + escHtml(t.replace(/salary estimate[:\s]*/i,'').trim()) + '</div>';
+          continue;
+        }
+
+        // Bullet items
+        if (t.startsWith('-') || t.startsWith('•') || t.startsWith('*')) {
+          if (!inList) { html += '<ul>'; inList = true; }
+          html += '<li>' + escHtml(t.replace(/^[-•*]\s*/,'')) + '</li>';
+          continue;
+        }
+
+        // Plain line
+        if (inList) { html += '</ul>'; inList = false; }
+        html += '<p style="font-size:13px;line-height:1.65;margin:4px 0;">' + escHtml(t) + '</p>';
+      }
+
+      if (inList) html += '</ul>';
+      html += '</div>';
+      return html;
+    }
+
+        // ── Plain text store for copy ──
+    const _copyStore = { tailored: '', analysis: '', cover: '' };
+
+    // ── Utility functions ──
+    function switchTab(name) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById('tab-btn-' + name).classList.add('active');
+      document.getElementById('tab-' + name).classList.add('active');
+    }
+    window.switchTab = switchTab;
+
+    function copyOutput(id, btnId) {
+      // Read from plain text store, not rendered DOM
+      const key = id.replace('-output', '');
+      const text = _copyStore[key] || document.getElementById(id).innerText || '';
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById(btnId);
+        btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+    window.copyOutput = copyOutput;
+
+    function renderCoverLetter(text) {
+      if (!text) return '';
+      let html = '<div style="font-family:\'Space Grotesk\',sans-serif;font-size:14px;line-height:1.8;">';
+      const lines = text.split('\n');
+      for (const line of lines) {
+        const t = line.trim();
+        if (!t) { html += '<br>'; continue; }
+        if (t.startsWith('Subject:')) {
+          html += '<div style="font-weight:600;font-size:13px;color:var(--text-secondary);margin-bottom:12px;">' + escHtml(t) + '</div>';
+        } else {
+          html += '<p style="margin:0 0 10px;">' + escHtml(t) + '</p>';
+        }
+      }
+      html += '</div>';
+      return html;
+    }
+
+        // ── Theme toggle ──
     const body = document.body;
     const themeBtn = document.getElementById('themeBtn');
     const saved = localStorage.getItem('rm-theme') || 'light';
@@ -661,8 +1010,10 @@
         const tailored = (parts[0] || fullText).trim();
         const analysis = (parts[1] || 'Analysis not generated.').trim();
 
-        document.getElementById('tailored-output').textContent = tailored;
-        document.getElementById('analysis-output').textContent = analysis;
+        _copyStore.tailored = tailored;
+        _copyStore.analysis = analysis;
+        document.getElementById('tailored-output').innerHTML = renderResume(tailored);
+        document.getElementById('analysis-output').innerHTML = renderAnalysis(analysis);
         document.getElementById('tailored-meta').textContent = `${market} · ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
         document.getElementById('analysis-meta').textContent = `${market} · ${angle}`;
 
@@ -731,7 +1082,8 @@
 
         const coverOutput = document.getElementById('cover-output');
         const coverEmptyTip = document.getElementById('cover-empty-tip');
-        coverOutput.textContent = letter;
+        _copyStore.cover = letter;
+        coverOutput.innerHTML = renderCoverLetter(letter);
         coverOutput.style.display = 'block';
         coverEmptyTip.style.display = 'none';
         document.getElementById('cover-meta').textContent = `${market} · ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
