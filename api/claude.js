@@ -106,7 +106,7 @@ BANNED OPENERS: "As a", "I am excited", "I am passionate", "I am confident", "Wi
 - Sound like a developer wrote it, not a copywriter.
 - Direct. Confident. First person throughout.`;
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -127,7 +127,12 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'GROQ_API_KEY environment variable is not set' });
   }
 
-  const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+  let body;
+  try {
+    body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+  } catch (e) {
+    return res.status(400).json({ error: 'Invalid JSON: ' + e.message });
+  }
   if (!body) {
     return res.status(400).json({ error: 'Request body is empty' });
   }
@@ -138,13 +143,10 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'market and jd are required' });
   }
 
-  // Log sizes to Vercel function logs for debugging
-  const jdSize = (jd || '').length;
   const resume = RESUMES[market] || RESUMES.India;
-  const estimatedPayload = resume.length + jdSize;
-  console.log('[claude.js] type=' + type + ' market=' + market + ' jdChars=' + jdSize + ' resumeChars=' + resume.length + ' estimatedTotal=' + estimatedPayload);
 
-  const resume = RESUMES[market] || RESUMES.India;
+  console.log('[claude.js] type=' + type + ' market=' + market + ' jdChars=' + jd.length + ' resumeChars=' + resume.length);
+
   let systemPrompt, userContent, maxTokens;
 
   if (type === 'cover') {
@@ -189,4 +191,4 @@ export default async function handler(req, res) {
   } catch (err) {
     return res.status(500).json({ error: err.message || 'Unknown error' });
   }
-}
+};
