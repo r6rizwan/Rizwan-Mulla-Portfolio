@@ -420,6 +420,37 @@
                     </div>
                 </div>
 
+                <div class="col-md-6 col-lg-4 project-item reveal" data-category="flutter fullstack production">
+                    <div class="portfolio-card project-card-custom" role="button" tabindex="0" data-bs-toggle="modal"
+                        data-bs-target="#rahaModal">
+                        <div class="project-proof">
+                            <i class="fa-solid fa-utensils"></i>
+                            <span>GCC expat food & services app</span>
+                        </div>
+                        <div class="project-content">
+                            <div class="project-top">
+                                <span class="badge-cat">Flutter Production + Node.js + AI</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </div>
+                            <h5>Raha — Expat Food & Services</h5>
+                            <p>Problem: expats in the Gulf struggle to find home-cuisine food and trustworthy home
+                                services in an unfamiliar city. Solution: a Flutter app with a Node.js/MongoDB backend
+                                that personalises food and service recommendations using Gemini AI, based on
+                                nationality, city, and interests.</p>
+                            <p class="project-impact">Impact: live Google Places food sync across 4 GCC cities, a
+                                backend photo proxy that keeps API keys off the client, and a GitHub Actions keep-warm
+                                workflow solving Render cold-start latency.</p>
+                            <div class="project-metrics">
+                                <span>4 GCC cities</span><span>9 cuisines</span><span>Gemini 2.0 Flash AI</span>
+                            </div>
+                            <div class="project-tags-container">
+                                <span>Flutter</span><span>Riverpod</span><span>Node.js</span><span>MongoDB</span><span>Firebase
+                                    Auth</span><span>Gemini AI</span><span>Google Places API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-6 col-lg-4 project-item reveal" data-category="flutter production">
                     <div class="portfolio-card project-card-custom" role="button" tabindex="0" data-bs-toggle="modal"
                         data-bs-target="#mpdModal">
@@ -1147,6 +1178,87 @@
                         Live Demo
                     </a>
                     <a href="https://github.com/r6rizwan/Zarf" target="_blank" rel="noopener"
+                        class="btn btn-primary-custom btn-sm px-4">
+                        View on GitHub
+                    </a>
+                    <button type="button" class="btn btn-outline-custom btn-sm px-4"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Raha Modal -->
+    <div class="modal fade" id="rahaModal" tabindex="-1" aria-labelledby="rahaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h4 class="fw-800 text-primary mb-0" id="rahaModalLabel">Raha — Expat Food & Services App</h4>
+                </div>
+
+                <div class="modal-body pt-3">
+                    <div class="row gy-4">
+                        <div class="col-lg-7">
+                            <p class="about-description mb-4">
+                                <strong>Raha</strong> is a consumer mobile app for expats and immigrants living in the
+                                Gulf. It helps users discover food from their home cuisine, book trusted home services,
+                                and get AI-personalised recommendations tailored to their nationality, city, and
+                                interests — across Dubai, Jeddah, Riyadh, and Abu Dhabi.
+                            </p>
+
+                            <h6 class="fw-700 mb-3 text-uppercase small letter-spacing-1">
+                                <i class="fa-solid fa-square-check text-primary me-2"></i>Key Features & Innovations
+                            </h6>
+                            <ul class="modal-list mb-4">
+                                <li><strong>Nationality-Aware Onboarding:</strong> Captures nationality, city,
+                                    neighbourhood, and interests, feeding directly into the AI recommendation
+                                    engine.</li>
+                                <li><strong>AI Recommendations:</strong> Gemini 2.0 Flash generates personalised home
+                                    recommendations server-side — nothing hardcoded in the app.</li>
+                                <li><strong>Live Food Data:</strong> A backend sync script pulls real restaurant data
+                                    from the Google Places API across 9 cuisines (Indian, Kerala, Punjabi, Filipino,
+                                    Pakistani, Lebanese, Saudi, Gulf, Emirati), replacing static seed data.</li>
+                                <li><strong>Photo Proxy Security:</strong> Google Places photos are streamed through a
+                                    backend proxy endpoint, so the Places server key never reaches the client — even a
+                                    decompiled APK reveals nothing.</li>
+                                <li><strong>Home Services Booking:</strong> Provider discovery, detail view, booking
+                                    flow, and booking history with cancellation.</li>
+                                <li><strong>Cold-Start Mitigation:</strong> A GitHub Actions workflow pings the Render
+                                    backend every 10 minutes to reduce cold-start latency on the free tier.</li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <div class="mb-4">
+                                <h6 class="fw-700 mb-2 text-uppercase small letter-spacing-1">
+                                    <i class="fa-solid fa-layer-group text-primary me-2"></i>Tech Stack
+                                </h6>
+                                <div class="project-tags-container">
+                                    <span>Flutter</span><span>Riverpod</span><span>GoRouter</span><span>Dio</span><span>Firebase
+                                        Auth</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>Mongoose</span><span>Firebase
+                                        Admin SDK</span><span>Gemini 2.0 Flash</span><span>Google Places
+                                        API</span><span>GitHub Actions</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h6 class="fw-700 mb-2 text-uppercase small letter-spacing-1">
+                                    <i class="fa-solid fa-user-gear text-primary me-2"></i>My Role
+                                </h6>
+                                <p class="small text-secondary mb-0">
+                                    I built the full-stack architecture end to end: the Flutter mobile client with
+                                    Riverpod state management and stateful tab routing, the Node.js/Express/MongoDB
+                                    backend, Firebase Admin-verified authentication, the Gemini-powered recommendation
+                                    engine, the Google Places live sync pipeline, and the backend photo proxy and
+                                    keep-warm automation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer border-0">
+                    <a href="https://github.com/r6rizwan/Raha" target="_blank" rel="noopener"
                         class="btn btn-primary-custom btn-sm px-4">
                         View on GitHub
                     </a>
