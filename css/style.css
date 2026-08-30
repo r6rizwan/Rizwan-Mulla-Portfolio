@@ -1226,6 +1226,23 @@ h6,
     opacity: 0.72;
 }
 
+.screenshot-lightbox .btn-close {
+    opacity: 1;
+    filter: brightness(0) saturate(0) invert(0.25);
+    transition: var(--transition-smooth);
+}
+
+[data-theme="dark"] .screenshot-lightbox .btn-close {
+    filter: brightness(0) saturate(0) invert(1);
+}
+
+.screenshot-lightbox .btn-close:hover,
+.screenshot-lightbox .btn-close:focus-visible {
+    opacity: 1;
+    filter: brightness(0) saturate(0) invert(0.7);
+    box-shadow: 0 0 0 0.2rem rgba(20, 184, 166, 0.18);
+}
+
 .modal-xl-custom {
     max-width: 88vw;
 }
@@ -2208,4 +2225,167 @@ h6,
   .mastery-growth-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* =============================================
+   PROJECT SCREENSHOT SHOWCASE UPGRADE
+   ============================================= */
+.project-proof {
+    min-height: 180px;
+    position: relative;
+    border-radius: 20px;
+    background:
+        radial-gradient(circle at 18% 20%, rgba(20, 184, 166, 0.18), transparent 34%),
+        linear-gradient(135deg, var(--primary-soft), var(--accent-soft));
+}
+
+.project-proof--image {
+    min-height: 220px;
+    padding: 12px;
+    align-items: stretch;
+    justify-content: flex-end;
+    background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.2), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(20, 184, 166, 0.08));
+}
+
+.project-proof--image img {
+    position: absolute;
+    inset: 12px 12px 44px;
+    width: calc(100% - 24px);
+    height: calc(100% - 56px);
+    min-height: 0;
+    border-radius: 14px;
+    object-fit: cover;
+    object-position: top center;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+    transition: var(--transition-smooth);
+}
+
+.project-proof--image span {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .project-proof--image span {
+    background: rgba(13, 21, 24, 0.82);
+}
+
+.project-card-custom:hover .project-proof--image img {
+    transform: scale(1.035);
+}
+
+.modal-xl-custom .modal-body .screenshot-scroll {
+    display: grid !important;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(260px, 42%);
+    gap: 16px !important;
+    padding: 10px 2px 16px !important;
+    scroll-snap-type: x mandatory;
+}
+
+.screenshot-scroll img {
+    width: 100%;
+    height: clamp(260px, 42vw, 430px) !important;
+    max-width: none;
+    border-radius: 16px !important;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    object-fit: contain;
+    scroll-snap-align: start;
+    cursor: zoom-in;
+    transition: var(--transition-smooth);
+}
+
+.screenshot-scroll img:hover,
+.screenshot-scroll img:focus-visible {
+    border-color: var(--primary-color);
+    box-shadow: 0 18px 45px rgba(20, 184, 166, 0.16);
+    transform: translateY(-4px);
+    outline: none;
+}
+
+.screenshot-lightbox .modal-content {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color) !important;
+    border-radius: 24px;
+}
+
+.screenshot-lightbox-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px;
+}
+
+.screenshot-lightbox-nav {
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--text-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    flex-shrink: 0;
+}
+
+.screenshot-lightbox-nav:hover,
+.screenshot-lightbox-nav:focus-visible {
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.screenshot-lightbox-img {
+    width: 100%;
+    max-height: calc(100vh - 170px);
+    object-fit: contain;
+    border-radius: 18px;
+    background: var(--card-bg);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+.project-screenshots-btn {
+    min-width: 168px;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+    .screenshot-lightbox-body {
+        gap: 8px;
+        padding: 14px;
+    }
+
+    .screenshot-lightbox-nav {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-proof,
+    .project-proof--image {
+        min-height: 190px;
+    }
+
+    .modal-xl-custom .modal-body .screenshot-scroll {
+        grid-auto-columns: minmax(240px, 82%);
+    }
+
+    .screenshot-scroll img {
+        height: clamp(260px, 78vw, 380px) !important;
+    }
 }
