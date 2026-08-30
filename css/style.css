@@ -1213,8 +1213,63 @@ h6,
 
 /* Dark theme modal override */
 [data-theme="dark"] .modal-content {
-    background-color: #1c2128;
-    /* Slightly lighter than the main bg for depth */
+    background-color: #1b292c;
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.08), 0 24px 70px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .modal-backdrop {
+    background-color: #050809;
+}
+
+[data-theme="dark"] .modal-backdrop.show {
+    opacity: 0.72;
+}
+
+.modal-xl-custom {
+    max-width: 88vw;
+}
+
+@media (min-width: 1400px) {
+    .modal-xl-custom {
+        max-width: 1180px;
+    }
+}
+
+.modal-xl-custom .modal-content {
+    max-height: calc(100vh - 2rem);
+    display: flex;
+    flex-direction: column;
+}
+.modal-xl-custom .modal-body {
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.screenshot-scroll {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+}
+
+.screenshot-scroll img {
+    height: clamp(180px, 28vw, 260px);
+    width: auto;
+    max-width: none;
+    flex: 0 0 auto;
+    object-fit: contain;
+}
+
+.screenshot-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+.screenshot-scroll::-webkit-scrollbar-thumb {
+    background: #1D4ED8;
+    border-radius: 10px;
+}
+.screenshot-scroll::-webkit-scrollbar-track {
+    background: transparent;
 }
 
 
