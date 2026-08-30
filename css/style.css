@@ -1177,15 +1177,37 @@ h6,
 .modal-content {
     background-color: var(--card-bg);
     color: var(--text-color);
-    border: 1px solid var(--border-color);
+    border: 2px solid rgba(var(--primary-rgb), 0.8);
     border-radius: var(--card-radius);
     padding: 10px;
-    box-shadow: var(--card-shadow-hover);
+    box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.18), 0 20px 54px rgba(0, 0, 0, 0.18);
+    transition: none;
+}
+
+.modal-content:hover {
+    border-color: rgba(var(--primary-rgb), 0.9);
+    box-shadow: 0 0 0 1px rgba(var(--primary-rgb), 0.2), 0 20px 54px rgba(0, 0, 0, 0.22);
 }
 
 .modal-header {
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.modal-header h4 {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-bottom: 0;
+}
+
+.modal-header .project-screenshots-btn {
+    margin-left: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .modal-body {
@@ -1214,8 +1236,13 @@ h6,
 /* Dark theme modal override */
 [data-theme="dark"] .modal-content {
     background-color: #1b292c;
-    border-color: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.08), 0 24px 70px rgba(0, 0, 0, 0.7);
+    border: 2px solid rgba(45, 212, 191, 0.95);
+    box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.25), 0 24px 70px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] .modal-content:hover {
+    border-color: rgba(45, 212, 191, 1);
+    box-shadow: 0 0 0 1px rgba(45, 212, 191, 0.32), 0 24px 70px rgba(0, 0, 0, 0.7);
 }
 
 [data-theme="dark"] .modal-backdrop {
@@ -1254,7 +1281,7 @@ h6,
 }
 
 .modal-xl-custom .modal-content {
-    max-height: calc(100vh - 2rem);
+    max-height: calc(100vh - 4rem);
     display: flex;
     flex-direction: column;
 }
@@ -2315,6 +2342,12 @@ h6,
     background: var(--bg-color);
     border: 1px solid var(--border-color) !important;
     border-radius: 24px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+.screenshot-lightbox .modal-header {
+    background: linear-gradient(180deg, rgba(20, 184, 166, 0.06), transparent);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .screenshot-lightbox-body {
@@ -2323,6 +2356,7 @@ h6,
     justify-content: center;
     gap: 12px;
     padding: 18px;
+    background: rgba(148, 163, 184, 0.04);
 }
 
 .screenshot-lightbox-nav {
@@ -2330,13 +2364,21 @@ h6,
     height: 42px;
     border: 1px solid var(--border-color);
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.82);
     color: var(--text-color);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     transition: var(--transition-smooth);
     flex-shrink: 0;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+[data-theme="dark"] .screenshot-lightbox-nav {
+    background: rgba(15, 23, 27, 0.88);
+    color: #f4f7f8;
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
 }
 
 .screenshot-lightbox-nav:hover,
@@ -2345,6 +2387,7 @@ h6,
     color: #fff;
     border-color: var(--primary-color);
     outline: none;
+    transform: translateY(-1px);
 }
 
 .screenshot-lightbox-img {
@@ -2352,8 +2395,12 @@ h6,
     max-height: calc(100vh - 170px);
     object-fit: contain;
     border-radius: 18px;
-    background: var(--card-bg);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(20, 184, 166, 0.06));
     box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+[data-theme="dark"] .screenshot-lightbox-img {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.06), rgba(255, 255, 255, 0.02));
 }
 
 .project-screenshots-btn {
@@ -2376,6 +2423,16 @@ h6,
 }
 
 @media (max-width: 768px) {
+    .modal-header {
+        align-items: flex-start;
+    }
+
+    .modal-header .project-screenshots-btn {
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
+    }
+
     .project-proof,
     .project-proof--image {
         min-height: 190px;
@@ -2387,5 +2444,23 @@ h6,
 
     .screenshot-scroll img {
         height: clamp(260px, 78vw, 380px) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-header {
+        padding-bottom: 16px;
+    }
+
+    .modal-header h4 {
+        font-size: 1.05rem;
+        line-height: 1.4;
+    }
+
+    .project-screenshots-btn {
+        width: 100%;
+        font-size: 0.82rem;
+        padding-left: 0.9rem !important;
+        padding-right: 0.9rem !important;
     }
 }
