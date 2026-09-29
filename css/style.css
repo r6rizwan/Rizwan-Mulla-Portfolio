@@ -1531,7 +1531,7 @@ span.mastery-tag-primary,
 }
 
 .resume-card-custom {
-    padding: clamp(1.5rem, 3vw + 0.5rem, 3.125rem);
+    padding: clamp(1.5rem, 2vw + 0.75rem, 2.5rem);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -1548,8 +1548,78 @@ span.mastery-tag-primary,
 .resume-card-custom p {
     font-size: 0.95rem;
     color: var(--secondary-text);
-    margin-bottom: 30px;
+    margin-bottom: 22px;
     line-height: 1.6;
+}
+
+.resume-region-picker {
+    max-width: 26rem;
+    margin: 0 auto 1.25rem;
+    display: grid;
+    grid-template-columns: auto minmax(10rem, 1fr);
+    align-items: center;
+    gap: 0.75rem;
+    text-align: left;
+}
+
+.resume-region-picker label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    color: var(--text-color);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.resume-region-picker label i {
+    color: var(--primary-color);
+}
+
+.resume-region-field {
+    position: relative;
+}
+
+.resume-region-picker select {
+    width: 100%;
+    min-height: 44px;
+    appearance: none;
+    padding: 0.65rem 2.5rem 0.65rem 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--bg-color);
+    color: var(--text-color);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.resume-region-picker select:hover,
+.resume-region-picker select:focus {
+    border-color: var(--primary-color);
+}
+
+.resume-region-field > i {
+    position: absolute;
+    top: 50%;
+    right: 0.9rem;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    font-size: 0.75rem;
+    pointer-events: none;
+}
+
+.resume-region-hint {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px !important;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 .resume-actions {
@@ -2098,6 +2168,11 @@ a.contact-card-custom,
 
 /* Small Phones (<= 576px) */
 @media (max-width: 576px) {
+    .resume-region-picker {
+        grid-template-columns: 1fr;
+        gap: 0.45rem;
+    }
+
     .navbar-brand {
         font-size: 1.25rem;
     }

@@ -1006,7 +1006,7 @@
                 </p>
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-5">
-                        <div class="portfolio-card resume-card-custom h-100">
+                        <div class="portfolio-card resume-card-custom">
                             <div class="icon-circle mx-auto mb-3">
                                 <i class="fa-solid fa-file-code" aria-hidden="true"></i>
                             </div>
@@ -1014,14 +1014,27 @@
                             <p>Flutter-focused profile: Flutter · Dart · Riverpod · Firebase · REST APIs, backed by
                                 hands-on
                                 MERN project experience.</p>
+                            <div class="resume-region-picker">
+                                <label for="resumeRegion"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Choose resume region</label>
+                                <div class="resume-region-field">
+                                    <select id="resumeRegion" name="resume-region">
+                                        <option value="india" selected>India</option>
+                                        <option value="uae">United Arab Emirates</option>
+                                        <option value="gcc">GCC</option>
+                                        <option value="global">Global</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                                </div>
+                                <p id="resumeRegionHint" class="resume-region-hint" aria-live="polite">India resume selected.</p>
+                            </div>
                             <div class="resume-actions mt-auto">
                                 <a href="documents/resumes/Rizwan_Mulla_Flutter_MERN_Resume.pdf"
-                                    class="btn btn-primary-custom btn-sm px-4" download
+                                    class="btn btn-primary-custom btn-sm px-4" id="resumeDownload" download
                                     onclick="gtag('event', 'resume_downloaded');">
                                     <i class="fa-solid fa-download me-2" aria-hidden="true"></i>Download
                                 </a>
                                 <a href="documents/resumes/Rizwan_Mulla_Flutter_MERN_Resume.pdf"
-                                    class="btn btn-outline-custom btn-sm px-4" target="_blank" rel="noopener"
+                                    class="btn btn-outline-custom btn-sm px-4" id="resumeView" target="_blank" rel="noopener"
                                     onclick="gtag('event', 'resume_viewed');">
                                     View
                                 </a>
@@ -1178,6 +1191,41 @@
                     localStorage.setItem("theme", active);
                 } catch (e) { }
             });
+        }
+
+        const resumeRegion = document.getElementById('resumeRegion');
+        const resumeDownload = document.getElementById('resumeDownload');
+        const resumeView = document.getElementById('resumeView');
+        const resumeRegionHint = document.getElementById('resumeRegionHint');
+        const resumeFiles = {
+            india: {
+                path: 'documents/resumes/Rizwan_Mulla_Flutter_MERN_Resume.pdf',
+                label: 'India resume selected.'
+            },
+            uae: {
+                path: 'documents/resumes/Rizwan_Mulla_Flutter_MERN_Resume_UAE.pdf',
+                label: 'United Arab Emirates resume selected.'
+            },
+            gcc: {
+                path: 'documents/resumes/Rizwan_Mulla_Flutter_MERN_Resume_GCC.pdf',
+                label: 'GCC resume selected.'
+            },
+            global: {
+                path: 'documents/resumes/Rizwan_Mulla_Flutter_MERN_Resume_Global.pdf',
+                label: 'Global resume selected.'
+            }
+        };
+
+        function updateResumeLinks() {
+            const selectedResume = resumeFiles[resumeRegion?.value] || resumeFiles.india;
+            if (resumeDownload) resumeDownload.href = selectedResume.path;
+            if (resumeView) resumeView.href = selectedResume.path;
+            if (resumeRegionHint) resumeRegionHint.textContent = selectedResume.label;
+        }
+
+        if (resumeRegion) {
+            resumeRegion.addEventListener('change', updateResumeLinks);
+            updateResumeLinks();
         }
 
         /**
