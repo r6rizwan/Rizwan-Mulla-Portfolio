@@ -404,7 +404,7 @@ function renderProjectCards(containerId = 'projectGrid') {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    const cardsHtml = projectsData.map(project => {
+    const cardsHtml = projectsData.map((project, projectIndex) => {
         let proofHtml = '';
         if (project.proof.type === 'image') {
             const webClass = project.proof.isWeb ? ' project-proof--web' : '';
@@ -434,7 +434,7 @@ function renderProjectCards(containerId = 'projectGrid') {
         const tagsHtml = project.tags.map(t => `<span>${t}</span>`).join('');
 
         return `
-            <div class="col-6 col-md-6 col-lg-4 project-item reveal" data-category="${project.category}">
+            <div class="col-6 col-md-6 col-lg-4 project-item reveal" data-project-order="${projectIndex}" data-category="${project.category}">
                 <button type="button" class="portfolio-card project-card-custom" data-bs-toggle="modal"
                     data-bs-target="#${project.modalId}">
                     ${proofHtml}
@@ -444,7 +444,8 @@ function renderProjectCards(containerId = 'projectGrid') {
                             <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                         </div>
                         <h3>${project.title}</h3>
-                        <p>${project.cardDescription}</p>
+                        <p class="project-description">${project.cardDescription}</p>
+                        <span class="project-details-link">View Details <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
                         <p class="project-impact">${project.cardImpact}</p>
                         <div class="project-metrics">
                             ${metricsHtml}
@@ -506,18 +507,20 @@ function renderProjectModals(containerId = 'projectModalsContainer') {
         }
 
         return `
-            <div class="modal fade" id="${project.modalId}" tabindex="-1" aria-labelledby="${project.modalId}Label" aria-hidden="true">
+            <div class="modal fade project-detail-modal" id="${project.modalId}" tabindex="-1" aria-labelledby="${project.modalId}Label" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-xl-custom">
                     <div class="modal-content border-0 shadow-lg">
                         <div class="modal-header border-0 pb-0 justify-content-between align-items-center gap-3">
-                            <div>
+                            <div class="project-modal-heading">
                                 <h2 class="fw-800 text-primary mb-1 modal-title" id="${project.modalId}Label">${project.modalTitle}</h2>
                                 <div class="d-flex flex-wrap gap-2 pt-1">
                                     <span class="badge-role">${project.roleBadge}</span>
                                     <span class="badge-cat">${project.categoryBadge}</span>
                                 </div>
                             </div>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="project-modal-close" data-bs-dismiss="modal" aria-label="Close project details">
+                                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                            </button>
                         </div>
 
                         <div class="modal-body pt-3">
@@ -553,8 +556,6 @@ function renderProjectModals(containerId = 'projectModalsContainer') {
 
                         <div class="modal-footer border-0">
                             ${linksHtml}
-                            <button type="button" class="btn btn-outline-custom btn-sm px-4"
-                                data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

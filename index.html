@@ -445,12 +445,14 @@
                 <!-- Mobile View All / Show Less Control (Rendered on mobile when matching items > 4) -->
                 <div class="text-center mt-4 d-md-none" id="mobileProjectsToggleWrapper" style="display: none;">
                     <button type="button" class="btn btn-outline-custom projects-toggle-btn px-4 py-2"
-                        id="mobileProjectsToggleBtn" aria-expanded="false" aria-controls="projectGrid"
+                        id="mobileProjectsToggleBtn" aria-expanded="false"
+                        aria-controls="projectGrid mobileProjectsMore"
                         onclick="toggleMobileProjects()">
                         <span id="mobileProjectsToggleText">View All Projects</span>
                         <i class="fa-solid fa-chevron-down ms-2" id="mobileProjectsToggleIcon" aria-hidden="true"></i>
                     </button>
                 </div>
+                <div id="mobileProjectsMore" class="mobile-projects-more" aria-label="More projects" hidden></div>
 
                 <div class="text-center mt-5 reveal">
                     <a href="https://github.com/r6rizwan" target="_blank" rel="noopener"
@@ -1135,11 +1137,26 @@
                         aria-label="Previous screenshot">
                         <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
                     </button>
-                    <img src="" alt="" class="screenshot-lightbox-img" id="screenshotLightboxImg">
+                    <div class="screenshot-lightbox-viewport" id="screenshotLightboxViewport">
+                        <img src="" alt="" class="screenshot-lightbox-img" id="screenshotLightboxImg">
+                    </div>
                     <button type="button" class="screenshot-lightbox-nav next" id="screenshotNextBtn"
                         aria-label="Next screenshot">
                         <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
                     </button>
+                </div>
+                <div class="screenshot-zoom-controls" role="group" aria-label="Screenshot zoom controls">
+                    <button type="button" class="screenshot-zoom-btn" id="screenshotZoomOutBtn"
+                        aria-label="Zoom out screenshot" title="Zoom out">
+                        <i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i>
+                    </button>
+                    <output class="screenshot-zoom-level" id="screenshotZoomLevel" aria-live="polite">Fit</output>
+                    <button type="button" class="screenshot-zoom-btn" id="screenshotZoomInBtn"
+                        aria-label="Zoom in screenshot" title="Zoom in">
+                        <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="screenshot-zoom-btn screenshot-zoom-fit" id="screenshotZoomFitBtn"
+                        aria-label="Fit screenshot to view" title="Fit to view">Fit</button>
                 </div>
             </div>
         </div>
@@ -1356,24 +1373,25 @@
 
         function updateMobileProjectsVisibility() {
             const isMobile = window.innerWidth < 768;
+            const projectGrid = document.getElementById('projectGrid');
+            const projectMore = document.getElementById('mobileProjectsMore');
             const toggleWrapper = document.getElementById('mobileProjectsToggleWrapper');
             const toggleBtn = document.getElementById('mobileProjectsToggleBtn');
             const toggleText = document.getElementById('mobileProjectsToggleText');
             const toggleIcon = document.getElementById('mobileProjectsToggleIcon');
 
-            const items = document.querySelectorAll('.project-item');
-            const matchingItems = [];
-
-            items.forEach(item => {
+            const items = Array.from(document.querySelectorAll('.project-item'))
+                .sort((first, second) => Number(first.dataset.projectOrder) - Number(second.dataset.projectOrder));
+            const matchingItems = items.filter(item => {
                 const cats = (item.getAttribute('data-category') || '').split(' ');
-                const isMatch = currentFilterCategory === 'all' || cats.includes(currentFilterCategory);
-                if (isMatch) {
-                    matchingItems.push(item);
-                }
+                return currentFilterCategory === 'all' || cats.includes(currentFilterCategory);
             });
 
             if (!isMobile) {
                 // Desktop / Tablet (>= 768px): All matching items are visible without mobile pagination
+                isMobileProjectsExpanded = false;
+                if (projectGrid) items.forEach(item => projectGrid.appendChild(item));
+                if (projectMore) projectMore.hidden = true;
                 items.forEach(item => {
                     const cats = (item.getAttribute('data-category') || '').split(' ');
                     const isMatch = currentFilterCategory === 'all' || cats.includes(currentFilterCategory);
@@ -1395,11 +1413,18 @@
                     }
                 });
                 if (toggleWrapper) toggleWrapper.style.display = 'none';
+                if (toggleWrapper && projectMore) projectMore.before(toggleWrapper);
                 return;
             }
 
             // Mobile (< 768px):
             const totalMatching = matchingItems.length;
+            const firstFour = new Set(matchingItems.slice(0, 4));
+
+            items.forEach(item => {
+                const destination = firstFour.has(item) ? projectGrid : projectMore;
+                if (destination && item.parentElement !== destination) destination.appendChild(item);
+            });
 
             if (totalMatching <= 4) {
                 // 4 or fewer items: Show all matching, hide toggle button
@@ -1416,9 +1441,11 @@
                     item.style.transform = 'scale(1)';
                 });
                 if (toggleWrapper) toggleWrapper.style.display = 'none';
+                if (projectMore) projectMore.hidden = true;
             } else {
                 // More than 4 items:
                 if (toggleWrapper) toggleWrapper.style.display = 'block';
+                if (projectMore) projectMore.hidden = !isMobileProjectsExpanded;
 
                 matchingItems.forEach((item, index) => {
                     const timer = projectHideTimers.get(item);
@@ -1442,6 +1469,12 @@
                     }
                 });
 
+                items.filter(item => !matchingItems.includes(item)).forEach(item => {
+                    item.setAttribute('aria-hidden', 'true');
+                    item.setAttribute('inert', '');
+                    item.style.display = 'none';
+                });
+
                 if (toggleBtn && toggleText && toggleIcon) {
                     if (isMobileProjectsExpanded) {
                         toggleBtn.setAttribute('aria-expanded', 'true');
@@ -1452,6 +1485,14 @@
                         toggleText.textContent = 'View All Projects';
                         toggleIcon.className = 'fa-solid fa-chevron-down ms-2';
                     }
+                }
+            }
+
+            if (toggleWrapper && projectMore) {
+                if (isMobileProjectsExpanded && totalMatching > 4) {
+                    projectMore.after(toggleWrapper);
+                } else {
+                    projectMore.before(toggleWrapper);
                 }
             }
         }
@@ -1559,9 +1600,49 @@
         const screenshotLightboxTitle = document.getElementById('screenshotLightboxLabel');
         const screenshotPrevBtn = document.getElementById('screenshotPrevBtn');
         const screenshotNextBtn = document.getElementById('screenshotNextBtn');
+        const screenshotLightboxViewport = document.getElementById('screenshotLightboxViewport');
+        const screenshotZoomOutBtn = document.getElementById('screenshotZoomOutBtn');
+        const screenshotZoomInBtn = document.getElementById('screenshotZoomInBtn');
+        const screenshotZoomFitBtn = document.getElementById('screenshotZoomFitBtn');
+        const screenshotZoomLevel = document.getElementById('screenshotZoomLevel');
         const screenshotLightbox = screenshotLightboxEl ? new bootstrap.Modal(screenshotLightboxEl) : null;
         let activeScreenshotGallery = [];
         let activeScreenshotIndex = 0;
+        let screenshotZoom = 1;
+        const screenshotZoomStep = 0.25;
+        const screenshotZoomMax = 3;
+
+        function updateScreenshotZoom(nextZoom = screenshotZoom) {
+            screenshotZoom = Math.min(screenshotZoomMax, Math.max(1, nextZoom));
+            if (screenshotZoomLevel) {
+                screenshotZoomLevel.textContent = screenshotZoom === 1
+                    ? 'Fit'
+                    : `${Math.round(screenshotZoom * 100)}%`;
+            }
+            if (screenshotZoomOutBtn) screenshotZoomOutBtn.disabled = screenshotZoom === 1;
+            if (screenshotZoomInBtn) screenshotZoomInBtn.disabled = screenshotZoom === screenshotZoomMax;
+
+            if (!screenshotLightboxViewport || !screenshotLightboxImg?.naturalWidth || !screenshotLightboxImg.naturalHeight) return;
+
+            const viewportWidth = screenshotLightboxViewport.clientWidth;
+            const viewportHeight = screenshotLightboxViewport.clientHeight;
+            if (!viewportWidth || !viewportHeight) return;
+
+            const fitScale = Math.min(
+                viewportWidth / screenshotLightboxImg.naturalWidth,
+                viewportHeight / screenshotLightboxImg.naturalHeight
+            );
+            const imageWidth = Math.round(screenshotLightboxImg.naturalWidth * fitScale * screenshotZoom);
+            const imageHeight = Math.round(screenshotLightboxImg.naturalHeight * fitScale * screenshotZoom);
+            screenshotLightboxImg.style.width = `${imageWidth}px`;
+            screenshotLightboxImg.style.height = `${imageHeight}px`;
+            screenshotLightboxViewport.scrollLeft = Math.max(0, (imageWidth - viewportWidth) / 2);
+            screenshotLightboxViewport.scrollTop = Math.max(0, (imageHeight - viewportHeight) / 2);
+        }
+
+        function resetScreenshotZoom() {
+            updateScreenshotZoom(1);
+        }
 
         function getOptimalImageSrc(item) {
             return item.avif || item.webp || item.src;
@@ -1590,6 +1671,7 @@
             if (!gallery.length) return;
 
             const current = gallery[index] || gallery[0];
+            resetScreenshotZoom();
             screenshotLightboxImg.src = getOptimalImageSrc(current);
             screenshotLightboxImg.alt = current.alt;
             if (screenshotLightboxTitle) screenshotLightboxTitle.textContent = current.alt || 'Project Screenshot';
@@ -1613,15 +1695,32 @@
 
         // Memory cleanup: Release decoded image buffer when modal closes
         if (screenshotLightboxEl) {
+            screenshotLightboxEl.addEventListener('shown.bs.modal', () => updateScreenshotZoom());
+            screenshotLightboxEl.addEventListener('hidden.bs.modal', resetScreenshotZoom);
             screenshotLightboxEl.addEventListener('hidden.bs.modal', () => {
                 if (screenshotLightboxImg) {
                     screenshotLightboxImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"/>';
                     screenshotLightboxImg.alt = '';
+                    screenshotLightboxImg.style.width = '';
+                    screenshotLightboxImg.style.height = '';
                 }
                 activeScreenshotGallery = [];
                 activeScreenshotIndex = 0;
             });
         }
+
+        screenshotLightboxImg?.addEventListener('load', () => updateScreenshotZoom());
+        screenshotZoomOutBtn?.addEventListener('click', () => {
+            updateScreenshotZoom(screenshotZoom - screenshotZoomStep);
+        });
+        screenshotZoomInBtn?.addEventListener('click', () => {
+            updateScreenshotZoom(screenshotZoom + screenshotZoomStep);
+        });
+        screenshotZoomFitBtn?.addEventListener('click', resetScreenshotZoom);
+
+        window.addEventListener('resize', () => {
+            if (screenshotLightboxEl?.classList.contains('show')) updateScreenshotZoom();
+        }, { passive: true });
 
         // Event delegation for project screenshot triggers
         document.addEventListener('click', (event) => {
@@ -1651,7 +1750,16 @@
         document.addEventListener('keydown', (event) => {
             if (!screenshotLightboxEl || !screenshotLightboxEl.classList.contains('show')) return;
 
-            if (event.key === 'ArrowLeft') {
+            if (event.key === '+' || event.key === '=') {
+                event.preventDefault();
+                updateScreenshotZoom(screenshotZoom + screenshotZoomStep);
+            } else if (event.key === '-') {
+                event.preventDefault();
+                updateScreenshotZoom(screenshotZoom - screenshotZoomStep);
+            } else if (event.key === '0') {
+                event.preventDefault();
+                resetScreenshotZoom();
+            } else if (event.key === 'ArrowLeft') {
                 event.preventDefault();
                 screenshotPrevBtn?.click();
             } else if (event.key === 'ArrowRight') {
@@ -1664,14 +1772,21 @@
         if (screenshotLightboxEl) {
             let touchStartX = 0;
             let touchEndX = 0;
+            let touchStartedInViewport = false;
 
             screenshotLightboxEl.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
+                touchStartedInViewport = Boolean(e.target.closest('.screenshot-lightbox-viewport'));
             }, { passive: true });
 
             screenshotLightboxEl.addEventListener('touchend', (e) => {
                 touchEndX = e.changedTouches[0].screenX;
                 const diff = touchEndX - touchStartX;
+                if (screenshotZoom > 1 && touchStartedInViewport) {
+                    touchStartedInViewport = false;
+                    return;
+                }
+                touchStartedInViewport = false;
                 if (Math.abs(diff) > 45) {
                     if (diff > 0) {
                         screenshotPrevBtn?.click(); // Swipe right
