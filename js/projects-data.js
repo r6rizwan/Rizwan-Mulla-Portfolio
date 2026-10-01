@@ -513,7 +513,7 @@ function renderProjectModals(containerId = 'projectModalsContainer') {
                         <div class="modal-header border-0 pb-0 justify-content-between align-items-center gap-3">
                             <div class="project-modal-heading">
                                 <h2 class="fw-800 text-primary mb-1 modal-title" id="${project.modalId}Label">${project.modalTitle}</h2>
-                                <div class="d-flex flex-wrap gap-2 pt-1">
+                                <div class="d-flex flex-wrap align-items-center gap-2 pt-1">
                                     <span class="badge-role">${project.roleBadge}</span>
                                     <span class="badge-cat">${project.categoryBadge}</span>
                                 </div>

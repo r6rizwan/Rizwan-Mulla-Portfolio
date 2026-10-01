@@ -23,7 +23,6 @@
     --primary-soft: rgba(15, 118, 110, 0.12);
     --accent-color: #f59e0b;
     --accent-soft: rgba(245, 158, 11, 0.15);
-    --nav-active-color: #0f766e;
     --card-bg: #ffffff;
     --card-bg-rgb: 255, 255, 255;
     --border-color: rgba(15, 27, 29, 0.08);
@@ -51,17 +50,6 @@
     --gutter: clamp(1rem, 3.5vw, 2rem);
     --section-spacing: clamp(4rem, 7vw + 1rem, 6.5rem);
 
-    /* Spacing Scale */
-    --space-1: 0.25rem;
-    --space-2: 0.5rem;
-    --space-3: 0.75rem;
-    --space-4: 1rem;
-    --space-5: 1.25rem;
-    --space-6: 1.5rem;
-    --space-7: 2rem;
-    --space-8: 2.5rem;
-    --space-9: 3rem;
-
     /* Radius Scale */
     --radius-sm: 0.5rem;
     --radius-md: 0.875rem;
@@ -88,7 +76,6 @@ body[data-theme="dark"],
     --primary-soft: rgba(45, 212, 191, 0.18);
     --accent-color: #fbbf24;
     --accent-soft: rgba(251, 191, 36, 0.2);
-    --nav-active-color: #2dd4bf;
     --card-bg: #121b1e;
     --card-bg-rgb: 18, 27, 30;
     --border-color: rgba(255, 255, 255, 0.08);
@@ -410,6 +397,15 @@ button.filter-btn.active,
     min-width: 0;
 }
 
+.project-modal-heading .badge-role,
+.project-modal-heading .badge-cat {
+    display: inline-flex;
+    align-items: center;
+    min-height: 31px;
+    margin: 0;
+    line-height: 1.3;
+}
+
 .project-modal-close {
     position: absolute;
     top: 12px;
@@ -488,49 +484,6 @@ button.filter-btn.active,
 .modal-xl-custom .modal-body {
     min-height: 0;
     overflow-y: auto;
-}
-
-.screenshot-scroll {
-    max-width: 100%;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
-}
-
-.modal-xl-custom .modal-body .screenshot-scroll {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(260px, 42%);
-    gap: 16px;
-    padding: 10px 2px 16px;
-    scroll-snap-type: x mandatory;
-}
-
-.screenshot-scroll img {
-    width: 100%;
-    height: clamp(260px, 42vw, 430px);
-    max-width: none;
-    border-radius: 16px;
-    border: 1px solid var(--border-color);
-    background: var(--card-bg);
-    object-fit: contain;
-    scroll-snap-align: start;
-    cursor: zoom-in;
-    transition: var(--transition-smooth);
-}
-
-.screenshot-scroll::-webkit-scrollbar {
-    height: 6px;
-}
-
-.screenshot-scroll::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 10px;
-}
-
-.screenshot-scroll::-webkit-scrollbar-track {
-    background: transparent;
 }
 
 /* Screenshot Lightbox */
@@ -1554,10 +1507,6 @@ span.mastery-tag-primary,
     transition: var(--transition-smooth);
 }
 
-.mastery-edu-item {
-    margin-bottom: 6px;
-}
-
 .mastery-edu-degree {
     font-size: 0.95rem;
     font-weight: 700;
@@ -1935,14 +1884,6 @@ a.contact-card-custom,
         box-shadow: 0 0 0 1px var(--modal-glow), 0 20px 54px rgba(0, 0, 0, 0.22);
     }
 
-    .screenshot-scroll img:hover,
-    .screenshot-scroll img:focus-visible {
-        border-color: var(--primary-color);
-        box-shadow: 0 18px 45px rgba(20, 184, 166, 0.16);
-        transform: translateY(-4px);
-        outline: none;
-    }
-
     .screenshot-lightbox-nav:hover,
     .screenshot-lightbox-nav:focus-visible {
         background: var(--primary-color);
@@ -2114,88 +2055,9 @@ a.contact-card-custom,
         margin-left: 0;
     }
 
-    .modal-xl-custom .modal-body .screenshot-scroll {
-        grid-auto-columns: minmax(240px, 82%);
-    }
-
-    .screenshot-scroll img {
-        height: clamp(240px, 75vw, 360px);
-    }
-
     .screenshot-lightbox-body {
         gap: 8px;
         padding: 14px;
-    }
-
-    #projectGrid .project-card-custom {
-        padding: 0.75rem;
-    }
-
-    #projectGrid .project-proof {
-        min-height: 130px;
-        margin-bottom: 10px;
-    }
-
-    #projectGrid .project-proof--image {
-        min-height: 130px;
-        padding: 8px;
-    }
-
-    #projectGrid .project-proof--image img {
-        inset: 8px 8px 34px;
-        width: calc(100% - 16px);
-        height: calc(100% - 42px);
-        border-radius: 10px;
-    }
-
-    #projectGrid .project-proof--image span {
-        font-size: 0.65rem;
-        padding: 5px 8px;
-        border-radius: 8px;
-    }
-
-    #projectGrid .project-proof i {
-        font-size: 1.5rem;
-    }
-
-    #projectGrid .project-proof span {
-        font-size: 0.65rem;
-    }
-
-    #projectGrid .project-top {
-        margin-bottom: 8px;
-    }
-
-    #projectGrid .badge-cat {
-        font-size: 0.58rem;
-        padding: 3px 7px;
-    }
-
-    #projectGrid .project-card-custom h3,
-    #projectGrid .project-card-custom h5 {
-        font-size: 0.88rem;
-        margin-bottom: 6px;
-        line-height: 1.3;
-    }
-
-    #projectGrid .project-card-custom p {
-        display: none;
-        /* Hide verbose description on mobile to reduce card height */
-    }
-
-    #projectGrid .project-impact {
-        display: none;
-        /* Hide on mobile to keep cards compact */
-    }
-
-    #projectGrid .project-metrics {
-        display: none;
-        /* Hide detailed metrics on mobile */
-    }
-
-    #projectGrid .project-tags-container {
-        display: none;
-        /* Hide tag stack on mobile to stay compact */
     }
 }
 
