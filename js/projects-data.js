@@ -273,11 +273,11 @@ const projectsData = [
             label: "Retail operations mobile app"
         },
         cardDescription: "Production retail and warehouse inventory management app built for enterprise clients. Connects warehouse floor workers with backend inventory management systems for real-time stock operations.",
-        cardImpact: "Live on Google Play with camera barcode scanning, offline caching, and instant stock synchronization.",
+        cardImpact: "Reached 5K+ downloads on Google Play with a 4.3-star rating, supporting barcode scanning, offline caching, and real-time stock operations.",
         metrics: [
-            "Live on Play Store",
+            "5K+ Downloads",
+            "4.3-Star Rating",
             "Barcode Scanner",
-            "Offline Cache"
         ],
         tags: [
             "Flutter",
@@ -293,6 +293,7 @@ const projectsData = [
             "<strong>Offline Resilience with Hive:</strong> Fast local key-value caching using Hive, allowing warehouse inventory audits in zero-connectivity dead zones.",
             "<strong>Bloc State Management:</strong> Predictable state transitions handling complex stock transfer, return, and write-off mutations.",
             "<strong>Backend Inventory Sync:</strong> Optimized REST API payloads with background retry queues for dependable ERP synchronization.",
+            "<strong>Production Traction:</strong> Reached 5K+ downloads with a 4.3-star rating on Google Play.",
             "<strong>Enterprise Play Store Release:</strong> Actively deployed across retail branch locations for daily stock checks."
         ],
         links: {
